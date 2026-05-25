@@ -1,0 +1,685 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>MakerMods Metal Arm, Lightweight 6-Axis Robotic Arm</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A lightweight, all-metal six-axis robotic arm built for embodied AI, research, and education. ±0.1 mm repeatability, 3 kg payload, open SDK, ROS1/ROS2 ready.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="styles/tokens.css">
+<link rel="stylesheet" href="styles/page.css">
+<link rel="icon" type="image/png" href="assets/logo-mark.png">
+<style>
+  /* page-local: a few extras used only on the metal-arm pages */
+  .ma-photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s-4);
+  }
+  .ma-photo {
+    position: relative;
+    aspect-ratio: 4/5;
+    background: #ECE7DF;
+    overflow: hidden;
+    clip-path: polygon(16px 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%, 0 16px);
+  }
+  .ma-photo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
+    display: block;
+  }
+  .ma-photo .corner { position: absolute; width: 14px; height: 14px; border: 1px solid rgba(10,10,10,0.4); z-index: 2; }
+  .ma-photo .corner.tl { top: 14px; left: 14px; border-right: 0; border-bottom: 0; }
+  .ma-photo .corner.tr { top: 14px; right: 14px; border-left: 0; border-bottom: 0; }
+  .ma-photo .corner.bl { bottom: 14px; left: 14px; border-right: 0; border-top: 0; }
+  .ma-photo .corner.br { bottom: 14px; right: 14px; border-left: 0; border-top: 0; }
+  .ma-photo .label {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(10,10,10,0.75);
+    border: 1px solid rgba(10,10,10,0.25);
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    padding: 5px 8px;
+    z-index: 2;
+  }
+  .ma-photo .cap {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: rgba(10,10,10,0.7);
+    background: rgba(255,255,255,0.7);
+    padding: 6px 10px;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    letter-spacing: 0.04em;
+  }
+  .ma-cap-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--s-4);
+    margin-top: var(--s-5);
+  }
+  .ma-cap-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: var(--s-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+  }
+  .ma-cap-card .num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--orange);
+    letter-spacing: 0.14em;
+  }
+  .ma-cap-card h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+  }
+  .ma-cap-card p { font-size: 13px; color: var(--ink-2); line-height: 1.5; }
+  .ma-cap-img {
+    aspect-ratio: 16/10;
+    background: #ECE7DF;
+    overflow: hidden;
+    margin: 0 0 var(--s-3);
+    position: relative;
+  }
+  .ma-cap-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ma-end-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s-5);
+  }
+  .ma-end-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: var(--s-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+  }
+  .ma-end-card .pn {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    background: var(--orange-3);
+    color: var(--orange-2);
+    padding: 3px 7px;
+    align-self: flex-start;
+  }
+  .ma-end-card h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .ma-end-card .end-img {
+    aspect-ratio: 1.1;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ma-end-card .end-img img { width: 100%; height: 100%; object-fit: contain; padding: 1.5%; }
+  .ma-end-card .mini { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 14px; }
+  .ma-end-card .mini .k { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; color: var(--mute); text-transform: uppercase; }
+  .ma-end-card .mini .v { font-family: var(--font-mono); font-size: 12px; color: var(--ink); }
+
+  .ma-cap-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--s-5);
+  }
+  .ma-cap-feature {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .ma-cap-feature .ma-cap-img { aspect-ratio: 16/9; margin: 0; }
+  .ma-cap-feature .ma-cap-body { padding: var(--s-5); display: flex; flex-direction: column; gap: var(--s-3); }
+  .ma-cap-feature h3 { font-family: var(--font-display); font-weight: 700; font-size: 22px; letter-spacing: -0.01em; line-height: 1.1; }
+  .ma-cap-feature p { font-size: 14px; color: var(--ink-2); line-height: 1.55; }
+
+  .ma-modes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--s-5);
+  }
+  .ma-mode {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    overflow: hidden;
+  }
+  .ma-mode .ma-mode-img {
+    background: var(--ink);
+    position: relative;
+    overflow: hidden;
+    min-height: 220px;
+  }
+  .ma-mode .ma-mode-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ma-mode .ma-mode-body { padding: var(--s-5); display: flex; flex-direction: column; gap: var(--s-3); }
+  .ma-mode .badge {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4px 9px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    align-self: flex-start;
+  }
+  .ma-mode h3 { font-family: var(--font-display); font-weight: 700; font-size: 20px; letter-spacing: -0.01em; line-height: 1.15; }
+  .ma-mode .config {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--mute);
+    background: var(--paper);
+    padding: 8px 10px;
+    border: 1px solid var(--line);
+    letter-spacing: 0.04em;
+  }
+  .ma-mode p { font-size: 13px; color: var(--ink-2); line-height: 1.5; }
+
+  @media (max-width: 960px) {
+    .ma-photo-grid { grid-template-columns: 1fr; }
+    .ma-cap-row { grid-template-columns: 1fr 1fr; }
+    .ma-cap-section { grid-template-columns: 1fr; }
+    .ma-end-grid { grid-template-columns: 1fr; }
+    .ma-modes { grid-template-columns: 1fr; }
+    .ma-mode { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================== NAV ============================== -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="main.html" class="nav-logo" aria-label="MakerMods">
+      <img src="assets/logo-wordmark.png" alt="MakerMods">
+    </a>
+    <div class="nav-links">
+      <a href="metal-arm.html">Metal Arm</a>
+      <a href="index.html">XLeRobot</a>
+      <a href="#">Docs</a>
+      <a href="https://discord.gg/HpXj3ynhhF" target="_blank" rel="noopener">Community</a>
+    </div>
+    <div class="nav-actions">
+      <span class="nav-cart">cart · 0</span>
+      <a href="metal-arm-buy.html" id="nav-buy" class="btn nav-buy is-idle">Pre-order →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============================== CRUMBS ============================== -->
+<div class="container">
+  <div class="crumbs">
+    <a href="index.html">makermods</a>
+    <span class="sep">/</span>
+    <a href="index.html">shop</a>
+    <span class="sep">/</span>
+    <span>metal arm</span>
+  </div>
+</div>
+
+<!-- ============================== HERO ============================== -->
+<section class="hero" data-screen-label="01 Hero">
+  <div class="container hero-inner">
+    <div class="hero-photo hero-photo--photo">
+      <img class="hero-img" src="assets/metal-arm/hero.png" alt="MakerMods Metal Arm, six-axis lightweight robotic arm" loading="eager" decoding="async" style="object-fit:contain;background:#ECE7DF;padding:6%">
+      <div class="corner tl"></div><div class="corner tr"></div>
+      <div class="corner bl"></div><div class="corner br"></div>
+      <div class="label-tag" style="color:rgba(10,10,10,0.75);border-color:rgba(10,10,10,0.25);background:rgba(245,245,245,0.6);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)">METAL ARM · CNC ALUMINUM</div>
+      <div class="meta-strip" style="color:rgba(10,10,10,0.6)">
+        <span>612.5 mm REACH · 4.2 kg</span>
+        <span>6 DOF · ±0.1 mm</span>
+      </div>
+    </div>
+
+    <div class="buy-box">
+      <div class="eyebrow">[ LIGHTWEIGHT 6-AXIS ROBOTIC ARM <span class="b">·</span> EMBODIED AI ]</div>
+      <h1 class="hero-title">MakerMods<br>Metal Arm.</h1>
+      <p class="hero-sub">A lightweight, all-CNC-aluminum six-axis manipulator built for embodied AI, research, and education. 3 kg payload, ±0.1 mm repeatability, open SDK, ready for ROS, MoveIt, LeRobot, and VLA training out of the box.</p>
+
+      <div class="price-row">
+        <span class="price">$2,499</span>
+        <span class="price-was">$100 deposit to pre-order · fully assembled</span>
+        <span class="price-meta">~1 week lead</span>
+      </div>
+
+      <div class="buy-cta-row">
+        <a id="hero-buy-cta" class="btn btn-stencil btn-block" href="metal-arm-buy.html">[ PRE-ORDER → ]</a>
+        <div class="buy-license">mit license · open sdk · ros1 / ros2</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== BANNER ============================== -->
+<section class="ma-banner" data-screen-label="01b Banner" aria-label="MakerMods Metal Arm in motion">
+  <video class="ma-banner-vid" src="assets/metal-arm/banner.mp4" autoplay muted loop playsinline preload="auto" aria-label="MakerMods Metal Arm in motion"></video>
+</section>
+
+<style>
+  .ma-banner {
+    position: relative;
+    background: #0A0A0A;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    display: block;
+  }
+  .ma-banner-vid {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
+    display: block;
+  }
+  @media (max-width: 960px) {
+    .ma-banner { aspect-ratio: 4 / 3; }
+  }
+</style>
+
+<!-- ============================== AT A GLANCE / CAPABILITIES ============================== -->
+<section class="section" id="at-a-glance" data-screen-label="02 At a Glance">
+  <div class="container">
+    <div class="section-head" style="align-items:center;text-align:center;margin:0 auto var(--s-7)">
+      <div class="eyebrow">[ AT A GLANCE <span class="b">·</span> 02 ]</div>
+      <h2>From sim to real hardware, without seams.</h2>
+      <p class="lead" style="margin:0 auto">High-precision motion control, low-power design, and an open hardware-software stack, engineered for research labs, university teaching, and embodied-AI startups.</p>
+    </div>
+
+    <div class="ma-photo-grid">
+      <div class="ma-photo">
+        <img src="assets/metal-arm/arm.png" alt="MakerMods Metal Arm, six-axis profile" style="object-fit:contain;padding:8%">
+        <div class="corner tl"></div><div class="corner tr"></div>
+        <div class="corner bl"></div><div class="corner br"></div>
+        <div class="label">01 · ARM</div>
+        <div class="cap"><span>6 DOF</span><span>±0.1 mm</span></div>
+      </div>
+      <div class="ma-photo">
+        <img src="assets/metal-arm/end-2in1.jpg" alt="2-in-1 end-effector, gripper plus teacher" style="object-fit:contain;padding:6%;background:#FAFAFA">
+        <div class="corner tl"></div><div class="corner tr"></div>
+        <div class="corner bl"></div><div class="corner br"></div>
+        <div class="label">02 · END-EFFECTOR</div>
+        <div class="cap"><span>swap in seconds</span><span>0–95 mm stroke</span></div>
+      </div>
+      <div class="ma-photo">
+        <img src="assets/metal-arm/gravity-comp.jpg" alt="Operator guiding the arm under gravity compensation">
+        <div class="corner tl"></div><div class="corner tr"></div>
+        <div class="corner bl"></div><div class="corner br"></div>
+        <div class="label">03 · GRAVITY COMP</div>
+        <div class="cap"><span>out of the box</span><span>teleop by hand</span></div>
+      </div>
+    </div>
+
+    <div class="ma-cap-row">
+      <div class="ma-cap-card">
+        <div class="num">[ HW · 01 ]</div>
+        <h3>All-CNC metal build</h3>
+        <p>Aluminum-alloy housing, durable, lightweight, and rigid enough for hands-on teaching and field deployments.</p>
+      </div>
+      <div class="ma-cap-card">
+        <div class="num">[ HW · 02 ]</div>
+        <h3>Modular end interface</h3>
+        <p>Quick-swap between gripper, teacher, and 2-in-1 end-effector. Power + CAN through a single XT30 (2+2) connector.</p>
+      </div>
+      <div class="ma-cap-card">
+        <div class="num">[ HW · 03 ]</div>
+        <h3>±0.1 mm repeatability</h3>
+        <p>Precision suitable for research-grade pick-and-place, contact-rich manipulation, and fine assembly tasks.</p>
+      </div>
+      <div class="ma-cap-card">
+        <div class="num">[ HW · 04 ]</div>
+        <h3>Ready out of the box</h3>
+        <p>Calibrated, packed, and shipped complete, unbox, plug in, and run your first experiment in minutes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== END-OF-ARM TOOLING ============================== -->
+<section class="section bg-grid" id="end-effectors" data-screen-label="03 End-of-Arm Tooling">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">[ END-OF-ARM TOOLING <span class="b">·</span> 03 ]</div>
+      <h2>Three swappable end-effectors.</h2>
+      <p class="lead">Pick the tool that fits your workflow, gripper, guide for teleoperation, or both at once. All three share the same XT30 power + CAN interface and swap in seconds.</p>
+    </div>
+
+    <div class="ma-end-grid">
+      <div class="ma-end-card">
+        <div class="end-img"><img src="assets/metal-arm/end-gripper.jpg?v=2" alt="Gripper"></div>
+        <h3>Gripper</h3>
+        <div class="mini">
+          <span class="k">weight</span><span class="v">670 g</span>
+          <span class="k">stroke</span><span class="v">0–95 mm</span>
+          <span class="k">repeat</span><span class="v">±0.1 mm</span>
+          <span class="k">interface</span><span class="v">XT30 2+2</span>
+        </div>
+      </div>
+
+      <div class="ma-end-card">
+        <div class="end-img"><img src="assets/metal-arm/end-teacher.jpg?v=2" alt="Leader"></div>
+        <h3>Leader</h3>
+        <div class="mini">
+          <span class="k">weight</span><span class="v">670 g</span>
+          <span class="k">stroke</span><span class="v">0–95 mm</span>
+          <span class="k">repeat</span><span class="v">±0.1 mm</span>
+          <span class="k">interface</span><span class="v">XT30 2+2</span>
+        </div>
+      </div>
+
+      <div class="ma-end-card">
+        <div class="end-img"><img src="assets/metal-arm/end-2in1.jpg?v=2" alt="2-in-1 end-effector"></div>
+        <h3>2-in-1</h3>
+        <div class="mini">
+          <span class="k">weight</span><span class="v">670 g</span>
+          <span class="k">stroke</span><span class="v">0–95 mm</span>
+          <span class="k">repeat</span><span class="v">±0.1 mm</span>
+          <span class="k">interface</span><span class="v">XT30 2+2</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== SOFTWARE / CAPABILITIES ============================== -->
+<section class="section" id="software" data-screen-label="04 Software & Control">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">[ SOFTWARE &amp; CONTROL <span class="b">·</span> 04 ]</div>
+      <h2>Joint, end-pose, teach, and trajectory.</h2>
+      <p class="lead">A stable IK solver, adaptive trajectory tracking, gravity compensation, and a full simulation pipeline, all driven by an open-source Python and C++ SDK.</p>
+    </div>
+
+    <div class="ma-cap-section">
+      <div class="ma-cap-feature">
+        <div class="ma-cap-img"><img src="assets/metal-arm/gravity-comp.jpg" alt="Operator demonstrating gravity-compensated teaching"></div>
+        <div class="ma-cap-body">
+          <div class="eyebrow">[ 4.1 · GRAVITY COMPENSATION ]</div>
+          <h3>Teach by hand.</h3>
+          <p>Lightweight gravity compensation lets an operator guide the arm directly through a motion, ideal for hands-on data collection and rapid demo capture.</p>
+        </div>
+      </div>
+
+      <div class="ma-cap-feature">
+        <div class="ma-cap-img"><img src="assets/metal-arm/trajectory.jpg" alt="Adaptive trajectory tracking demonstration"></div>
+        <div class="ma-cap-body">
+          <div class="eyebrow">[ 4.2 · PRECISE CONTROL ]</div>
+          <h3>Joint + end-pose control.</h3>
+          <p>Precise control: supports joint and end-pose control, with a built-in stable IK solver.</p>
+        </div>
+      </div>
+
+      <div class="ma-cap-feature">
+        <div class="ma-cap-img"><img src="assets/metal-arm/urdf.jpg" alt="URDF visualization of the MakerMods Metal Arm"></div>
+        <div class="ma-cap-body">
+          <div class="eyebrow">[ 4.3 · URDF SUPPLIED ]</div>
+          <h3>Drop into your stack.</h3>
+          <p>Ready-to-use URDF for the arm and every end-effector configuration, for visualization, planning, and downstream development without rebuilding kinematics.</p>
+        </div>
+      </div>
+
+      <div class="ma-cap-feature">
+        <div class="ma-cap-img"><img src="assets/metal-arm/moveit.jpg" alt="MoveIt and Gazebo co-simulation"></div>
+        <div class="ma-cap-body">
+          <div class="eyebrow">[ 4.4 · MOVEIT + GAZEBO ]</div>
+          <h3>Sim today, hardware tomorrow.</h3>
+          <p>Pre-built MoveIt and Gazebo integration with real-hardware loopback. Develop and validate in sim, then deploy on the physical arm without rewriting glue.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== DATA COLLECTION CONFIGS ============================== -->
+<section class="section bg-grid" id="data-collection" data-screen-label="05 Data Collection">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">[ CONTROL MODES <span class="b">·</span> 05 ]</div>
+      <h2>Two control modes.</h2>
+      <p class="lead">Direct control or teleoperation, switch modes by loading a different SDK config. The full data-collection codebase is open source.</p>
+    </div>
+
+    <div class="ma-modes">
+      <div class="ma-mode">
+        <div class="ma-mode-img"><img src="assets/metal-arm/single-arm.jpg" alt="Direct control, operator manipulates the arm directly"></div>
+        <div class="ma-mode-body">
+          <span class="badge">5.1 · DIRECT CONTROL</span>
+          <h3>Hands-on the arm.</h3>
+          <div class="config">arm × 1 &nbsp;+&nbsp; 2-in-1 × 1</div>
+          <p>Single-handed grip on the 2-in-1 end-effector. Guide the arm directly to capture motion.</p>
+        </div>
+      </div>
+
+      <div class="ma-mode">
+        <div class="ma-mode-img"><img src="assets/metal-arm/leader-follower.jpg" alt="Teleoperation, leader controls a follower arm"></div>
+        <div class="ma-mode-body">
+          <span class="badge">5.2 · TELEOPERATION</span>
+          <h3>Leader + follower.</h3>
+          <div class="config">arm × 2 &nbsp;+&nbsp; Leader × 1 &nbsp;+&nbsp; Gripper × 1</div>
+          <p>Operator holds the leader to remote-control the follower arm at the gripper end.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== IN THE BOX ============================== -->
+<section class="section" id="in-the-box" data-screen-label="06 In The Box">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">[ WHAT'S IN THE BOX <span class="b">·</span> 06 ]</div>
+      <h2>Inventoried, calibrated, packed.</h2>
+      <p class="lead">Complete packaging, everything you need to stand up a teleop, capture, or sim experiment the day it lands on your bench.</p>
+    </div>
+
+    <div class="box-grid">
+      <div class="box-list">
+        <div class="box-item"><div class="thumb" style="font-family:var(--font-mono);font-size:11px">01</div><div><div class="name">Robotic arm</div><div class="desc">6-DOF CNC-aluminum arm, factory-calibrated, ready to mount.</div></div><div class="qty">×1</div></div>
+        <div class="box-item"><div class="thumb" style="font-family:var(--font-mono);font-size:11px">02</div><div><div class="name">2-in-1 end-effector</div><div class="desc">Combined gripper + leader unit. Default end-effector.</div></div><div class="qty">×1</div></div>
+        <div class="box-item"><div class="thumb" style="font-family:var(--font-mono);font-size:11px">03</div><div><div class="name">Gripper</div><div class="desc">Parallel-jaw gripper. 0–95 mm stroke.</div></div><div class="qty">×1</div></div>
+        <div class="box-item"><div class="thumb" style="font-family:var(--font-mono);font-size:11px">04</div><div><div class="name">Leader (handheld)</div><div class="desc">Leader-side teleop unit with handle.</div></div><div class="qty">×1</div></div>
+        <div class="box-item"><div class="thumb" style="font-family:var(--font-mono);font-size:11px">05</div><div><div class="name">CAN-to-USB adapter</div><div class="desc">PC-side bus interface. Driverless on Ubuntu 20.04 / 22.04.</div></div><div class="qty">×1</div></div>
+        <div class="box-item"><div class="thumb" style="font-family:var(--font-mono);font-size:11px">06</div><div><div class="name">Switching power supply</div><div class="desc">24 V DC supply with regional plug adapters.</div></div><div class="qty">×1</div></div>
+        <div class="box-item"><div class="thumb" style="font-family:var(--font-mono);font-size:11px">07</div><div><div class="name">Metal stabilizer plate</div><div class="desc">Bench mounting plate, drilled for the 90×90 mm M5×4 base pattern.</div></div><div class="qty">×1</div></div>
+        <div class="box-item"><div class="thumb" style="font-family:var(--font-mono);font-size:11px">08</div><div><div class="name">G-clamp + toolkit</div><div class="desc">Clamp the stabilizer plate to any bench. Hex keys + power button included.</div></div><div class="qty">kit</div></div>
+      </div>
+
+      <div class="callout">
+        <div class="e">[ ONE PLATE · 4 SCREWS ]</div>
+        <h3>Pre-built and factory-calibrated.</h3>
+        <p>Ships ~95% assembled. Clamp the stabilizer plate to your bench, mount the arm with 4 × M5, plug in power + CAN-to-USB. You're sending joint commands within minutes.</p>
+        <ul class="checks">
+          <li>Joints homed and calibrated at the factory</li>
+          <li>SDK + URDF + ROS drivers preinstalled-ready</li>
+          <li>4-screw bench mount, no welding, no fabrication</li>
+          <li>Foam-packed for international freight</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== SPECS ============================== -->
+<section class="section bg-grid" id="specs" data-screen-label="07 Specs">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">[ SPECS <span class="b">·</span> 07 ]</div>
+      <h2>The numbers. The specs.</h2>
+    </div>
+
+    <div class="spec-card">
+      <div class="spec-card-head">
+        <span>metal arm · built by makermods</span>
+        <span>spec_sheet.txt</span>
+      </div>
+      <div class="spec-grid">
+        <div class="spec-row"><span class="k">body weight</span><span class="v">4.2 kg<span class="imp imp-block">9.3 lb</span></span></div>
+        <div class="spec-row"><span class="k">rated payload</span><span class="v">3 kg<span class="imp imp-block">6.6 lb</span></span></div>
+        <div class="spec-row"><span class="k">degrees of freedom</span><span class="v">6</span></div>
+        <div class="spec-row"><span class="k">working radius</span><span class="v">612.5 mm<span class="imp imp-block">24.1"</span></span></div>
+        <div class="spec-row"><span class="k">repeatability</span><span class="v"><span class="em">±0.1 mm</span></span></div>
+        <div class="spec-row"><span class="k">base mount</span><span class="v">90 × 90 mm · M5 × 4</span></div>
+        <div class="spec-row"><span class="k">supply voltage</span><span class="v">24 V DC</span></div>
+        <div class="spec-row"><span class="k">material</span><span class="v">CNC aluminum alloy + resin</span></div>
+        <div class="spec-row"><span class="k">communication</span><span class="v">CAN</span></div>
+        <div class="spec-row"><span class="k">external interface</span><span class="v">Power + CAN · XT30 2+2</span></div>
+        <div class="spec-row"><span class="k">control modes</span><span class="v">Trajectory tracking · Teach · API</span></div>
+        <div class="spec-row"><span class="k">joint range · J1 / J6</span><span class="v">−165° to 165° &nbsp;·&nbsp; −150° to 150°</span></div>
+        <div class="spec-row"><span class="k">max joint speed</span><span class="v">180 °/s (J1–J3) · 220 °/s (J4–J6)</span></div>
+        <div class="spec-row"><span class="k">ros support</span><span class="v">ROS1 Noetic · ROS2 Humble</span></div>
+        <div class="spec-row"><span class="k">sdk</span><span class="v">Python + C++ · open source · continuously maintained</span></div>
+        <div class="spec-row"><span class="k">simulation</span><span class="v">MoveIt · Gazebo (real-hardware loopback)</span></div>
+        <div class="spec-row"><span class="k">vla support</span><span class="v">ALOHA ACT · pi0 / pi0.5 (training + inference)</span></div>
+        <div class="spec-row"><span class="k">license</span><span class="v">MIT (SDK + firmware)</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== FAQ ============================== -->
+<section class="section" id="faq" data-screen-label="08 FAQ">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">[ FAQ <span class="b">·</span> 08 ]</div>
+      <h2>Things people ask before buying.</h2>
+    </div>
+
+    <div class="faq" data-faq>
+      <div class="faq-item" data-open="true">
+        <button class="faq-q"><span>Is the arm fully assembled?</span><span class="icon"></span></button>
+        <div class="faq-a">Yes, ships ~95% assembled and factory-calibrated. On your end: clamp the metal stabilizer plate to a bench, fasten the arm to the plate with 4 × M5, and plug in power + the CAN-to-USB adapter. You're sending joint commands within minutes.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>What computer do I need?</span><span class="icon"></span></button>
+        <div class="faq-a">Any PC running Ubuntu 20.04 or 22.04. The CAN-to-USB adapter is driverless on both. ROS1 Noetic and ROS2 Humble are supported; the Python and C++ SDKs both ship with ROS1 and ROS2 drivers.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>Can I run VLA models on it?</span><span class="icon"></span></button>
+        <div class="faq-a">Yes. We provide full open-source reproductions of ALOHA ACT and pi0 / pi0.5 with training and inference pipelines plus step-by-step tutorials. Additional VLA reproductions are rolling out.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>Is the SDK actually open source?</span><span class="icon"></span></button>
+        <div class="faq-a">Yes, MIT license, hosted on github.com/Maker-Mods. Python + C++ SDKs, ROS1/ROS2 drivers, the data-collection codebase, URDF files, and the VLA reproductions are all open and continuously maintained.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>Education pricing for schools and universities?</span><span class="icon"></span></button>
+        <div class="faq-a">Yes, we sell a dedicated Education Package bundled with a teaching curriculum and lab materials. Email <a href="mailto:isaac@makermods.ai">isaac@makermods.ai</a> with your program and class size.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>Can I run two arms for bimanual tasks?</span><span class="icon"></span></button>
+        <div class="faq-a">Yes, single-arm and bimanual configurations are both first-class. The data-collection codebase ships with four capture configs out of the box: single-arm direct, single-arm teleop, dual-arm direct, and dual leader / dual follower teleop.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== FOOTER ============================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-cols">
+      <div>
+        <img class="footer-logo" src="assets/logo-wordmark.png" alt="MakerMods" style="width:120px;height:48px">
+        <p class="blurb">Physical AI and robotics, made easy for students, makers, and developers.</p>
+      </div>
+      <div>
+        <h5>Shop</h5>
+        <ul>
+          <li><a href="index.html">XLeRobot</a></li>
+          <li><a href="metal-arm.html">Metal Arm</a></li>
+          <li><a href="#">Parts</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Build</h5>
+        <ul>
+          <li><a href="#">Docs</a></li>
+          <li><a href="#">LeRobot</a></li>
+          <li><a href="https://github.com/Maker-Mods" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="#">Schematics</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#">Blog</a></li>
+          <li><a href="https://discord.gg/HpXj3ynhhF" target="_blank" rel="noopener">Community</a></li>
+          <li><a href="mailto:ryan@makermods.ai">ryan@makermods.ai</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bot">
+      <span>© 2026 makermods</span>
+      <span>mit license · open hardware</span>
+    </div>
+  </div>
+</footer>
+
+<!-- minimal page-local interactivity: FAQ accordion + nav-buy hot state -->
+<script>
+(() => {
+  // FAQ accordion
+  document.querySelectorAll('[data-faq] .faq-item').forEach(item => {
+    const q = item.querySelector('.faq-q');
+    if (!q) return;
+    q.addEventListener('click', () => {
+      const wasOpen = item.dataset.open === 'true';
+      document.querySelectorAll('[data-faq] .faq-item').forEach(i => i.dataset.open = 'false');
+      item.dataset.open = wasOpen ? 'false' : 'true';
+    });
+  });
+
+  // Nav buy: hot when hero CTA scrolls out
+  const heroCta = document.getElementById('hero-buy-cta');
+  const navBuy = document.getElementById('nav-buy');
+  if (heroCta && navBuy && 'IntersectionObserver' in window) {
+    const obs = new IntersectionObserver(([entry]) => {
+      const visible = entry.isIntersecting;
+      navBuy.classList.toggle('is-idle', visible);
+      navBuy.classList.toggle('is-hot', !visible);
+    }, { threshold: 0.1 });
+    obs.observe(heroCta);
+  }
+})();
+</script>
+</body>
+</html>

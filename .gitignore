@@ -1,0 +1,17 @@
+.DS_Store
+.playwright-mcp/
+node_modules/
+
+# Large source videos not used by the site
+assets/MVI_8967.MP4
+assets/IMG_6560.MOV
+assets/IMG_6437.mov
+
+# Replaced by xlerobot.mp4 (over GitHub 100MB limit)
+assets/xlerobot.gif
+
+*.log
+.env
+.env.*
+.vscode/
+.idea/
