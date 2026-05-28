@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <title>Buy XLeRobot — Pick your build — MakerMods</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Pick your XLeRobot build. Robot Only or Jetson Nano Pack. Checkout on Shopify.">
+<meta name="description" content="Pick your XLeRobot build. Robot Only ($999) or the full Robot + Jetson Nano Pack with on-board compute ($1,699). Checkout on Shopify.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="styles/tokens.css">
-<link rel="stylesheet" href="styles/page.css">
+<link rel="stylesheet" href="styles/page.css?v=20260527-gallery">
 <link rel="icon" type="image/png" href="assets/logo-mark.png">
 </head>
 <body>
@@ -56,41 +56,22 @@
 
     <div class="config-row">
       <div class="config-gallery">
-        <div class="cg-main">
+        <div class="cg-main has-media" data-compute="robot-only">
           <div class="cg-corner tl"></div><div class="cg-corner tr"></div>
           <div class="cg-corner bl"></div><div class="cg-corner br"></div>
-          <svg viewBox="0 0 240 360" fill="none" preserveAspectRatio="xMidYMid meet" data-robot>
-            <rect x="40" y="280" width="160" height="60" stroke="#0A0A0A" stroke-width="1.2"/>
-            <line x1="40" y1="300" x2="200" y2="300" stroke="#0A0A0A" stroke-width="0.8" opacity="0.6"/>
-            <line x1="40" y1="320" x2="200" y2="320" stroke="#0A0A0A" stroke-width="0.8" opacity="0.6"/>
-            <circle cx="60" cy="345" r="10" stroke="#0A0A0A" stroke-width="1.2"/>
-            <circle cx="120" cy="345" r="10" stroke="#0A0A0A" stroke-width="1.2"/>
-            <circle cx="180" cy="345" r="10" stroke="#0A0A0A" stroke-width="1.2"/>
-            <line x1="120" y1="280" x2="120" y2="120" stroke="#0A0A0A" stroke-width="1.2"/>
-            <rect x="60" y="115" width="120" height="22" stroke="#0A0A0A" stroke-width="1.2"/>
-            <line x1="65" y1="137" x2="40" y2="170" stroke="#0A0A0A" stroke-width="1.4"/>
-            <line x1="40" y1="170" x2="55" y2="220" stroke="#0A0A0A" stroke-width="1.4"/>
-            <circle cx="40" cy="170" r="5" stroke="#0A0A0A" stroke-width="1"/>
-            <circle cx="55" cy="220" r="4" stroke="#0A0A0A" stroke-width="1"/>
-            <rect x="48" y="220" width="14" height="18" stroke="#0A0A0A" stroke-width="1"/>
-            <line x1="175" y1="137" x2="200" y2="170" stroke="#0A0A0A" stroke-width="1.4"/>
-            <line x1="200" y1="170" x2="185" y2="220" stroke="#0A0A0A" stroke-width="1.4"/>
-            <circle cx="200" cy="170" r="5" stroke="#0A0A0A" stroke-width="1"/>
-            <circle cx="185" cy="220" r="4" stroke="#0A0A0A" stroke-width="1"/>
-            <rect x="178" y="220" width="14" height="18" stroke="#0A0A0A" stroke-width="1"/>
-            <line x1="120" y1="115" x2="120" y2="80" stroke="#0A0A0A" stroke-width="1.2"/>
-            <circle cx="120" cy="80" r="3" fill="#0A0A0A"/>
-            <rect x="95" y="40" width="50" height="40" stroke="#0A0A0A" stroke-width="1.4"/>
-            <circle cx="110" cy="58" r="3" fill="rgba(255,107,44,0.9)"/>
-            <circle cx="130" cy="58" r="3" fill="rgba(255,107,44,0.9)"/>
-            <line x1="105" y1="72" x2="135" y2="72" stroke="#0A0A0A" stroke-width="0.8"/>
-          </svg>
-          <div class="cg-tag" data-cg-tag>[ image pending · robot-only ]</div>
+          <video class="cg-media" data-for="robot-only" src="assets/xlerobot.mp4" autoplay muted loop playsinline preload="auto" aria-label="XLeRobot bimanual mobile manipulator in motion"></video>
+          <img class="cg-media" data-for="jetson" src="assets/jetson-nano-pack.jpg" alt="MakerMods Jetson Nano Pack — white case with antennas">
+          <div class="cg-tag" data-cg-tag>[ xlerobot · white · robot only ]</div>
         </div>
-        <div class="cg-thumbs">
-          <div class="cg-thumb active"><span>01</span></div>
-          <div class="cg-thumb"><span>02</span></div>
-          <div class="cg-thumb"><span>03</span></div>
+        <div class="cg-thumbs cg-thumbs--2">
+          <button class="cg-thumb active" type="button" data-thumb="robot-only" aria-label="View Robot Only">
+            <video src="assets/xlerobot.mp4" muted loop playsinline preload="metadata"></video>
+            <span class="cg-thumb-tag">01</span>
+          </button>
+          <button class="cg-thumb" type="button" data-thumb="jetson" aria-label="View Jetson Nano Pack">
+            <img src="assets/jetson-nano-pack.jpg" alt="">
+            <span class="cg-thumb-tag">02</span>
+          </button>
         </div>
       </div>
 
@@ -110,13 +91,13 @@
             </span>
             <span class="opt-price">$999</span>
           </button>
-          <button class="opt" data-compute="jetson" data-price="1699" data-name="Jetson Nano Pack" data-variant-white="51314503123261">
+          <button class="opt" data-compute="jetson" data-price="1699" data-name="Robot + Jetson Nano Pack" data-variant-white="51314503123261">
             <span class="opt-radio"></span>
             <span class="opt-body">
               <span class="opt-title-row">
-                <span class="opt-name">Jetson Nano Pack</span>
+                <span class="opt-name">Robot + Jetson Nano Pack</span>
               </span>
-              <span class="opt-desc">On-board compute with SSD and preconfigured environment. Wi-Fi connectivity.</span>
+              <span class="opt-desc">Full XLeRobot with on-board Jetson compute, SSD, preconfigured environment, and Wi-Fi. No laptop needed.</span>
             </span>
             <span class="opt-price">$1,699</span>
           </button>
@@ -191,6 +172,6 @@
   </div>
 </footer>
 
-<script src="scripts/main.js?v=20260524-no-tnkr" defer></script>
+<script src="scripts/main.js?v=20260527-gallery" defer></script>
 </body>
 </html>

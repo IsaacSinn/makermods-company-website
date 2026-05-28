@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>Pre-order MakerMods Metal Arm</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Reserve a MakerMods Metal Arm. $100 refundable deposit holds your unit. Final unit price $2,499.">
+<meta name="description" content="Reserve a MakerMods Metal Arm. Refundable deposit from $99 holds your unit. Final unit price $2,499 per arm.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="styles/tokens.css">
@@ -62,7 +62,7 @@
     <div class="section-head">
       <div class="eyebrow">[ PRE-ORDER <span class="b">·</span> 02 ]</div>
       <h2>Reserve your arm.</h2>
-      <p class="lead">A $100 deposit holds your unit in the next production run. Final unit price is $2,499, billed before your arm ships.</p>
+      <p class="lead">A refundable deposit holds your units in the next production run. Final unit price is $2,499 per arm, billed before your order ships.</p>
     </div>
 
     <div class="config-row">
@@ -70,28 +70,52 @@
         <div class="cg-main has-img">
           <div class="cg-corner tl"></div><div class="cg-corner tr"></div>
           <div class="cg-corner bl"></div><div class="cg-corner br"></div>
-          <img class="cg-real" src="assets/metal-arm/arm.png" alt="MakerMods Metal Arm, black anodized">
-          <div class="cg-tag">[ metal arm · black anodized ]</div>
+          <img id="cg-real-img" class="cg-real" src="assets/metal-arm/arm.png" alt="MakerMods Metal Arm, black anodized">
+          <div id="cg-tag" class="cg-tag">[ metal arm · black anodized ]</div>
         </div>
       </div>
 
       <div class="config-group">
         <div class="config-label">
           <span>01 / Build</span>
-          <span class="val">single arm</span>
+          <span class="val" id="config-build-val">single arm</span>
         </div>
 
-        <div class="opt-list">
-          <div class="opt" data-active="true" style="cursor:default">
+        <div class="opt-list" id="tier-list">
+          <div class="opt" data-tier="single" data-active="true">
             <span class="opt-radio"></span>
             <span class="opt-body">
               <span class="opt-title-row">
-                <span class="opt-name">Metal Arm</span>
+                <span class="opt-name">Single</span>
                 <span class="opt-pretag">pre-order</span>
               </span>
-              <span class="opt-desc">Single 6-DOF metal arm. Ships with 2-in-1 end-effector, stabilizer plate, 24 V supply, CAN-to-USB adapter, and toolkit.</span>
+              <span class="opt-desc">One 6-DOF metal arm. Ships with 2-in-1 end-effector, stabilizer plate, 24 V supply, CAN-to-USB adapter, and toolkit.</span>
             </span>
-            <span class="opt-price">$2,499</span>
+            <span class="opt-price">$99</span>
+          </div>
+
+          <div class="opt" data-tier="bimanual">
+            <span class="opt-radio"></span>
+            <span class="opt-body">
+              <span class="opt-title-row">
+                <span class="opt-name">Bimanual</span>
+                <span class="opt-pretag">pre-order</span>
+              </span>
+              <span class="opt-desc">Two 6-DOF metal arms for two-handed manipulation. Full kit per arm.</span>
+            </span>
+            <span class="opt-price">$199</span>
+          </div>
+
+          <div class="opt" data-tier="leader-follower">
+            <span class="opt-radio"></span>
+            <span class="opt-body">
+              <span class="opt-title-row">
+                <span class="opt-name">Leader-Follower</span>
+                <span class="opt-pretag">pre-order</span>
+              </span>
+              <span class="opt-desc">Four arms total — 2 leader (teleop) + 2 follower (manipulation). Full kit per arm.</span>
+            </span>
+            <span class="opt-price">$399</span>
           </div>
         </div>
 
@@ -110,22 +134,22 @@
         </div>
 
         <a id="config-buy-cta" class="btn btn-stencil btn-block" href="#" style="margin-top:24px">
-          [ RESERVE WITH $100 DEPOSIT → ]
+          [ RESERVE WITH <span id="cta-deposit">$99</span> DEPOSIT → ]
         </a>
         <div style="font-family:var(--font-mono);font-size:11px;color:var(--mute);margin-top:10px;letter-spacing:0.04em">
-          $100 today · balance of $2,399 before shipping · ~1 week lead
+          <span id="summary-deposit">$99</span> today · balance of <span id="summary-balance">$2,400</span> before shipping · ~1 week lead
         </div>
 
         <div class="ship-note">
           <div class="num">[ HOW IT WORKS ]</div>
-          <p>1. Pay $100 today to hold a unit in the next batch.<br>
-             2. We email you 5,7 days before your arm is ready.<br>
-             3. Pay the remaining $2,399 to release the unit for shipping.</p>
+          <p>1. Pay <span class="dyn-deposit">$99</span> today to hold your units in the next batch.<br>
+             2. We email you 5–7 days before your order is ready.<br>
+             3. Pay the remaining <span class="dyn-balance">$2,400</span> to release for shipping.</p>
         </div>
 
         <div class="ship-note">
           <div class="num">[ DEPOSIT TERMS ]</div>
-          <p>Fully refundable up until your arm enters final QC. Once your unit is reserved, your $100 is credited against the final $2,499 invoice.</p>
+          <p>Fully refundable up until your order enters final QC. Once reserved, your <span class="dyn-deposit">$99</span> is credited against the final <span class="dyn-total">$2,499</span> invoice.</p>
         </div>
 
         <div class="ship-note">
@@ -180,16 +204,122 @@
 
 <script>
 (() => {
-  // Placeholder: real Shopify pre-order link will be wired in here.
-  const PREORDER_URL = '';
+  const SHOPIFY_DOMAIN = 'makermods.myshopify.com';
+  const STOREFRONT_TOKEN = 'e2d29379e81ae0f09b8bbd67b6b74515';
+
+  const TIERS = {
+    'single': {
+      label: 'single arm',
+      deposit: '$99',
+      balance: '$2,400',
+      total: '$2,499',
+      variantId: '51751763312957',
+      image: 'assets/metal-arm/arm.png',
+      imageAlt: 'MakerMods Metal Arm, black anodized',
+      tag: '[ metal arm · black anodized ]',
+    },
+    'bimanual': {
+      label: 'bimanual (2 arms)',
+      deposit: '$199',
+      balance: '$4,799',
+      total: '$4,998',
+      variantId: '51751763673405',
+      image: 'assets/metal-arm/arm-bimanual.png',
+      imageAlt: 'MakerMods Metal Arm bimanual setup, two arms',
+      tag: '[ bimanual · 2 arms ]',
+    },
+    'leader-follower': {
+      label: 'leader-follower (4 arms)',
+      deposit: '$399',
+      balance: '$9,597',
+      total: '$9,996',
+      variantId: '51751767671101',
+      image: 'assets/metal-arm/arm-bimanual.png',
+      imageAlt: 'MakerMods Metal Arm leader-follower setup',
+      tag: '[ leader-follower · 4 arms ]',
+    },
+  };
+
+  let activeTier = 'single';
+
+  const setText = (sel, text) => {
+    document.querySelectorAll(sel).forEach(el => { el.textContent = text; });
+  };
+
+  const apply = (tier) => {
+    const t = TIERS[tier];
+    if (!t) return;
+    activeTier = tier;
+    document.querySelectorAll('#tier-list .opt').forEach(el => {
+      el.dataset.active = (el.dataset.tier === tier) ? 'true' : 'false';
+    });
+    document.getElementById('config-build-val').textContent = t.label;
+    document.getElementById('cta-deposit').textContent = t.deposit;
+    document.getElementById('summary-deposit').textContent = t.deposit;
+    document.getElementById('summary-balance').textContent = t.balance;
+    setText('.dyn-deposit', t.deposit);
+    setText('.dyn-balance', t.balance);
+    setText('.dyn-total', t.total);
+    const img = document.getElementById('cg-real-img');
+    if (img && t.image) { img.src = t.image; img.alt = t.imageAlt || ''; }
+    const tag = document.getElementById('cg-tag');
+    if (tag && t.tag) tag.textContent = t.tag;
+  };
+
+  document.querySelectorAll('#tier-list .opt').forEach(el => {
+    el.addEventListener('click', () => apply(el.dataset.tier));
+  });
+
+  async function createCheckoutUrl(variantId, quantity) {
+    const merchandiseId = 'gid://shopify/ProductVariant/' + variantId;
+    const res = await fetch(`https://${SHOPIFY_DOMAIN}/api/2024-04/graphql.json`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Shopify-Storefront-Access-Token': STOREFRONT_TOKEN
+      },
+      body: JSON.stringify({
+        query: `mutation CartCreate($input: CartInput!) {
+          cartCreate(input: $input) {
+            cart { checkoutUrl }
+            userErrors { field message }
+          }
+        }`,
+        variables: { input: { lines: [{ merchandiseId, quantity: quantity || 1 }] } }
+      })
+    });
+    const data = await res.json();
+    const errs = data?.data?.cartCreate?.userErrors;
+    if (errs && errs.length) throw new Error(errs.map(e => e.message).join('; '));
+    const url = data?.data?.cartCreate?.cart?.checkoutUrl;
+    if (!url) throw new Error('No checkout URL returned');
+    return url;
+  }
+
   const cta = document.getElementById('config-buy-cta');
   if (cta) {
-    cta.addEventListener('click', (e) => {
+    cta.addEventListener('click', async (e) => {
       e.preventDefault();
-      if (PREORDER_URL) {
-        window.open(PREORDER_URL, '_blank', 'noopener');
-      } else {
-        alert('Pre-order checkout is not live yet. Email isaac@makermods.ai to be notified when reservations open.');
+      const variantId = TIERS[activeTier]?.variantId;
+      if (!variantId) {
+        alert('This configuration is not yet available. Email isaac@makermods.ai to be notified.');
+        return;
+      }
+      const win = window.open('about:blank', '_blank');
+      const originalText = cta.innerHTML;
+      cta.style.pointerEvents = 'none';
+      cta.innerHTML = '[ OPENING CHECKOUT… ]';
+      try {
+        const url = await createCheckoutUrl(variantId, 1);
+        if (win && !win.closed) win.location.href = url;
+        else window.location.href = url;
+      } catch (err) {
+        if (win && !win.closed) win.close();
+        console.error('Checkout error:', err);
+        alert('Could not open checkout: ' + err.message);
+      } finally {
+        cta.style.pointerEvents = '';
+        cta.innerHTML = originalText;
       }
     });
   }

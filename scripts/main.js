@@ -22,7 +22,7 @@
   const state = { compute: 'robot-only', color: 'white' };
 
   const PRICES = { 'robot-only': 999, jetson: 1699 };
-  const NAMES = { 'robot-only': 'Robot Only', jetson: 'Jetson Nano Pack' };
+  const NAMES = { 'robot-only': 'Robot Only', jetson: 'Robot + Jetson Nano Pack' };
   const COLORS = { white: 'White' };
 
   function selectedOption() {
@@ -124,9 +124,16 @@
     if (priceEl) priceEl.textContent = '$' + PRICES[id].toLocaleString();
     if (buildEl) buildEl.textContent = NAMES[id];
 
+    // gallery media + thumbs
+    const galleryMain = document.querySelector('.cg-main.has-media');
+    if (galleryMain) galleryMain.dataset.compute = id;
+    document.querySelectorAll('.cg-thumb[data-thumb]').forEach(t => {
+      t.classList.toggle('active', t.dataset.thumb === id);
+    });
+
     // gallery tag
     const tag = document.querySelector('[data-cg-tag]');
-    if (tag) tag.textContent = '[ image pending · ' + state.color + ' · ' + id + ' ]';
+    if (tag) tag.textContent = '[ xlerobot · ' + state.color + ' · ' + NAMES[id].toLowerCase() + ' ]';
 
     updateBuyCta();
 
@@ -149,7 +156,7 @@
     if (gallery) gallery.dataset.color = id;
 
     const tag = document.querySelector('[data-cg-tag]');
-    if (tag) tag.textContent = '[ image pending · ' + id + ' · ' + state.compute + ' ]';
+    if (tag) tag.textContent = '[ xlerobot · ' + id + ' · ' + NAMES[state.compute].toLowerCase() + ' ]';
 
     updateBuyCta();
   }
@@ -220,6 +227,10 @@
 
   document.querySelectorAll('[data-color-list] .swatch').forEach(btn => {
     btn.addEventListener('click', () => setColor(btn.dataset.color));
+  });
+
+  document.querySelectorAll('.cg-thumb[data-thumb]').forEach(btn => {
+    btn.addEventListener('click', () => setCompute(btn.dataset.thumb));
   });
 
   setColor(state.color);
