@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>MakerMods · Web UI for your robot arm</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="MakerMods is a web UI for your robot arm. Plug in, calibrate, teleop, record episodes, and train policies on a remote GPU.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="#top" class="nav-logo">
+      <img class="light-logo" src="assets/logo-wordmark.png" alt="MakerMods">
+      <img class="dark-logo" src="assets/logo-wordmark-white.png" alt="MakerMods">
+      <span class="beta">BETA</span>
+    </a>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#waitlist">Waitlist</a>
+    </div>
+    <div class="nav-actions">
+      <a href="https://github.com/Maker-Mods/MakerMods-App" target="_blank" rel="noopener" class="btn btn-ghost">GitHub →</a>
+      <a href="#waitlist" class="btn btn-primary">Join waitlist</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="top">
+  <div class="hero-grid"></div>
+  <div class="container hero-stack-inner">
+    <div class="hero-copy">
+      <div class="hero-eyebrow">
+        <span class="dot"></span>
+        <span>[ Web UI for your robot · Closed Beta ]</span>
+      </div>
+      <h1 class="hero-title">Drive your robot<br>from a <span class="accent">browser tab</span>.</h1>
+      <p class="hero-lead">
+        MakerMods is a UI that doesn't get in the way.
+        Plug in your arm, calibrate in a few clicks, teleop in real time, record
+        episodes, and train policies on a remote GPU. Inference runs in the cloud
+        and streams back to the arm on your desk.
+      </p>
+      <div class="hero-cta">
+        <a href="#waitlist" class="btn btn-stencil btn-lg">[ Join the waitlist ]</a>
+        <a href="#video" class="btn btn-secondary btn-lg">Watch the demo (1 min) →</a>
+      </div>
+    </div>
+
+    <div class="hero-video-wrap" id="video">
+      <div class="hero-video-chrome">
+        <div class="chrome-bar">
+          <div class="chrome-dots"><span></span><span></span><span></span></div>
+          <div class="chrome-url">app.makermods.io</div>
+          <div class="chrome-meta">DEMO · 02:00</div>
+        </div>
+        <div class="hero-video-frame">
+          <video
+            class="hero-video"
+            src="assets/no-voice-isaac-compressed.mp4"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            controls
+          ></video>
+          <div class="corner tl"></div><div class="corner tr"></div>
+          <div class="corner bl"></div><div class="corner br"></div>
+        </div>
+      </div>
+      <div class="hero-video-meta">
+        <span>setup</span>
+        <span class="sep">·</span>
+        <span>calibration</span>
+        <span class="sep">·</span>
+        <span>teleop + record</span>
+        <span class="sep">·</span>
+        <span>train + inference</span>
+      </div>
+    </div>
+
+    <div class="hero-meta-row">
+      <div class="stat"><div class="num"><em>XLEROBOT</em> · SO-101 · REBOT</div><div class="lbl">supported arms</div></div>
+      <div class="sep-v"></div>
+      <div class="stat"><div class="num"><em>browser native</em></div><div class="lbl">no install · USB direct</div></div>
+      <div class="sep-v"></div>
+      <div class="stat"><div class="num"><em>cloud GPU</em></div><div class="lbl">training + remote inference</div></div>
+      <div class="sep-v"></div>
+      <div class="stat"><div class="num"><em>open</em></div><div class="lbl">built for makers</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURES ===== -->
+<section class="section" id="features">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow"><span class="bracket">[</span> Features <span class="bracket">]</span></div>
+        <h2>Everything you'd script. <em style="color: var(--mute); font-style: normal;">Without writing scripts.</em></h2>
+      </div>
+      <p class="lead">
+        Teleop, calibrate, record, and train, all in your browser. No install, no Python on your
+        machine, no SSH. Just plug your arm in and go.
+      </p>
+    </div>
+    <div class="features">
+
+      <div class="feature accent">
+        <span class="tag">[ TELEOP ]</span>
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 11h4M8 9v4"/><circle cx="15" cy="11" r="0.8" fill="currentColor"/><circle cx="17" cy="13" r="0.8" fill="currentColor"/><rect x="2" y="6" width="20" height="12" rx="4"/></svg>
+        </div>
+        <h3>Live teleoperation</h3>
+        <p>Move a leader arm, the follower mirrors. WebSerial straight to USB. No daemons, no Python env, no SSH.</p>
+      </div>
+
+      <div class="feature">
+        <span class="tag">[ CALIB ]</span>
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg>
+        </div>
+        <h3>Guided calibration</h3>
+        <p>Auto or manual. We drive each servo to its limits, write the calibration file, and pair leader/follower by base ID.</p>
+      </div>
+
+      <div class="feature">
+        <span class="tag">[ RECORD ]</span>
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10l6-3v10l-6-3z"/></svg>
+        </div>
+        <h3>Multi-camera recording</h3>
+        <p>Detect every cam your machine sees. Toggle, name (front_cam, wrist_cam), and record episodes straight to a dataset.</p>
+      </div>
+
+      <div class="feature accent">
+        <span class="tag">[ TRAIN ]</span>
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="14" height="14" rx="1"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg>
+        </div>
+        <h3>Cloud GPU training</h3>
+        <p>Pick a policy, point at your dataset, hit train. We spin up a GPU, stream loss curves back, drop the checkpoint in your library.</p>
+      </div>
+
+      <div class="feature">
+        <span class="tag">[ INFER ]</span>
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9a16 16 0 0 1 20 0"/><path d="M5 12.5a11 11 0 0 1 14 0"/><path d="M8.5 16a6 6 0 0 1 7 0"/><circle cx="12" cy="19" r="0.8" fill="currentColor"/></svg>
+        </div>
+        <h3>Remote inference</h3>
+        <p>Run policies on a remote GPU; actions stream back to the arm at 300ms. Your laptop just holds the USB cable.</p>
+      </div>
+
+      <div class="feature">
+        <span class="tag">[ SDK · SOON ]</span>
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4l-6 8 6 8M16 4l6 8-6 8M14 3l-4 18"/></svg>
+        </div>
+        <h3>Python SDK (coming later)</h3>
+        <p>A standalone Python package you'll install locally to drive your robot from code. Separate from the web app, for makers who'd rather live in a script.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section class="section" id="how">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="section-eyebrow"><span class="bracket">[</span> How it works <span class="bracket">]</span></div>
+        <h2>From box to policy in an afternoon.</h2>
+      </div>
+      <p class="lead">
+        The whole flow is a single guided wizard. You'll spend more time on your dataset than on getting the rig to work.
+      </p>
+    </div>
+    <div class="steps">
+      <div class="steps-rail">[ FLOW · 01 → 04 ]</div>
+
+      <div class="step-card">
+        <div class="icon-row"><span>STEP_01</span><span>USB</span></div>
+        <div class="num">01</div>
+        <h4>Plug in</h4>
+        <p>Connect leader and follower arms. We auto-detect Feetech motor controllers and assign roles. Click Wiggle to confirm which is which.</p>
+        <div class="arrow">→</div>
+      </div>
+
+      <div class="step-card">
+        <div class="icon-row"><span>STEP_02</span><span>AUTO</span></div>
+        <div class="num">02</div>
+        <h4>Calibrate</h4>
+        <p>Run auto-calibration: each servo drives to its physical limits and we save the file. Or do it manually if you prefer.</p>
+        <div class="arrow">→</div>
+      </div>
+
+      <div class="step-card">
+        <div class="icon-row"><span>STEP_03</span><span>REC</span></div>
+        <div class="num">03</div>
+        <h4>Teleop &amp; record</h4>
+        <p>Mirror the leader to the follower. Add cameras (wrist, front, top). Record episodes into a HuggingFace-format dataset.</p>
+        <div class="arrow">→</div>
+      </div>
+
+      <div class="step-card">
+        <div class="icon-row"><span>STEP_04</span><span>GPU</span></div>
+        <div class="num">04</div>
+        <h4>Train &amp; deploy</h4>
+        <p>Pick a policy. Train on cloud GPU. Deploy with one click. Inference runs remote, actions stream to your arm.</p>
+        <div class="arrow">→</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== WAITLIST ===== -->
+<section class="waitlist-section" id="waitlist">
+  <div class="waitlist-grid-bg"></div>
+  <div class="container waitlist-inner">
+    <div class="waitlist-copy">
+      <div class="section-eyebrow"><span class="bracket">[</span> Closed beta <span class="bracket">]</span></div>
+      <h2>Get in <span class="accent">early</span>.</h2>
+      <p>
+        We're rolling out invites in waves to people actually building. Tell us what arm you have and what you're trying to do. It helps us prioritize who to onboard first.
+      </p>
+      <ul class="wl-bullets">
+        <li>Free during beta, including cloud GPU credits for training</li>
+        <li>Direct line to the team on Discord; your bug reports ship same week</li>
+        <li>Early access to remote inference + the dataset hub</li>
+        <li>No spam. One email when your invite is ready.</li>
+      </ul>
+    </div>
+
+    <div class="waitlist-frame">
+      <span class="waitlist-frame-label">[ JOIN_WAITLIST ]</span>
+      <div class="waitlist-form" id="waitlist-form-wrap">
+      <form id="wl-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="be37699e-60e6-4812-923c-20d0663e48ae">
+        <input type="hidden" name="subject" value="New MakerMods waitlist signup">
+        <input type="hidden" name="from_name" value="MakerMods Waitlist">
+        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <div class="field">
+          <label for="wl-email">Email <span class="req">*</span></label>
+          <input id="wl-email" name="email" class="input mono" type="email" placeholder="you@workshop.dev" required>
+        </div>
+        <div class="row-2">
+          <div class="field">
+            <label for="wl-name">Name</label>
+            <input id="wl-name" name="name" class="input" type="text" placeholder="Optional">
+          </div>
+          <div class="field">
+            <label for="wl-handle">Discord / GitHub</label>
+            <input id="wl-handle" name="handle" class="input mono" type="text" placeholder="@handle">
+          </div>
+        </div>
+        <div class="field">
+          <label for="wl-arm">Which arm do you have?</label>
+          <select id="wl-arm" name="arm" class="input">
+            <option value="">Select your setup…</option>
+            <option>XLEROBOT</option>
+            <option>SO-101 (single arm)</option>
+            <option>REBOT</option>
+            <option>Other compatible arm</option>
+            <option>I don't own one yet, just curious</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="wl-use">What are you building?</label>
+          <select id="wl-use" name="useCase" class="input">
+            <option value="">Pick the closest fit…</option>
+            <option>Hobby / weekend builds</option>
+            <option>Classroom / education</option>
+            <option>University research</option>
+            <option>Startup / commercial R&amp;D</option>
+            <option>Just exploring</option>
+          </select>
+        </div>
+        <button type="submit" class="submit">[ Request my invite → ]</button>
+        <p class="legal">
+          We'll only email you about your invite. Unsubscribe in one click. No tracking pixels, no third-party cookies.
+        </p>
+      </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-cols">
+      <div>
+        <img class="footer-logo light-logo" src="assets/logo-wordmark.png" alt="MakerMods">
+        <img class="footer-logo dark-logo" src="assets/logo-wordmark-white.png" alt="MakerMods">
+        <div class="blurb">A web UI for your robot arm. Teleoperation, calibration, recording, and cloud GPU training. Built for makers who'd rather solder than scroll.</div>
+      </div>
+      <div>
+        <h5>Product</h5>
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#waitlist">Waitlist</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Resources</h5>
+        <ul>
+          <li><a href="#">Docs</a></li>
+          <li><a href="#">Python SDK</a></li>
+          <li><a href="#">Supported arms</a></li>
+          <li><a href="#">Changelog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Community</h5>
+        <ul>
+          <li><a href="https://github.com/Maker-Mods/MakerMods-App" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://discord.gg/fF7MutuTB8" target="_blank" rel="noopener">Discord</a></li>
+          <li><a href="https://x.com/IsaacSin12" target="_blank" rel="noopener">X / Twitter</a></li>
+          <li><a href="mailto:help@makermods.ai">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bot">
+      <span>© 2026 MakerMods</span>
+      <span class="muted">v0.1.0 beta · made by humans, in a workshop</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    const form = document.getElementById('wl-form');
+    const wrap = document.getElementById('waitlist-form-wrap');
+    if (!form || !wrap) return;
+
+    function showSuccess(email) {
+      const success = document.createElement('div');
+      success.className = 'waitlist-success';
+      success.innerHTML = `
+        <div class="check">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
+        </div>
+        <h3>You're on the list.</h3>
+        <p>We'll send your invite to <strong></strong> as soon as the next wave goes out. Watch your inbox, including spam, just in case.</p>
+        <div class="discord-line">In the meantime, find us on <a href="https://discord.gg/fF7MutuTB8" target="_blank" rel="noopener" style="color: var(--ink);">Discord</a>, where the early access folks are hanging out.</div>
+      `;
+      success.querySelector('strong').textContent = email;
+      wrap.replaceChild(success, form);
+    }
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const email = form.email.value.trim();
+      if (!email) return;
+
+      const btn = form.querySelector('.submit');
+      const originalText = btn.textContent;
+      btn.textContent = '[ Sending… ]';
+      btn.disabled = true;
+
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: new FormData(form),
+        });
+        const json = await res.json();
+        if (json && json.success) {
+          showSuccess(email);
+        } else {
+          throw new Error((json && json.message) || 'Submission failed');
+        }
+      } catch (err) {
+        btn.textContent = originalText;
+        btn.disabled = false;
+        alert("Couldn't submit right now. Please try again, or email help@makermods.ai.");
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>
