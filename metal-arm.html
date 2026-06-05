@@ -220,6 +220,51 @@
     .ma-modes { grid-template-columns: 1fr; }
     .ma-mode { grid-template-columns: 1fr; }
   }
+
+  @media (max-width: 600px) {
+    .ma-photo-grid,
+    .ma-cap-row,
+    .ma-cap-section,
+    .ma-end-grid,
+    .ma-modes {
+      gap: var(--s-4);
+    }
+    .ma-cap-row {
+      grid-template-columns: 1fr;
+    }
+    .ma-photo {
+      aspect-ratio: 4 / 3;
+      clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+    }
+    .ma-photo .label {
+      top: 12px;
+      left: 12px;
+      max-width: calc(100% - 24px);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .ma-photo .cap {
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .ma-cap-card,
+    .ma-cap-feature .ma-cap-body,
+    .ma-end-card,
+    .ma-mode .ma-mode-body {
+      padding: var(--s-5);
+    }
+    .ma-mode .ma-mode-img {
+      min-height: 180px;
+      aspect-ratio: 16 / 10;
+    }
+    .ma-mode .config {
+      overflow-wrap: anywhere;
+    }
+  }
 </style>
 </head>
 <body>
@@ -315,6 +360,9 @@
   }
   @media (max-width: 960px) {
     .ma-banner { aspect-ratio: 4 / 3; }
+  }
+  @media (max-width: 600px) {
+    .ma-banner { aspect-ratio: 16 / 10; }
   }
 </style>
 

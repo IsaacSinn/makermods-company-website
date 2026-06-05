@@ -134,6 +134,47 @@
   @media (max-width: 960px) {
     .product-grid { gap: var(--s-5); }
   }
+
+  @media (max-width: 600px) {
+    .home-products {
+      padding: var(--s-5) 0 var(--s-7);
+    }
+    .product-grid {
+      gap: var(--s-4);
+    }
+    .product-card {
+      clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
+    }
+    .product-card .pc-photo {
+      aspect-ratio: 16 / 10;
+    }
+    .product-card .pc-photo .pc-tag {
+      top: 14px;
+      left: 14px;
+      right: 14px;
+      width: fit-content;
+      max-width: calc(100% - 28px);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .product-card .pc-body {
+      padding: var(--s-5);
+    }
+    .product-card h3 {
+      font-size: 30px;
+      letter-spacing: 0;
+    }
+    .product-card .pc-meta {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: var(--s-2);
+    }
+    .product-card .pc-meta .pc-price span {
+      display: block;
+      margin-top: 2px;
+    }
+  }
 </style>
 </head>
 <body>
