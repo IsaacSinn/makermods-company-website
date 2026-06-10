@@ -23,7 +23,7 @@
 
   const PRICES = { 'robot-only': 999, jetson: 1699 };
   const NAMES = { 'robot-only': 'Robot Only', jetson: 'Robot + Jetson Nano Pack' };
-  const COLORS = { black: 'Black' };
+  const COLORS = { black: 'Black', white: 'White' };
 
   function selectedOption() {
     return document.querySelector(`[data-opt-list] .opt[data-compute="${state.compute}"]`);
@@ -142,7 +142,8 @@
   }
 
   function setColor(id) {
-    if (!COLORS[id]) return;
+    const swatch = document.querySelector(`[data-color-list] .swatch[data-color="${id}"]`);
+    if (!COLORS[id] || swatch?.disabled) return;
     state.color = id;
 
     document.querySelectorAll('[data-color-list] .swatch').forEach(btn => {
