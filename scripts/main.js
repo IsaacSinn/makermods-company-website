@@ -111,6 +111,8 @@
   /* ----------- Compute selection ----------- */
   function setCompute(id) {
     if (!PRICES[id]) return;
+    const nextOpt = document.querySelector(`[data-opt-list] .opt[data-compute="${id}"]`);
+    if (nextOpt?.disabled) return;
     state.compute = id;
 
     // option cards

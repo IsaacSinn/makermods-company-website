@@ -358,6 +358,11 @@ body { margin: 0; }
   align-items: start;
 }
 .opt:hover { border-color: var(--ink-2); }
+.opt:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+.opt:disabled:hover { border-color: var(--line); }
 .opt[data-active="true"] {
   border-color: var(--ink);
   box-shadow: inset 0 0 0 1px var(--ink);
@@ -399,6 +404,13 @@ body { margin: 0; }
 .opt-pretag-warn {
   background: var(--ink);
   color: var(--paper);
+}
+.opt-status {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mute);
 }
 .opt-desc { font-size: 14px; line-height: 1.5; color: var(--mute); }
 .opt-price {
