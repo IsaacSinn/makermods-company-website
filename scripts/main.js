@@ -19,11 +19,11 @@
   };
 
   /* ----------- State ----------- */
-  const state = { compute: 'robot-only', color: 'white' };
+  const state = { compute: 'robot-only', color: 'black' };
 
   const PRICES = { 'robot-only': 999, jetson: 1699 };
   const NAMES = { 'robot-only': 'Robot Only', jetson: 'Robot + Jetson Nano Pack' };
-  const COLORS = { white: 'White' };
+  const COLORS = { black: 'Black' };
 
   function selectedOption() {
     return document.querySelector(`[data-opt-list] .opt[data-compute="${state.compute}"]`);
