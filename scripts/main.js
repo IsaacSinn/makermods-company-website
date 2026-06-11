@@ -96,7 +96,7 @@
       ['Connectivity', isJ ? 'Wi-Fi (Jetson onboard) · 2× USB hubs (each: 1 leader arm + 1 follower arm + 1 camera)' : '2× USB hubs (each: 1 leader arm + 1 follower arm + 1 camera)'],
       ['Software', 'LeRobot · MakerMods app · HuggingFace'],
       ['License', 'MIT (hardware + firmware)'],
-      ['Repository', '<a href="https://github.com/Maker-Mods/XLeRobot-hardware" target="_blank" rel="noopener">github.com/Maker-Mods/XLeRobot-hardware</a>']
+      ['Repository', '<a href="https://github.com/makermods-robotics/MakerMods-XLeRobot" target="_blank" rel="noopener">github.com/makermods-robotics/MakerMods-XLeRobot</a>']
     ];
   }
 
