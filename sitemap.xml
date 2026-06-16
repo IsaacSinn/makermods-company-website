@@ -19,6 +19,18 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://www.makermods.ai/open-booth</loc>
+    <lastmod>2026-06-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.makermods.ai/open-booth-buy</loc>
+    <lastmod>2026-06-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.makermods.ai/makermods-app/</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
