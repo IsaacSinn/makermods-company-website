@@ -125,8 +125,8 @@
         <div class="cg-main has-img ob-buy-photo">
           <div class="cg-corner tl"></div><div class="cg-corner tr"></div>
           <div class="cg-corner bl"></div><div class="cg-corner br"></div>
-          <img src="assets/open-booth/OpenBooth.png" alt="OpenBooth training enclosure for SO101 robots">
-          <div class="cg-tag">[ open booth · skill lab ]</div>
+          <img data-ob-buy-image src="assets/open-booth/OpenBooth.png" alt="OpenBooth training enclosure for SO101 robots">
+          <div class="cg-tag" data-ob-buy-tag>[ open booth · skill lab ]</div>
         </div>
       </div>
 
@@ -248,14 +248,23 @@
     booth: {
       label: 'open booth only',
       price: '$99',
+      image: 'assets/open-booth/OpenBooth.png',
+      imageAlt: 'OpenBooth training enclosure for SO101 robots',
+      tag: '[ open booth · skill lab ]',
     },
     pair: {
       label: 'open booth + so101 pair',
       price: '$399',
+      image: 'assets/open-booth/openbooth-bimanual product.png',
+      imageAlt: 'OpenBooth with SO101 robots inside the training enclosure',
+      tag: '[ open booth · so101 pair ]',
     },
     bimanual: {
       label: 'bimanual open booth',
       price: '$699',
+      image: 'assets/open-booth/openbooth-bimanual product.png',
+      imageAlt: 'Bimanual OpenBooth with SO101 robots inside the training enclosure',
+      tag: '[ open booth · bimanual so101 ]',
     },
   };
 
@@ -272,6 +281,12 @@
     });
     setText('[data-ob-buy-label]', tier.label);
     setText('[data-ob-buy-price]', tier.price);
+    const image = document.querySelector('[data-ob-buy-image]');
+    if (image) {
+      image.src = tier.image;
+      image.alt = tier.imageAlt;
+    }
+    setText('[data-ob-buy-tag]', tier.tag);
     const cta = document.querySelector('[data-ob-buy-cta]');
     if (cta) cta.textContent = `[ BUY NOW · ${tier.price} -> ]`;
   }

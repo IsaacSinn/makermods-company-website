@@ -10,6 +10,7 @@ const requiredFiles = [
   'scripts/open-booth.js',
   'assets/open-booth/hero.mp4',
   'assets/open-booth/OpenBooth.png',
+  'assets/open-booth/openbooth-bimanual product.png',
   'assets/open-booth/catalog.json',
   'assets/open-booth/openbooth_demo_1_clip.mp4',
   'assets/open-booth/openbooth_demo_2_clip.mp4',
@@ -82,6 +83,7 @@ assert(buyPage.includes('<title>Buy OpenBooth | MakerMods</title>'), 'OpenBooth 
 assert(buyPage.includes('OpenBooth Only'), 'OpenBooth buy page is missing the OpenBooth Only variant');
 assert(buyPage.includes('OpenBooth + SO101 Pair'), 'OpenBooth buy page is missing the SO101 Pair variant');
 assert(buyPage.includes('Bimanual OpenBooth'), 'OpenBooth buy page is missing the bimanual variant');
+assert(buyPage.includes('assets/open-booth/openbooth-bimanual product.png'), 'OpenBooth buy page is missing the bimanual product image');
 assert(buyPage.includes('$99'), 'OpenBooth buy page is missing the $99 booth pricing');
 assert(buyPage.includes('$399'), 'OpenBooth buy page is missing the $399 SO101 pair pricing');
 assert(buyPage.includes('$699'), 'OpenBooth buy page is missing the $699 bimanual pricing');
