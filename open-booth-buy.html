@@ -117,7 +117,7 @@
     <div class="section-head">
       <div class="eyebrow">[ BUY NOW <span class="b">·</span> OPENBOOTH ]</div>
       <h2>Buy the booth that turns data into SO101 skills.</h2>
-      <p class="lead">Pick the booth alone, a single SO101 leader/follower pair, or a bimanual 2 leader + 2 follower kit. OpenBooth ships in 2 weeks.</p>
+      <p class="lead">Pick the booth alone, add the SO101 Kit with 1 follower arm + 1 leader arm, or add the SO101 Bimanual Kit with 2 follower arms + 2 leader arms. OpenBooth ships in 2 weeks.</p>
     </div>
 
     <div class="config-row">
@@ -153,24 +153,24 @@
             <span class="opt-radio"></span>
             <span class="opt-body">
               <span class="opt-title-row">
-                <span class="opt-name">OpenBooth + SO101 Pair</span>
+                <span class="opt-name">OpenBooth + SO101 Kit</span>
                 <span class="opt-pretag">ships in 2 weeks</span>
               </span>
-              <span class="opt-desc">OpenBooth with one SO101 leader and one SO101 follower for single-arm teleop, recording, and training.</span>
+              <span class="opt-desc">OpenBooth bundled at checkout with the SO101 Kit: 1 SO101 follower arm and 1 SO101 leader arm.</span>
             </span>
-            <span class="opt-price">$399</span>
+            <span class="opt-price">$398</span>
           </button>
 
           <button class="opt" type="button" data-tier="bimanual">
             <span class="opt-radio"></span>
             <span class="opt-body">
               <span class="opt-title-row">
-                <span class="opt-name">Bimanual OpenBooth</span>
+                <span class="opt-name">OpenBooth + SO101 Bimanual Kit</span>
                 <span class="opt-pretag">ships in 2 weeks</span>
               </span>
-              <span class="opt-desc">OpenBooth with 2 SO101 leaders and 2 SO101 followers for bimanual collection and skill training.</span>
+              <span class="opt-desc">OpenBooth bundled at checkout with the SO101 Bimanual Kit: 2 SO101 follower arms and 2 SO101 leader arms.</span>
             </span>
-            <span class="opt-price">$699</span>
+            <span class="opt-price">$698</span>
           </button>
         </div>
 
@@ -180,13 +180,13 @@
           <div><span class="k">skill catalog</span><span class="v">153</span></div>
         </div>
 
-        <a class="btn btn-stencil btn-block" href="#checkout-links" data-ob-buy-cta style="margin-top:24px">[ BUY NOW · $99 -> ]</a>
-        <div class="ob-checkout-note">Checkout link placeholder for local review. Shopify variant links will be wired after the product IDs are ready.</div>
+        <a class="btn btn-stencil btn-block" href="https://makermods.myshopify.com/cart/51852066324797:1" data-ob-buy-cta target="_blank" rel="noopener" style="margin-top:24px">[ BUY NOW · $99 -> ]</a>
+        <div class="ob-checkout-note">Checkout opens on Shopify with the selected OpenBooth bundle already in cart.</div>
 
         <div class="ship-note" id="checkout-links">
           <div class="num">[ HOW IT WORKS ]</div>
           <p>1. Pick the OpenBooth configuration you want.<br>
-             2. Buy the configuration at the listed full price.<br>
+             2. Shopify opens with OpenBooth and the selected SO101 kit already in cart.<br>
              3. Your OpenBooth ships in 2 weeks.</p>
         </div>
 
@@ -248,25 +248,43 @@
     booth: {
       label: 'open booth only',
       price: '$99',
+      cartUrl: 'https://makermods.myshopify.com/cart/51852066324797:1',
+      lines: [
+        { merchandiseId: 'gid://shopify/ProductVariant/51852066324797', quantity: 1 },
+      ],
       image: 'assets/open-booth/OpenBooth.png',
       imageAlt: 'OpenBooth training enclosure for SO101 robots',
       tag: '[ open booth · skill lab ]',
     },
     pair: {
-      label: 'open booth + so101 pair',
-      price: '$399',
+      label: 'open booth + so101 kit',
+      price: '$398',
+      cartUrl: 'https://makermods.myshopify.com/cart/51852066324797:1,51851987812669:1',
+      lines: [
+        { merchandiseId: 'gid://shopify/ProductVariant/51852066324797', quantity: 1 },
+        { merchandiseId: 'gid://shopify/ProductVariant/51851987812669', quantity: 1 },
+      ],
       image: 'assets/open-booth/openbooth-bimanual product.png',
       imageAlt: 'OpenBooth with SO101 robots inside the training enclosure',
-      tag: '[ open booth · so101 pair ]',
+      tag: '[ open booth · so101 kit ]',
     },
     bimanual: {
-      label: 'bimanual open booth',
-      price: '$699',
+      label: 'open booth + so101 bimanual kit',
+      price: '$698',
+      cartUrl: 'https://makermods.myshopify.com/cart/51852066324797:1,51851988042045:1',
+      lines: [
+        { merchandiseId: 'gid://shopify/ProductVariant/51852066324797', quantity: 1 },
+        { merchandiseId: 'gid://shopify/ProductVariant/51851988042045', quantity: 1 },
+      ],
       image: 'assets/open-booth/openbooth-bimanual product.png',
       imageAlt: 'Bimanual OpenBooth with SO101 robots inside the training enclosure',
       tag: '[ open booth · bimanual so101 ]',
     },
   };
+
+  const SHOPIFY_DOMAIN = 'makermods.myshopify.com';
+  const STOREFRONT_TOKEN = 'e2d29379e81ae0f09b8bbd67b6b74515';
+  let activeTier = 'booth';
 
   const setText = (selector, text) => {
     document.querySelectorAll(selector).forEach((element) => {
@@ -276,6 +294,7 @@
 
   function applyTier(id) {
     const tier = tiers[id] || tiers.booth;
+    activeTier = tiers[id] ? id : 'booth';
     document.querySelectorAll('[data-ob-buy-options] .opt').forEach((element) => {
       element.dataset.active = element.dataset.tier === id ? 'true' : 'false';
     });
@@ -288,12 +307,64 @@
     }
     setText('[data-ob-buy-tag]', tier.tag);
     const cta = document.querySelector('[data-ob-buy-cta]');
-    if (cta) cta.textContent = `[ BUY NOW · ${tier.price} -> ]`;
+    if (cta) {
+      cta.href = tier.cartUrl;
+      cta.textContent = `[ BUY NOW · ${tier.price} -> ]`;
+    }
+  }
+
+  async function createCheckoutUrl(lines) {
+    const res = await fetch(`https://${SHOPIFY_DOMAIN}/api/2024-04/graphql.json`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Shopify-Storefront-Access-Token': STOREFRONT_TOKEN,
+      },
+      body: JSON.stringify({
+        query: `mutation CartCreate($input: CartInput!) {
+          cartCreate(input: $input) {
+            cart { checkoutUrl }
+            userErrors { field message }
+          }
+        }`,
+        variables: { input: { lines } },
+      }),
+    });
+    const data = await res.json();
+    const errs = data?.data?.cartCreate?.userErrors;
+    if (errs && errs.length) throw new Error(errs.map((err) => err.message).join('; '));
+    const url = data?.data?.cartCreate?.cart?.checkoutUrl;
+    if (!url) throw new Error('No checkout URL returned');
+    return url;
   }
 
   document.querySelectorAll('[data-ob-buy-options] .opt').forEach((element) => {
     element.addEventListener('click', () => applyTier(element.dataset.tier));
   });
+
+  const cta = document.querySelector('[data-ob-buy-cta]');
+  if (cta) {
+    cta.addEventListener('click', async (event) => {
+      event.preventDefault();
+      const tier = tiers[activeTier] || tiers.booth;
+      const win = window.open('about:blank', '_blank');
+      const originalText = cta.textContent;
+      cta.style.pointerEvents = 'none';
+      cta.textContent = '[ OPENING CHECKOUT... ]';
+      try {
+        const url = await createCheckoutUrl(tier.lines);
+        if (win && !win.closed) win.location.href = url;
+        else window.location.href = url;
+      } catch (err) {
+        if (win && !win.closed) win.location.href = tier.cartUrl;
+        else window.location.href = tier.cartUrl;
+        console.error('Checkout error:', err);
+      } finally {
+        cta.style.pointerEvents = '';
+        cta.textContent = originalText;
+      }
+    });
+  }
 
   applyTier('booth');
 })();

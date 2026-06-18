@@ -16,7 +16,7 @@ Contact: ryan@makermods.ai
 - [XLeRobot](https://www.makermods.ai/xlerobot): Fully assembled LeRobot-compatible bimanual mobile manipulator for makers, students, and researchers.
 - [Buy XLeRobot](https://www.makermods.ai/buy): Configure and buy XLeRobot builds.
 - [OpenBooth Dataset](https://www.makermods.ai/open-booth): Searchable public catalog of MakerMods OpenBooth robotics skills hosted on Hugging Face.
-- [Buy OpenBooth](https://www.makermods.ai/open-booth-buy): Buy OpenBooth, OpenBooth with one SO101 leader/follower pair, or the bimanual 2 leader + 2 follower kit.
+- [Buy OpenBooth](https://www.makermods.ai/open-booth-buy): Buy OpenBooth, OpenBooth with the SO101 Kit, or OpenBooth with the SO101 Bimanual Kit.
 - [MakerMods App](https://www.makermods.ai/makermods-app/): Browser-based robot arm UI for calibration, teleoperation, episode recording, and remote GPU training.
 
 ## Products
@@ -66,7 +66,7 @@ Important details:
 - Thumbnail cards and contact sheet detail views
 - Labels are heuristic browsing aids, not scientific ground truth
 - OpenBooth ships in 2 weeks
-- OpenBooth pricing: $99 for booth only; $399 for OpenBooth + SO101 pair; $699 for bimanual 2 leader + 2 follower kit
+- OpenBooth pricing: $99 for booth only; $398 for OpenBooth + SO101 Kit; $698 for OpenBooth + SO101 Bimanual Kit
 
 Primary page: https://www.makermods.ai/open-booth
 Buy page: https://www.makermods.ai/open-booth-buy

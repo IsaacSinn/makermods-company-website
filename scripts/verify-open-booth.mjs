@@ -81,14 +81,18 @@ assert(!page.includes('Each card points to a public Hugging Face recording'), 'O
 const buyPage = read('open-booth-buy.html');
 assert(buyPage.includes('<title>Buy OpenBooth | MakerMods</title>'), 'OpenBooth buy page is missing the expected title');
 assert(buyPage.includes('OpenBooth Only'), 'OpenBooth buy page is missing the OpenBooth Only variant');
-assert(buyPage.includes('OpenBooth + SO101 Pair'), 'OpenBooth buy page is missing the SO101 Pair variant');
-assert(buyPage.includes('Bimanual OpenBooth'), 'OpenBooth buy page is missing the bimanual variant');
+assert(buyPage.includes('OpenBooth + SO101 Kit'), 'OpenBooth buy page is missing the SO101 Kit variant');
+assert(buyPage.includes('OpenBooth + SO101 Bimanual Kit'), 'OpenBooth buy page is missing the bimanual kit variant');
 assert(buyPage.includes('assets/open-booth/openbooth-bimanual product.png'), 'OpenBooth buy page is missing the bimanual product image');
 assert(buyPage.includes('$99'), 'OpenBooth buy page is missing the $99 booth pricing');
-assert(buyPage.includes('$399'), 'OpenBooth buy page is missing the $399 SO101 pair pricing');
-assert(buyPage.includes('$699'), 'OpenBooth buy page is missing the $699 bimanual pricing');
+assert(buyPage.includes('$398'), 'OpenBooth buy page is missing the $398 OpenBooth + SO101 Kit pricing');
+assert(buyPage.includes('$698'), 'OpenBooth buy page is missing the $698 OpenBooth + SO101 Bimanual Kit pricing');
 assert(buyPage.includes('ships in 2 weeks'), 'OpenBooth buy page is missing the shipping timeline');
-assert(buyPage.includes('Checkout link placeholder'), 'OpenBooth buy page should make placeholder checkout links explicit');
+assert(!buyPage.includes('Checkout link placeholder'), 'OpenBooth buy page should not show placeholder checkout copy');
+assert(buyPage.includes('gid://shopify/ProductVariant/51852066324797'), 'OpenBooth buy page is missing the OpenBooth Shopify variant');
+assert(buyPage.includes('gid://shopify/ProductVariant/51851987812669'), 'OpenBooth buy page is missing the SO101 Kit Shopify variant');
+assert(buyPage.includes('gid://shopify/ProductVariant/51851988042045'), 'OpenBooth buy page is missing the SO101 Bimanual Kit Shopify variant');
+assert(buyPage.includes('cartCreate(input: $input)'), 'OpenBooth buy page should create Shopify carts for checkout');
 assert(!/pre-?order/i.test(page), 'OpenBooth page should not contain preorder language');
 assert(!/pre-?order|deposit|balance/i.test(buyPage), 'OpenBooth buy page should not contain preorder/deposit/balance language');
 
