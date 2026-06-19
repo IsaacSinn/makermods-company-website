@@ -60,6 +60,11 @@ for (const filePath of sourceFiles) {
   assert(exists(filePath), `Missing source file: ${filePath}`);
 }
 
+const xlerobotPage = read('xlerobot.html');
+assert(xlerobotPage.includes('class="twitter-tweet"'), 'XLeRobot page must keep tweet blockquotes for rich previews');
+assert(xlerobotPage.includes('https://platform.twitter.com/widgets.js'), 'XLeRobot page must load the X/Twitter widget script for tweet previews');
+assert(xlerobotPage.includes('data-twitter-widgets-src'), 'XLeRobot page must lazy-load tweet previews instead of blocking initial render');
+
 const localRefs = [];
 const refPattern = /(?:src|href|poster)=["']([^"']+)["']|url\(["']?([^)"']+)["']?\)/g;
 for (const filePath of sourceFiles) {

@@ -289,6 +289,33 @@
         </blockquote>
       </div>
     </div>
+    <script data-twitter-widgets-src="https://platform.twitter.com/widgets.js">
+      (() => {
+        const section = document.getElementById('x-posts');
+        const widgetSrc = document.currentScript?.dataset.twitterWidgetsSrc;
+        if (!section || !widgetSrc) return;
+
+        const loadTwitterWidgets = () => {
+          if (document.querySelector(`script[src="${widgetSrc}"]`)) return;
+          const script = document.createElement('script');
+          script.async = true;
+          script.src = widgetSrc;
+          script.charset = 'utf-8';
+          document.head.appendChild(script);
+        };
+
+        if ('IntersectionObserver' in window) {
+          const observer = new IntersectionObserver(([entry]) => {
+            if (!entry.isIntersecting) return;
+            observer.disconnect();
+            loadTwitterWidgets();
+          }, { rootMargin: '600px 0px' });
+          observer.observe(section);
+        } else {
+          window.setTimeout(loadTwitterWidgets, 1200);
+        }
+      })();
+    </script>
   </div>
 </section>
 
