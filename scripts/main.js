@@ -24,16 +24,53 @@
   const PRICES = { 'robot-only': 999, jetson: 1699 };
   const NAMES = { 'robot-only': 'Robot Only', jetson: 'Robot + Jetson Nano Pack' };
   const COLORS = { black: 'Black', white: 'White' };
+  const XLEROBOT_VARIANTS = {
+    'black:robot-only': {
+      id: '51817674047805',
+      available: 1,
+      label: 'Black Robot Only'
+    },
+    'white:robot-only': {
+      id: '51036164555069',
+      available: 0,
+      label: 'White Robot Only'
+    },
+    'white:jetson': {
+      id: '51314503123261',
+      available: 0,
+      label: 'White Robot + Jetson Nano Pack'
+    }
+  };
 
   function selectedOption() {
     return document.querySelector(`[data-opt-list] .opt[data-compute="${state.compute}"]`);
   }
 
-  function selectedVariantId() {
+  function selectedVariant() {
     const opt = selectedOption();
-    if (!opt) return '';
+    if (!opt) return null;
     const key = 'variant' + state.color.charAt(0).toUpperCase() + state.color.slice(1);
-    return opt.dataset[key] || '';
+    const configuredId = opt.dataset[key] || '';
+    if (!configuredId) return null;
+
+    const variantKey = state.color + ':' + state.compute;
+    const variant = XLEROBOT_VARIANTS[variantKey];
+    if (variant && variant.id === configuredId) return variant;
+
+    return {
+      id: configuredId,
+      available: 0,
+      label: COLORS[state.color] + ' ' + NAMES[state.compute]
+    };
+  }
+
+  function selectedVariantId() {
+    return selectedVariant()?.id || '';
+  }
+
+  function isVariantBuyable(variant) {
+    if (!variant || variant.available < 1) return false;
+    return true;
   }
 
   function updateBuyCta() {
@@ -168,8 +205,14 @@
   const SHOPIFY_DOMAIN = 'makermods.myshopify.com';
   const STOREFRONT_TOKEN = 'e2d29379e81ae0f09b8bbd67b6b74515';
 
-  async function createCheckoutUrl(variantId, quantity) {
-    const merchandiseId = 'gid://shopify/ProductVariant/' + variantId;
+  async function createCheckoutUrl(variant, quantity) {
+    if (!isVariantBuyable(variant)) {
+      throw new Error((variant?.label || 'This build') + ' is sold out.');
+    }
+
+    const requestedQuantity = Math.max(1, Math.floor(Number(quantity) || 1));
+    const checkoutQuantity = Math.min(requestedQuantity, variant.available);
+    const merchandiseId = 'gid://shopify/ProductVariant/' + variant.id;
     const res = await fetch(`https://${SHOPIFY_DOMAIN}/api/2024-04/graphql.json`, {
       method: 'POST',
       headers: {
@@ -183,7 +226,7 @@
             userErrors { field message }
           }
         }`,
-        variables: { input: { lines: [{ merchandiseId, quantity: quantity || 1 }] } }
+        variables: { input: { lines: [{ merchandiseId, quantity: checkoutQuantity }] } }
       })
     });
     const data = await res.json();
@@ -198,9 +241,9 @@
   if (buyCtaEl) {
     buyCtaEl.addEventListener('click', async (e) => {
       e.preventDefault();
-      const variantId = selectedVariantId();
-      if (!variantId) {
-        alert(COLORS[state.color] + ' ' + NAMES[state.compute] + ' is not yet available for purchase. Please pick another option.');
+      const variant = selectedVariant();
+      if (!isVariantBuyable(variant)) {
+        alert((variant?.label || COLORS[state.color] + ' ' + NAMES[state.compute]) + ' is sold out. Please pick an available option.');
         return;
       }
       // Open a blank tab synchronously so we don't trip popup blockers; navigate to checkout once we have the URL.
@@ -209,7 +252,7 @@
       buyCtaEl.style.pointerEvents = 'none';
       buyCtaEl.innerHTML = '[ OPENING CHECKOUT… ]';
       try {
-        const url = await createCheckoutUrl(variantId, 1);
+        const url = await createCheckoutUrl(variant, 1);
         if (win && !win.closed) win.location.href = url;
         else window.location.href = url;
       } catch (err) {
