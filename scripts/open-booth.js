@@ -13,12 +13,15 @@
   const modal = document.querySelector('[data-open-booth-modal]');
   const modalContent = document.querySelector('[data-ob-modal-content]');
   const closeButtons = document.querySelectorAll('[data-ob-close]');
+  const navBuy = document.getElementById('nav-buy');
+  const heroBuy = document.querySelector('.ob-buy-hero');
 
   const state = {
     datasets: [],
     filtered: [],
     activeTag: 'all',
     query: '',
+    renderLimit: 36,
   };
 
   const escapeHtml = (value) => String(value ?? '')
@@ -92,6 +95,7 @@
     filters.querySelectorAll('[data-ob-tag]').forEach((button) => {
       button.addEventListener('click', () => {
         state.activeTag = button.dataset.obTag || 'all';
+        state.renderLimit = Infinity;
         applyFilters();
       });
     });
@@ -101,7 +105,7 @@
     return `
       <button class="ob-card" type="button" data-ob-index="${index}" aria-label="Open ${escapeHtml(dataset.task_label)} skill details">
         <span class="ob-thumb">
-          <img src="${escapeHtml(dataset.thumbnail_path)}" alt="${escapeHtml(dataset.task_label)} thumbnail" loading="lazy">
+          <img src="${escapeHtml(dataset.thumbnail_path)}" alt="${escapeHtml(dataset.task_label)} thumbnail" loading="lazy" decoding="async">
           <span class="tag">${escapeHtml(formatTag(dataset.sort_tag))}</span>
         </span>
         <span class="ob-card-body">
@@ -120,7 +124,8 @@
 
   function renderGrid() {
     if (!grid) return;
-    grid.innerHTML = state.filtered.map((dataset) => datasetCard(dataset, state.datasets.indexOf(dataset))).join('');
+    const visibleDatasets = state.filtered.slice(0, state.renderLimit);
+    grid.innerHTML = visibleDatasets.map((dataset) => datasetCard(dataset, state.datasets.indexOf(dataset))).join('');
     grid.querySelectorAll('[data-ob-index]').forEach((button) => {
       button.addEventListener('click', () => {
         const dataset = state.datasets[Number(button.dataset.obIndex)];
@@ -130,7 +135,9 @@
 
     if (resultCount) {
       const label = state.filtered.length === 1 ? 'skill' : 'skills';
-      resultCount.textContent = `${state.filtered.length} ${label} shown`;
+      resultCount.textContent = state.renderLimit < state.filtered.length
+        ? `${state.renderLimit} of ${state.filtered.length} ${label} shown`
+        : `${state.filtered.length} ${label} shown`;
     }
     if (empty) {
       empty.dataset.visible = state.filtered.length ? 'false' : 'true';
@@ -155,7 +162,7 @@
     const tags = Array.isArray(dataset.hf_tags) ? dataset.hf_tags.slice(0, 12) : [];
     modalContent.innerHTML = `
       <div class="ob-contact-sheet">
-        <img src="${escapeHtml(dataset.contact_sheet_path)}" alt="${escapeHtml(dataset.task_label)} contact sheet">
+        <img src="${escapeHtml(dataset.contact_sheet_path)}" alt="${escapeHtml(dataset.task_label)} contact sheet" loading="lazy" decoding="async">
       </div>
       <div class="ob-detail">
         <div>
@@ -206,8 +213,18 @@
 
   search?.addEventListener('input', () => {
     state.query = search.value;
+    state.renderLimit = Infinity;
     applyFilters();
   });
+
+  if (heroBuy && navBuy && 'IntersectionObserver' in window) {
+    const obs = new IntersectionObserver(([entry]) => {
+      const visible = entry.isIntersecting;
+      navBuy.classList.toggle('is-idle', visible);
+      navBuy.classList.toggle('is-hot', !visible);
+    }, { threshold: 0.1 });
+    obs.observe(heroBuy);
+  }
 
   fetch(catalogSrc)
     .then((response) => {
@@ -220,6 +237,16 @@
       updateStats(catalog);
       renderFilters();
       renderGrid();
+      const revealAll = () => {
+        if (state.renderLimit >= state.filtered.length) return;
+        state.renderLimit = Infinity;
+        renderGrid();
+      };
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(revealAll, { timeout: 1200 });
+      } else {
+        window.setTimeout(revealAll, 350);
+      }
     })
     .catch((error) => {
       console.error(error);
