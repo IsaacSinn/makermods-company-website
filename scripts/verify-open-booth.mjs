@@ -66,7 +66,8 @@ assert(page.includes('assets/open-booth/catalog.json'), 'OpenBooth page does not
 assert(page.includes('open-booth-buy.html'), 'OpenBooth page is missing the buy-page link');
 assert(page.includes('href="open-booth-buy.html" id="nav-buy" class="btn nav-buy is-idle"'), 'OpenBooth nav is missing the top-right buy button');
 assert(openBoothScript.includes("document.getElementById('nav-buy')"), 'OpenBooth script is missing nav buy hot-state behavior');
-assert(openBoothScript.includes("document.querySelector('.ob-buy-hero')"), 'OpenBooth script should bind nav hot state to the hero buy CTA');
+assert(openBoothScript.includes("document.querySelector('.ob-hero')"), 'OpenBooth script should bind nav hot state to the full hero section');
+assert(!openBoothScript.includes("document.querySelector('.ob-buy-hero')"), 'OpenBooth script should not bind nav hot state to only the hero buy CTA');
 assert(openBoothScript.includes('requestIdleCallback'), 'OpenBooth script should progressively reveal catalog cards after idle time');
 assert(page.includes('btn btn-stencil ob-buy-hero'), 'OpenBooth hero buy CTA should be a primary stencil button');
 assert(page.includes('OpenBooth unlocks infinite skills'), 'OpenBooth page is missing the infinite skills positioning');

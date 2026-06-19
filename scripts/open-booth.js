@@ -14,7 +14,7 @@
   const modalContent = document.querySelector('[data-ob-modal-content]');
   const closeButtons = document.querySelectorAll('[data-ob-close]');
   const navBuy = document.getElementById('nav-buy');
-  const heroBuy = document.querySelector('.ob-buy-hero');
+  const heroSection = document.querySelector('.ob-hero');
 
   const state = {
     datasets: [],
@@ -217,13 +217,13 @@
     applyFilters();
   });
 
-  if (heroBuy && navBuy && 'IntersectionObserver' in window) {
+  if (heroSection && navBuy && 'IntersectionObserver' in window) {
     const obs = new IntersectionObserver(([entry]) => {
-      const visible = entry.isIntersecting;
-      navBuy.classList.toggle('is-idle', visible);
-      navBuy.classList.toggle('is-hot', !visible);
-    }, { threshold: 0.1 });
-    obs.observe(heroBuy);
+      const pastHero = !entry.isIntersecting && entry.boundingClientRect.bottom <= 0;
+      navBuy.classList.toggle('is-idle', !pastHero);
+      navBuy.classList.toggle('is-hot', pastHero);
+    }, { threshold: 0 });
+    obs.observe(heroSection);
   }
 
   fetch(catalogSrc)
