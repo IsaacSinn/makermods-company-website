@@ -25,7 +25,7 @@ const variants = {
   whiteRobotOnly: {
     id: '51036164555069',
     availabilityKey: "white:robot-only",
-    maxQuantity: 0,
+    maxQuantity: 5,
   },
   whiteJetson: {
     id: '51314503123261',
@@ -37,8 +37,10 @@ const variants = {
 assert(buyPage.includes(`data-variant-black="${variants.blackRobotOnly.id}"`), 'Black Robot Only variant ID must stay wired in buy.html');
 assert(buyPage.includes(`data-variant-white="${variants.whiteRobotOnly.id}"`), 'White Robot Only variant ID must stay present but gated');
 assert(buyPage.includes(`data-variant-white="${variants.whiteJetson.id}"`), 'White Jetson variant ID must stay present but gated');
-assert(buyPage.includes('1 black robot-only unit in stock'), 'Buy page must show only 1 buyable black robot-only unit');
-assert(buyPage.includes('White is sold out.'), 'Buy page must label white XLeRobot as sold out');
+assert(buyPage.includes('5 white robot-only units in stock'), 'Buy page must show 5 buyable white robot-only units');
+assert(!buyPage.includes('White is sold out.'), 'Buy page must not label white XLeRobot as sold out');
+assert(!buyPage.includes('aria-label="White, sold out"'), 'White swatch must not be announced as sold out');
+assert(!buyPage.includes('data-color="white" data-active="false" aria-label="White" aria-disabled="true" disabled'), 'White swatch must be selectable');
 assert(buyPage.includes('Robot + Jetson Nano Pack is sold out.'), 'Buy page must label the Jetson build as sold out');
 
 for (const variant of Object.values(variants)) {

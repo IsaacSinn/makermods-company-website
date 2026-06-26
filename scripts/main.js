@@ -19,7 +19,7 @@
   };
 
   /* ----------- State ----------- */
-  const state = { compute: 'robot-only', color: 'black' };
+  const state = { compute: 'robot-only', color: 'white' };
 
   const PRICES = { 'robot-only': 999, jetson: 1699 };
   const NAMES = { 'robot-only': 'Robot Only', jetson: 'Robot + Jetson Nano Pack' };
@@ -32,7 +32,7 @@
     },
     'white:robot-only': {
       id: '51036164555069',
-      available: 0,
+      available: 5,
       label: 'White Robot Only'
     },
     'white:jetson': {
