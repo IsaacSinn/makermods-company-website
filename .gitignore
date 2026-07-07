@@ -16,3 +16,7 @@ assets/xlerobot.gif
 .env.*
 .vscode/
 .idea/
+
+# Generated OpenBooth launch video intermediates
+build/openbooth-launch/
+assets/open-booth/openbooth-launch-x.mp4

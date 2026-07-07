@@ -15,7 +15,7 @@ Contact: ryan@makermods.ai
 - [Pre-order Metal Arm](https://www.makermods.ai/metal-arm-buy): Reserve a MakerMods Metal Arm with a refundable deposit.
 - [XLeRobot](https://www.makermods.ai/xlerobot): Fully assembled LeRobot-compatible bimanual mobile manipulator for makers, students, and researchers.
 - [Buy XLeRobot](https://www.makermods.ai/buy): Configure and buy XLeRobot builds.
-- [OpenBooth Dataset](https://www.makermods.ai/open-booth): Searchable public catalog of MakerMods OpenBooth robotics skills hosted on Hugging Face.
+- [OpenBooth Dataset](https://www.makermods.ai/openbooth): Searchable public catalog of MakerMods OpenBooth robotics skills hosted on Hugging Face.
 - [Buy OpenBooth](https://www.makermods.ai/open-booth-buy): Buy OpenBooth, OpenBooth with the SO101 Kit, or OpenBooth with the SO101 Bimanual Kit.
 - [MakerMods App](https://www.makermods.ai/makermods-app/): Browser-based robot arm UI for calibration, teleoperation, episode recording, and remote GPU training.
 
@@ -68,7 +68,7 @@ Important details:
 - OpenBooth ships in 2 weeks
 - OpenBooth pricing: $99 for booth only; $398 for OpenBooth + SO101 Kit; $698 for OpenBooth + SO101 Bimanual Kit
 
-Primary page: https://www.makermods.ai/open-booth
+Primary page: https://www.makermods.ai/openbooth
 Buy page: https://www.makermods.ai/open-booth-buy
 
 ### MakerMods App

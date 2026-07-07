@@ -9,7 +9,7 @@ const sourceFiles = [
   'buy.html',
   'metal-arm.html',
   'metal-arm-buy.html',
-  'open-booth.html',
+  'openbooth.html',
   'open-booth-buy.html',
   'makermods-app/index.html',
   'styles/page.css',
@@ -26,7 +26,7 @@ const ignoredSourceMedia = [
 
 const preloadAutoAllowlist = new Set([
   'buy.html::assets/xlerobot.mp4',
-  'open-booth.html::assets/open-booth/hero.mp4',
+  'openbooth.html::assets/open-booth/hero.mp4',
   'xlerobot.html::assets/xlerobot.mp4',
 ]);
 
@@ -42,6 +42,10 @@ function read(filePath) {
 
 function exists(filePath) {
   return fs.existsSync(path.join(root, filePath));
+}
+
+function existsLocalRef(filePath) {
+  return exists(filePath) || exists(`${filePath}.html`);
 }
 
 function isExternalRef(ref) {
@@ -78,7 +82,7 @@ for (const filePath of sourceFiles) {
 }
 
 for (const { filePath, ref, resolved } of localRefs) {
-  assert(exists(resolved), `${filePath} references missing local asset: ${ref} -> ${resolved}`);
+  assert(existsLocalRef(resolved), `${filePath} references missing local asset: ${ref} -> ${resolved}`);
   assert(
     !ignoredSourceMedia.some((pattern) => pattern.test(ref) || pattern.test(resolved)),
     `${filePath} references ignored source media: ${ref}`,

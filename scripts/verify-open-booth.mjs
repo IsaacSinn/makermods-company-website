@@ -4,7 +4,7 @@ import { execFileSync } from 'node:child_process';
 
 const root = process.cwd();
 const requiredFiles = [
-  'open-booth.html',
+  'openbooth.html',
   'open-booth-buy.html',
   'styles/open-booth.css',
   'scripts/open-booth.js',
@@ -56,10 +56,10 @@ for (const filePath of requiredFiles.filter((asset) => asset.endsWith('_clip.mp4
   assert(Number(stream.duration) > 0, `${filePath} must have a positive duration`);
 }
 
-const page = read('open-booth.html');
+const page = read('openbooth.html');
 const openBoothScript = read('scripts/open-booth.js');
 assert(page.includes('<title>OpenBooth Dataset | MakerMods</title>'), 'OpenBooth page is missing the expected title');
-assert(page.includes('canonical" href="https://www.makermods.ai/open-booth"'), 'OpenBooth page is missing canonical metadata');
+assert(page.includes('canonical" href="https://www.makermods.ai/openbooth"'), 'OpenBooth page is missing canonical metadata');
 assert(page.includes('assets/open-booth/hero.mp4'), 'OpenBooth page does not reference the hero video');
 assert(page.includes('assets/open-booth/OpenBooth.png'), 'OpenBooth page does not reference the product image');
 assert(page.includes('assets/open-booth/catalog.json'), 'OpenBooth page does not expose the catalog path');
@@ -91,9 +91,9 @@ assert(buyPage.includes('OpenBooth + SO101 Kit'), 'OpenBooth buy page is missing
 assert(buyPage.includes('OpenBooth + SO101 Bimanual Kit'), 'OpenBooth buy page is missing the bimanual kit variant');
 assert(buyPage.includes('assets/open-booth/openbooth-bimanual product.png'), 'OpenBooth buy page is missing the bimanual product image');
 assert(buyPage.includes('$99'), 'OpenBooth buy page is missing the $99 booth pricing');
-assert(buyPage.includes('$398'), 'OpenBooth buy page is missing the $398 OpenBooth + SO101 Kit pricing');
-assert(buyPage.includes('$698'), 'OpenBooth buy page is missing the $698 OpenBooth + SO101 Bimanual Kit pricing');
-assert(buyPage.includes('ships in 2 weeks'), 'OpenBooth buy page is missing the shipping timeline');
+assert(buyPage.includes('$399'), 'OpenBooth buy page is missing the $399 OpenBooth + SO101 Kit pricing');
+assert(buyPage.includes('$699'), 'OpenBooth buy page is missing the $699 OpenBooth + SO101 Bimanual Kit pricing');
+assert(buyPage.includes('ships in August') || buyPage.includes('shipping in August'), 'OpenBooth buy page is missing the shipping timeline');
 assert(!buyPage.includes('Checkout link placeholder'), 'OpenBooth buy page should not show placeholder checkout copy');
 assert(buyPage.includes('gid://shopify/ProductVariant/51852066324797'), 'OpenBooth buy page is missing the OpenBooth Shopify variant');
 assert(buyPage.includes('gid://shopify/ProductVariant/51851987812669'), 'OpenBooth buy page is missing the SO101 Kit Shopify variant');
@@ -103,12 +103,12 @@ assert(!/pre-?order/i.test(page), 'OpenBooth page should not contain preorder la
 assert(!/pre-?order|deposit|balance/i.test(buyPage), 'OpenBooth buy page should not contain preorder/deposit/balance language');
 
 const index = read('index.html');
-assert(index.includes('href="open-booth.html"'), 'Homepage is missing an OpenBooth link');
+assert(index.includes('href="openbooth"'), 'Homepage is missing an OpenBooth link');
 assert(index.includes('OpenBooth'), 'Homepage is missing OpenBooth copy');
-assert(index.indexOf('href="open-booth.html" class="product-card"') < index.indexOf('href="xlerobot.html" class="product-card"'), 'Homepage should show OpenBooth before XLeRobot in the product grid');
+assert(index.indexOf('href="openbooth" class="product-card"') < index.indexOf('href="xlerobot.html" class="product-card"'), 'Homepage should show OpenBooth before XLeRobot in the product grid');
 
 const sitemap = read('sitemap.xml');
-assert(sitemap.includes('https://www.makermods.ai/open-booth'), 'Sitemap is missing /open-booth');
+assert(sitemap.includes('https://www.makermods.ai/openbooth'), 'Sitemap is missing /openbooth');
 
 const llms = read('llms.txt');
 assert(llms.includes('OpenBooth'), 'llms.txt is missing OpenBooth');
