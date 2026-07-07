@@ -111,7 +111,7 @@
     return `
       <button class="ob-card" type="button" data-ob-index="${index}" aria-label="Open ${escapeHtml(dataset.task_label)} skill details">
         <span class="ob-thumb">
-          <img src="${escapeHtml(assetUrl(dataset.thumbnail_path))}" alt="${escapeHtml(dataset.task_label)} thumbnail" loading="lazy" decoding="async">
+          <img src="${escapeHtml(assetUrl(dataset.thumbnail_path))}" alt="${escapeHtml(dataset.task_label)} thumbnail" loading="eager" decoding="async">
           <span class="tag">${escapeHtml(formatTag(dataset.sort_tag))}</span>
         </span>
         <span class="ob-card-body">
@@ -168,7 +168,7 @@
     const tags = Array.isArray(dataset.hf_tags) ? dataset.hf_tags.slice(0, 12) : [];
     modalContent.innerHTML = `
       <div class="ob-contact-sheet">
-        <img src="${escapeHtml(assetUrl(dataset.contact_sheet_path))}" alt="${escapeHtml(dataset.task_label)} contact sheet" loading="lazy" decoding="async">
+        <img src="${escapeHtml(assetUrl(dataset.contact_sheet_path))}" alt="${escapeHtml(dataset.task_label)} contact sheet" loading="eager" decoding="async">
       </div>
       <div class="ob-detail">
         <div>
