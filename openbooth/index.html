@@ -39,37 +39,37 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="styles/tokens.css">
-<link rel="stylesheet" href="styles/page.css">
-<link rel="stylesheet" href="styles/open-booth.css">
-<link rel="icon" type="image/png" href="assets/logo-mark.png">
+<link rel="stylesheet" href="/styles/tokens.css">
+<link rel="stylesheet" href="/styles/page.css">
+<link rel="stylesheet" href="/styles/open-booth.css">
+<link rel="icon" type="image/png" href="/assets/logo-mark.png">
 </head>
-<body data-open-booth data-catalog-src="assets/open-booth/catalog.json">
+<body data-open-booth data-catalog-src="/assets/open-booth/catalog.json">
 
 <!-- ============================== NAV ============================== -->
 <nav class="nav">
   <div class="container nav-inner">
-    <a href="index.html" class="nav-logo" aria-label="MakerMods">
-      <img src="assets/logo-wordmark.png" alt="MakerMods">
+    <a href="/" class="nav-logo" aria-label="MakerMods">
+      <img src="/assets/logo-wordmark.png" alt="MakerMods">
     </a>
     <div class="nav-links">
-      <a href="metal-arm.html">Metal Arm</a>
-      <a href="xlerobot.html">XLeRobot</a>
-      <a href="openbooth">OpenBooth</a>
-      <a href="makermods-app/">MakerMods App</a>
+      <a href="/metal-arm">Metal Arm</a>
+      <a href="/xlerobot">XLeRobot</a>
+      <a href="/openbooth">OpenBooth</a>
+      <a href="/makermods-app/">MakerMods App</a>
       <a href="#">Docs</a>
       <a href="https://discord.gg/HpXj3ynhhF" target="_blank" rel="noopener">Community</a>
     </div>
     <div class="nav-actions">
       <span class="nav-cart">cart · 0</span>
-      <a href="open-booth-buy.html" id="nav-buy" class="btn nav-buy is-idle">Buy →</a>
+      <a href="/open-booth-buy" id="nav-buy" class="btn nav-buy is-idle">Buy →</a>
     </div>
   </div>
 </nav>
 
 <!-- ============================== HERO ============================== -->
 <header class="ob-hero">
-  <video src="assets/open-booth/hero.mp4" poster="assets/open-booth/OpenBooth.png" autoplay muted loop playsinline preload="auto" aria-label="OpenBooth dataset video plane preview"></video>
+  <video src="/assets/open-booth/hero.mp4" poster="/assets/open-booth/OpenBooth.png" autoplay muted loop playsinline preload="auto" aria-label="OpenBooth dataset video plane preview"></video>
   <div class="container ob-hero-inner">
     <div class="ob-hero-copy">
       <div class="eyebrow">[ OPEN SOURCE ROBOTICS SKILLS <span class="b">·</span> HUGGING FACE ]</div>
@@ -77,7 +77,7 @@
       <p class="lead">OpenBooth already has public robot skills your SO101 can learn from. Browse the recordings now, then put your own robot inside the booth to train the next task without starting from zero.</p>
       <div class="ob-hero-actions">
         <a class="btn btn-stencil" href="#catalog">[ BROWSE SKILLS -> ]</a>
-        <a class="btn btn-stencil ob-buy-hero" href="open-booth-buy.html">[ BUY OPENBOOTH -> ]</a>
+        <a class="btn btn-stencil ob-buy-hero" href="/open-booth-buy">[ BUY OPENBOOTH -> ]</a>
         <a class="btn btn-secondary" href="https://huggingface.co/datasets?search=makermods_" target="_blank" rel="noopener">Search Hugging Face</a>
       </div>
       <div class="ob-hero-stats" aria-label="OpenBooth dataset summary">
@@ -104,7 +104,7 @@
     <div class="ob-winner-grid" aria-label="Hackathon winner demo video slots">
       <div class="ob-winner-card">
         <div class="ob-winner-media">
-          <video src="assets/open-booth/openbooth_demo_1_clip.mp4" poster="assets/open-booth/OpenBooth.png" autoplay muted loop playsinline preload="metadata" aria-label="OpenBooth hackathon demo 1 clip, 35 seconds to 1 minute 16 seconds"></video>
+          <video src="/assets/open-booth/openbooth_demo_1_clip.mp4" poster="/assets/open-booth/OpenBooth.png" autoplay muted loop playsinline preload="metadata" aria-label="OpenBooth hackathon demo 1 clip, 35 seconds to 1 minute 16 seconds"></video>
           <span>Demo 01 · 0:41</span>
         </div>
         <h3>Pick, place, and recover.</h3>
@@ -112,7 +112,7 @@
       </div>
       <div class="ob-winner-card">
         <div class="ob-winner-media">
-          <video src="assets/open-booth/openbooth_demo_2_clip.mp4" poster="assets/open-booth/openbooth-bimanual product.png" autoplay muted loop playsinline preload="metadata" aria-label="OpenBooth hackathon demo 2 clip, 47 seconds to 1 minute 5 seconds"></video>
+          <video src="/assets/open-booth/openbooth_demo_2_clip.mp4" poster="/assets/open-booth/openbooth-bimanual product.png" autoplay muted loop playsinline preload="metadata" aria-label="OpenBooth hackathon demo 2 clip, 47 seconds to 1 minute 5 seconds"></video>
           <span>Demo 02 · 0:18</span>
         </div>
         <h3>Bimanual manipulation.</h3>
@@ -120,7 +120,7 @@
       </div>
       <div class="ob-winner-card">
         <div class="ob-winner-media">
-          <video src="assets/open-booth/openbooth_demo_3_clip.mp4" poster="assets/open-booth/OpenBooth.png" autoplay muted loop playsinline preload="metadata" aria-label="OpenBooth hackathon demo 3 clip, first 13 seconds"></video>
+          <video src="/assets/open-booth/openbooth_demo_3_clip.mp4" poster="/assets/open-booth/OpenBooth.png" autoplay muted loop playsinline preload="metadata" aria-label="OpenBooth hackathon demo 3 clip, first 13 seconds"></video>
           <span>Demo 03 · 0:13</span>
         </div>
         <h3>New tasks, less data.</h3>
@@ -134,7 +134,7 @@
 <section class="ob-product" id="open-booth">
   <div class="container ob-product-grid">
     <div class="ob-product-photo">
-      <img src="assets/open-booth/OpenBooth.png" alt="OpenBooth training enclosure for SO101 robots" loading="lazy" decoding="async">
+      <img src="/assets/open-booth/OpenBooth.png" alt="OpenBooth training enclosure for SO101 robots" loading="lazy" decoding="async">
       <div class="corner tl"></div><div class="corner tr"></div>
       <div class="corner bl"></div><div class="corner br"></div>
       <div class="ob-product-tag">OPEN BOOTH · SO101 SKILL LAB</div>
@@ -148,7 +148,7 @@
         <div><span class="k">02</span><span class="v">Drop your SO101 into a consistent visual workspace.</span></div>
         <div><span class="k">03</span><span class="v">Record less new data for each new behavior.</span></div>
       </div>
-      <a class="btn btn-stencil" href="open-booth-buy.html">[ BUY OPENBOOTH -> ]</a>
+      <a class="btn btn-stencil" href="/open-booth-buy">[ BUY OPENBOOTH -> ]</a>
     </div>
   </div>
 </section>
@@ -188,16 +188,16 @@
   <div class="container">
     <div class="footer-cols">
       <div>
-        <img class="footer-logo" src="assets/logo-wordmark.png" alt="MakerMods" style="width:120px;height:48px">
+        <img class="footer-logo" src="/assets/logo-wordmark.png" alt="MakerMods" style="width:120px;height:48px">
         <p class="blurb">Physical AI and robotics, made easy for students, makers, and developers.</p>
       </div>
       <div>
         <h5>Shop</h5>
         <ul>
-          <li><a href="metal-arm.html">Metal Arm</a></li>
-          <li><a href="xlerobot.html">XLeRobot</a></li>
-          <li><a href="openbooth">OpenBooth</a></li>
-          <li><a href="makermods-app/">MakerMods App</a></li>
+          <li><a href="/metal-arm">Metal Arm</a></li>
+          <li><a href="/xlerobot">XLeRobot</a></li>
+          <li><a href="/openbooth">OpenBooth</a></li>
+          <li><a href="/makermods-app/">MakerMods App</a></li>
           <li><a href="#">Parts</a></li>
         </ul>
       </div>
@@ -226,6 +226,6 @@
   </div>
 </footer>
 
-<script src="scripts/open-booth.js" defer></script>
+<script src="/scripts/open-booth.js" defer></script>
 </body>
 </html>

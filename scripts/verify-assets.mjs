@@ -9,7 +9,7 @@ const sourceFiles = [
   'buy.html',
   'metal-arm.html',
   'metal-arm-buy.html',
-  'openbooth.html',
+  'openbooth/index.html',
   'open-booth-buy.html',
   'makermods-app/index.html',
   'styles/page.css',
@@ -26,7 +26,7 @@ const ignoredSourceMedia = [
 
 const preloadAutoAllowlist = new Set([
   'buy.html::assets/xlerobot.mp4',
-  'openbooth.html::assets/open-booth/hero.mp4',
+  'openbooth/index.html::/assets/open-booth/hero.mp4',
   'xlerobot.html::assets/xlerobot.mp4',
 ]);
 
@@ -57,6 +57,9 @@ function stripRef(ref) {
 }
 
 function resolveLocalRef(filePath, ref) {
+  if (ref.startsWith('/')) {
+    return path.normalize(ref.slice(1));
+  }
   return path.normalize(path.join(path.dirname(filePath), stripRef(ref)));
 }
 

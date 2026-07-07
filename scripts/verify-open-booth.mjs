@@ -4,7 +4,7 @@ import { execFileSync } from 'node:child_process';
 
 const root = process.cwd();
 const requiredFiles = [
-  'openbooth.html',
+  'openbooth/index.html',
   'open-booth-buy.html',
   'styles/open-booth.css',
   'scripts/open-booth.js',
@@ -56,15 +56,15 @@ for (const filePath of requiredFiles.filter((asset) => asset.endsWith('_clip.mp4
   assert(Number(stream.duration) > 0, `${filePath} must have a positive duration`);
 }
 
-const page = read('openbooth.html');
+const page = read('openbooth/index.html');
 const openBoothScript = read('scripts/open-booth.js');
 assert(page.includes('<title>OpenBooth Dataset | MakerMods</title>'), 'OpenBooth page is missing the expected title');
 assert(page.includes('canonical" href="https://www.makermods.ai/openbooth"'), 'OpenBooth page is missing canonical metadata');
-assert(page.includes('assets/open-booth/hero.mp4'), 'OpenBooth page does not reference the hero video');
-assert(page.includes('assets/open-booth/OpenBooth.png'), 'OpenBooth page does not reference the product image');
-assert(page.includes('assets/open-booth/catalog.json'), 'OpenBooth page does not expose the catalog path');
-assert(page.includes('open-booth-buy.html'), 'OpenBooth page is missing the buy-page link');
-assert(page.includes('href="open-booth-buy.html" id="nav-buy" class="btn nav-buy is-idle"'), 'OpenBooth nav is missing the top-right buy button');
+assert(page.includes('/assets/open-booth/hero.mp4'), 'OpenBooth page does not reference the hero video');
+assert(page.includes('/assets/open-booth/OpenBooth.png'), 'OpenBooth page does not reference the product image');
+assert(page.includes('/assets/open-booth/catalog.json'), 'OpenBooth page does not expose the catalog path');
+assert(page.includes('/open-booth-buy'), 'OpenBooth page is missing the buy-page link');
+assert(page.includes('href="/open-booth-buy" id="nav-buy" class="btn nav-buy is-idle"'), 'OpenBooth nav is missing the top-right buy button');
 assert(openBoothScript.includes("document.getElementById('nav-buy')"), 'OpenBooth script is missing nav buy hot-state behavior');
 assert(openBoothScript.includes("document.querySelector('.ob-hero')"), 'OpenBooth script should bind nav hot state to the full hero section');
 assert(!openBoothScript.includes("document.querySelector('.ob-buy-hero')"), 'OpenBooth script should not bind nav hot state to only the hero buy CTA');
@@ -73,9 +73,9 @@ assert(page.includes('btn btn-stencil ob-buy-hero'), 'OpenBooth hero buy CTA sho
 assert(page.includes('OpenBooth unlocks infinite skills'), 'OpenBooth page is missing the infinite skills positioning');
 assert(!page.includes('1 OpenBooth unlocks infinite skills'), 'OpenBooth page should not say "1 OpenBooth"');
 assert(page.includes('Recreate winning demos'), 'OpenBooth page is missing the hackathon winner demo section');
-assert(page.includes('assets/open-booth/openbooth_demo_1_clip.mp4'), 'OpenBooth page is missing demo 1 clip');
-assert(page.includes('assets/open-booth/openbooth_demo_2_clip.mp4'), 'OpenBooth page is missing demo 2 clip');
-assert(page.includes('assets/open-booth/openbooth_demo_3_clip.mp4'), 'OpenBooth page is missing demo 3 clip');
+assert(page.includes('/assets/open-booth/openbooth_demo_1_clip.mp4'), 'OpenBooth page is missing demo 1 clip');
+assert(page.includes('/assets/open-booth/openbooth_demo_2_clip.mp4'), 'OpenBooth page is missing demo 2 clip');
+assert(page.includes('/assets/open-booth/openbooth_demo_3_clip.mp4'), 'OpenBooth page is missing demo 3 clip');
 assert(page.indexOf('id="winner-demos"') < page.indexOf('id="open-booth"'), 'Hackathon winner demos should appear above the OpenBooth buy section');
 assert(page.includes('SO101'), 'OpenBooth page is missing SO101 positioning');
 assert(page.includes('id="catalog"'), 'OpenBooth page is missing the catalog section');
