@@ -31,6 +31,12 @@
     .replaceAll('"', '&quot;')
     .replaceAll("'", '&#039;');
 
+  const assetUrl = (value) => {
+    const url = String(value || '');
+    if (!url || /^(https?:|data:|\/)/i.test(url)) return url;
+    return `/${url.replace(/^\.?\//, '')}`;
+  };
+
   const formatTag = (tag) => String(tag || 'untagged')
     .replaceAll('_', ' ')
     .replace(/\b\w/g, (char) => char.toUpperCase());
@@ -105,7 +111,7 @@
     return `
       <button class="ob-card" type="button" data-ob-index="${index}" aria-label="Open ${escapeHtml(dataset.task_label)} skill details">
         <span class="ob-thumb">
-          <img src="${escapeHtml(dataset.thumbnail_path)}" alt="${escapeHtml(dataset.task_label)} thumbnail" loading="lazy" decoding="async">
+          <img src="${escapeHtml(assetUrl(dataset.thumbnail_path))}" alt="${escapeHtml(dataset.task_label)} thumbnail" loading="lazy" decoding="async">
           <span class="tag">${escapeHtml(formatTag(dataset.sort_tag))}</span>
         </span>
         <span class="ob-card-body">
@@ -162,7 +168,7 @@
     const tags = Array.isArray(dataset.hf_tags) ? dataset.hf_tags.slice(0, 12) : [];
     modalContent.innerHTML = `
       <div class="ob-contact-sheet">
-        <img src="${escapeHtml(dataset.contact_sheet_path)}" alt="${escapeHtml(dataset.task_label)} contact sheet" loading="lazy" decoding="async">
+        <img src="${escapeHtml(assetUrl(dataset.contact_sheet_path))}" alt="${escapeHtml(dataset.task_label)} contact sheet" loading="lazy" decoding="async">
       </div>
       <div class="ob-detail">
         <div>

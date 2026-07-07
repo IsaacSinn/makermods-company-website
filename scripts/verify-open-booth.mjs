@@ -69,6 +69,8 @@ assert(openBoothScript.includes("document.getElementById('nav-buy')"), 'OpenBoot
 assert(openBoothScript.includes("document.querySelector('.ob-hero')"), 'OpenBooth script should bind nav hot state to the full hero section');
 assert(!openBoothScript.includes("document.querySelector('.ob-buy-hero')"), 'OpenBooth script should not bind nav hot state to only the hero buy CTA');
 assert(openBoothScript.includes('requestIdleCallback'), 'OpenBooth script should progressively reveal catalog cards after idle time');
+assert(openBoothScript.includes('assetUrl(dataset.thumbnail_path)'), 'OpenBooth script should render catalog thumbnail paths as route-safe asset URLs');
+assert(openBoothScript.includes('assetUrl(dataset.contact_sheet_path)'), 'OpenBooth script should render contact sheet paths as route-safe asset URLs');
 assert(page.includes('btn btn-stencil ob-buy-hero'), 'OpenBooth hero buy CTA should be a primary stencil button');
 assert(page.includes('OpenBooth unlocks infinite skills'), 'OpenBooth page is missing the infinite skills positioning');
 assert(!page.includes('1 OpenBooth unlocks infinite skills'), 'OpenBooth page should not say "1 OpenBooth"');
