@@ -1,0 +1,745 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ElRobot, Open 7+1 DoF Leader + Follower Robot Arm Pair</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="ElRobot is an open 7+1 DoF robot arm pair, fully assembled by MakerMods. Leader + follower teleoperation for imitation-learning research, $399 per pair. First batch limited to 5 units.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://www.makermods.ai/elrobot">
+<meta property="og:type" content="product">
+<meta property="og:site_name" content="MakerMods">
+<meta property="og:title" content="ElRobot, Open 7+1 DoF Leader + Follower Robot Arm Pair">
+<meta property="og:description" content="A fully assembled leader + follower teleoperation pair for physical-AI research. 7+1 DoF, 430 mm reach, open hardware. Pre-order the first batch, $399 per pair.">
+<meta property="og:url" content="https://www.makermods.ai/elrobot">
+<meta property="og:image" content="https://www.makermods.ai/assets/elrobot/hero.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ElRobot, Open 7+1 DoF Leader + Follower Robot Arm Pair">
+<meta name="twitter:description" content="A fully assembled leader + follower teleoperation pair for physical-AI research. Pre-order the first batch, $399 per pair.">
+<meta name="twitter:image" content="https://www.makermods.ai/assets/elrobot/hero.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "ElRobot Leader + Follower Pair",
+  "brand": {
+    "@type": "Brand",
+    "name": "MakerMods"
+  },
+  "description": "An open 7+1 DoF robot arm pair, fully assembled, wired, and calibrated. Leader + follower teleoperation for imitation-learning research.",
+  "image": "https://www.makermods.ai/assets/elrobot/hero.jpg",
+  "url": "https://www.makermods.ai/elrobot",
+  "offers": {
+    "@type": "Offer",
+    "price": "399",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/PreOrder",
+    "url": "https://www.makermods.ai/elrobot-buy"
+  }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="styles/tokens.css">
+<link rel="stylesheet" href="styles/page.css">
+<link rel="icon" type="image/png" href="assets/logo-mark.png">
+<style>
+  /* page-local: extras used only on the elrobot pages */
+  .er-photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s-4);
+  }
+  .er-photo {
+    position: relative;
+    aspect-ratio: 4/5;
+    background: #ECE7DF;
+    overflow: hidden;
+    clip-path: polygon(16px 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%, 0 16px);
+  }
+  .er-photo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
+    display: block;
+  }
+  .er-photo .corner { position: absolute; width: 14px; height: 14px; border: 1px solid rgba(10,10,10,0.4); z-index: 2; }
+  .er-photo .corner.tl { top: 14px; left: 14px; border-right: 0; border-bottom: 0; }
+  .er-photo .corner.tr { top: 14px; right: 14px; border-left: 0; border-bottom: 0; }
+  .er-photo .corner.bl { bottom: 14px; left: 14px; border-right: 0; border-top: 0; }
+  .er-photo .corner.br { bottom: 14px; right: 14px; border-left: 0; border-top: 0; }
+  .er-photo .label {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(10,10,10,0.75);
+    border: 1px solid rgba(10,10,10,0.25);
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    padding: 5px 8px;
+    z-index: 2;
+  }
+  .er-photo .cap {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: rgba(10,10,10,0.7);
+    background: rgba(255,255,255,0.7);
+    padding: 6px 10px;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    letter-spacing: 0.04em;
+  }
+  .er-cap-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--s-4);
+    margin-top: var(--s-5);
+  }
+  .er-cap-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: var(--s-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+  }
+  .er-cap-card .num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--orange);
+    letter-spacing: 0.14em;
+  }
+  .er-cap-card h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+  }
+  .er-cap-card p { font-size: 13px; color: var(--ink-2); line-height: 1.5; }
+
+  .er-cap-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--s-5);
+  }
+  .er-cap-feature {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .er-cap-feature .er-cap-img { aspect-ratio: 16/9; margin: 0; position: relative; background: #ECE7DF; overflow: hidden; }
+  .er-cap-feature .er-cap-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .er-cap-feature .er-cap-body { padding: var(--s-5); display: flex; flex-direction: column; gap: var(--s-3); }
+  .er-cap-feature h3 { font-family: var(--font-display); font-weight: 700; font-size: 22px; letter-spacing: -0.01em; line-height: 1.1; }
+  .er-cap-feature p { font-size: 14px; color: var(--ink-2); line-height: 1.55; }
+
+  /* labeled slot for demo videos / gifs that are still being captured */
+  .er-media-slot {
+    position: relative;
+    background: #0A0A0A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .er-media-slot .slot-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(245,245,245,0.85);
+    border: 1px solid rgba(245,245,245,0.3);
+    background: rgba(10,10,10,0.35);
+    padding: 5px 9px;
+    z-index: 2;
+  }
+  .er-media-slot img.slot-poster {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.45;
+    display: block;
+  }
+
+  .er-compare table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--surface);
+    border: 1px solid var(--line);
+  }
+  .er-compare th, .er-compare td {
+    border: 1px solid var(--line);
+    padding: 14px 16px;
+    text-align: left;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ink-2);
+    vertical-align: top;
+  }
+  .er-compare th {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mute);
+    background: var(--paper);
+  }
+  .er-compare th.col-mm { color: var(--orange-2); }
+  .er-compare td:first-child {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  .er-compare td .done { color: var(--orange-2); font-weight: 600; }
+
+  @media (max-width: 960px) {
+    .er-photo-grid { grid-template-columns: 1fr; }
+    .er-cap-row { grid-template-columns: 1fr 1fr; }
+    .er-cap-section { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    .er-photo-grid,
+    .er-cap-row,
+    .er-cap-section {
+      gap: var(--s-4);
+    }
+    .er-cap-row { grid-template-columns: 1fr; }
+    .er-photo {
+      aspect-ratio: 4 / 3;
+      clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+    }
+    .er-photo .label {
+      top: 12px;
+      left: 12px;
+      max-width: calc(100% - 24px);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .er-photo .cap {
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .er-compare { overflow-x: auto; }
+    .er-compare td:first-child { white-space: normal; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================== NAV ============================== -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="MakerMods">
+      <img src="assets/logo-wordmark.png" alt="MakerMods">
+    </a>
+    <div class="nav-links">
+      <a href="elrobot.html">ElRobot</a>
+      <a href="metal-arm.html">Metal Arm</a>
+      <a href="xlerobot.html">XLeRobot</a>
+      <a href="openbooth">OpenBooth</a>
+      <a href="makermods-app/">MakerMods App</a>
+      <a href="#">Docs</a>
+      <a href="https://discord.gg/HpXj3ynhhF" target="_blank" rel="noopener">Community</a>
+    </div>
+    <div class="nav-actions">
+      <span class="nav-cart">cart · 0</span>
+      <a href="elrobot-buy.html" id="nav-buy" class="btn nav-buy is-idle">Pre-order →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============================== CRUMBS ============================== -->
+<div class="container">
+  <div class="crumbs">
+    <a href="index.html">makermods</a>
+    <span class="sep">/</span>
+    <a href="index.html">shop</a>
+    <span class="sep">/</span>
+    <span>elrobot</span>
+  </div>
+</div>
+
+<!-- ============================== HERO ============================== -->
+<section class="hero" data-screen-label="01 Hero">
+  <div class="container hero-inner">
+    <div class="hero-photo hero-photo--photo">
+      <img class="hero-img" src="assets/elrobot/hero.jpg" alt="ElRobot 7+1 DoF 3D-printed robot arm with wrist camera, clamped to a desk" loading="eager" decoding="async" style="object-fit:cover;background:#ECE7DF">
+      <div class="corner tl"></div><div class="corner tr"></div>
+      <div class="corner bl"></div><div class="corner br"></div>
+      <div class="label-tag" style="color:rgba(10,10,10,0.75);border-color:rgba(10,10,10,0.25);background:rgba(245,245,245,0.6);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)">ELROBOT · 3D-PRINTED · OPEN HARDWARE</div>
+      <div class="meta-strip" style="color:rgba(10,10,10,0.6)">
+        <span>430 mm REACH · ~800 g / ARM</span>
+        <span>7+1 DOF · LEADER + FOLLOWER</span>
+      </div>
+    </div>
+
+    <div class="buy-box">
+      <div class="eyebrow">[ OPEN 7+1 DOF ARM PAIR <span class="b">·</span> PHYSICAL AI ]</div>
+      <h1 class="hero-title">ElRobot.</h1>
+      <p class="hero-sub">A fully assembled leader + follower teleoperation pair for imitation-learning research. Skip ~30 hours of printing, sourcing 16 servos, and wiring — move the leader, the follower mirrors, and you're collecting data out of the box. Designed by NormaCore, built and QC'd by MakerMods.</p>
+
+      <div class="price-row">
+        <span class="price">$399</span>
+        <span class="price-was">one leader + one follower · fully assembled</span>
+        <span class="price-meta">first batch · 5 pairs</span>
+      </div>
+
+      <div class="buy-cta-row">
+        <a id="hero-buy-cta" class="btn btn-stencil btn-block" href="elrobot-buy.html">[ PRE-ORDER → ]</a>
+        <div class="buy-license">open hardware · stl / step / urdf public · feetech serial-bus servos</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== BANNER ============================== -->
+<!-- TODO(media): when the teleop demo video is ready, replace the placeholder below with:
+     <video class="er-banner-vid" src="assets/elrobot/banner.mp4" poster="assets/elrobot/gallery-closeup.jpg" autoplay muted loop playsinline preload="metadata" aria-label="ElRobot leader-follower teleoperation demo"></video> -->
+<section class="er-banner" data-screen-label="01b Banner" aria-label="ElRobot demo video placeholder">
+  <div class="er-media-slot" style="position:absolute;inset:0">
+    <img class="slot-poster" src="assets/elrobot/gallery-closeup.jpg" alt="" aria-hidden="true">
+    <span class="slot-tag">[ TELEOP DEMO FOOTAGE · DROPPING SOON ]</span>
+  </div>
+</section>
+
+<style>
+  .er-banner {
+    position: relative;
+    background: #0A0A0A;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    display: block;
+  }
+  .er-banner-vid {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
+    display: block;
+  }
+  @media (max-width: 960px) {
+    .er-banner { aspect-ratio: 4 / 3; }
+  }
+  @media (max-width: 600px) {
+    .er-banner { aspect-ratio: 16 / 10; }
+  }
+</style>
+
+<!-- ============================== AT A GLANCE ============================== -->
+<section class="section" id="at-a-glance" data-screen-label="02 At a Glance">
+  <div class="container">
+    <div class="section-head" style="align-items:center;text-align:center;margin:0 auto var(--s-7)">
+      <div class="eyebrow">[ AT A GLANCE <span class="b">·</span> 02 ]</div>
+      <h2>From unboxing to teleop in minutes.</h2>
+      <p class="lead" style="margin:0 auto">ElRobot is normally a ~30-hour DIY build. We print, assemble, wire, calibrate, and test every pair, so your first session is research, not soldering.</p>
+    </div>
+
+    <div class="er-photo-grid">
+      <div class="er-photo">
+        <img src="assets/elrobot/gallery-side.jpg" alt="ElRobot arm side profile with camera mast raised" loading="lazy" decoding="async">
+        <div class="corner tl"></div><div class="corner tr"></div>
+        <div class="corner bl"></div><div class="corner br"></div>
+        <div class="label">01 · ARM</div>
+        <div class="cap"><span>7+1 DOF</span><span>430 mm reach</span></div>
+      </div>
+      <div class="er-photo">
+        <img src="assets/elrobot/gallery-reach.jpg" alt="ElRobot arm extended upward with arm-mounted camera" loading="lazy" decoding="async">
+        <div class="corner tl"></div><div class="corner tr"></div>
+        <div class="corner bl"></div><div class="corner br"></div>
+        <div class="label">02 · CAMERA</div>
+        <div class="cap"><span>arm-mounted UVC</span><span>+ table cam</span></div>
+      </div>
+      <div class="er-photo">
+        <img src="assets/elrobot/gallery-folded.jpg" alt="ElRobot arm folded, showing Feetech servos and wiring" loading="lazy" decoding="async">
+        <div class="corner tl"></div><div class="corner tr"></div>
+        <div class="corner bl"></div><div class="corner br"></div>
+        <div class="label">03 · SERVOS</div>
+        <div class="cap"><span>8 × STS3215 / arm</span><span>serial bus</span></div>
+      </div>
+    </div>
+
+    <div class="er-cap-row">
+      <div class="er-cap-card">
+        <div class="num">[ HW · 01 ]</div>
+        <h3>7+1 DoF, 430 mm reach</h3>
+        <p>One more joint than the SO-101's six — a fuller teleoperation workspace for manipulation research, at ~800 g per arm.</p>
+      </div>
+      <div class="er-cap-card">
+        <div class="num">[ HW · 02 ]</div>
+        <h3>Back-drivable leader</h3>
+        <p>The leader runs low-voltage 7.4 V servos that move with minimal resistance, so demonstrations feel natural and precise.</p>
+      </div>
+      <div class="er-cap-card">
+        <div class="num">[ HW · 03 ]</div>
+        <h3>Standard, swappable servos</h3>
+        <p>16 × Feetech STS3215 serial-bus servos across the pair. No proprietary hardware — swap any joint with an off-the-shelf part.</p>
+      </div>
+      <div class="er-cap-card">
+        <div class="num">[ HW · 04 ]</div>
+        <h3>Assembled &amp; QC'd</h3>
+        <p>Printed, wired, calibrated, and tested by MakerMods — a proven build with 10 units already delivered.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== TELEOPERATION ============================== -->
+<section class="section bg-grid" id="teleoperation" data-screen-label="03 Teleoperation">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">[ TELEOPERATION <span class="b">·</span> 03 ]</div>
+      <h2>Move the leader. The follower mirrors.</h2>
+      <p class="lead">Record demonstrations by hand: guide the back-drivable leader and the follower reproduces every motion while both cameras capture the scene — the standard pipeline for imitation learning.</p>
+    </div>
+
+    <div class="er-cap-section">
+      <!-- TODO(media): swap the er-media-slot below for the leader-follower mirroring gif/video when captured -->
+      <div class="er-cap-feature">
+        <div class="er-cap-img er-media-slot">
+          <span class="slot-tag">[ GIF · LEADER→FOLLOWER MIRRORING ]</span>
+        </div>
+        <div class="er-cap-body">
+          <div class="eyebrow">[ 3.1 · LEADER + FOLLOWER ]</div>
+          <h3>Teleop out of the box.</h3>
+          <p>Both arms arrive paired and calibrated. Plug both into your host PC over USB, power them up, and the follower shadows the leader — no assembly, no servo ID flashing.</p>
+        </div>
+      </div>
+
+      <!-- TODO(media): swap the er-media-slot below for the pick-task demo gif/video when captured -->
+      <div class="er-cap-feature">
+        <div class="er-cap-img er-media-slot">
+          <span class="slot-tag">[ VIDEO · PICK TASK DEMO ]</span>
+        </div>
+        <div class="er-cap-body">
+          <div class="eyebrow">[ 3.2 · DATA COLLECTION ]</div>
+          <h3>Built to collect demonstrations.</h3>
+          <p>Two UVC USB cameras are included — one arm-mounted, one for the table view — so every demonstration is recorded from the viewpoints imitation-learning policies train on.</p>
+        </div>
+      </div>
+
+      <div class="er-cap-feature">
+        <div class="er-cap-img"><img src="assets/elrobot/gallery-closeup.jpg" alt="Close-up of ElRobot wrist, gripper, and camera mount" loading="lazy" decoding="async"></div>
+        <div class="er-cap-body">
+          <div class="eyebrow">[ 3.3 · OPEN &amp; HACKABLE ]</div>
+          <h3>Nothing is locked down.</h3>
+          <p>NormaCore's design is open hardware: STL, STEP, URDF, and Bambu/Orca print profiles are public. Repair any part, print spares, or mod the arm to fit your rig.</p>
+        </div>
+      </div>
+
+      <div class="er-cap-feature">
+        <div class="er-cap-img"><img src="assets/elrobot/gallery-side.jpg" alt="ElRobot arm clamped to a desk edge" loading="lazy" decoding="async" style="object-position:50% 70%"></div>
+        <div class="er-cap-body">
+          <div class="eyebrow">[ 3.4 · FAMILIAR ECOSYSTEM ]</div>
+          <h3>Built on proven open robotics.</h3>
+          <p>ElRobot incorporates elements from the SO-ARM100 / SO-101 ecosystem — handle, trigger, wrist roll — so the workflow is familiar to the LeRobot community.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== ASSEMBLED VS DIY ============================== -->
+<section class="section" id="assembled-vs-diy" data-screen-label="04 Assembled vs DIY">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">[ WHY ASSEMBLED <span class="b">·</span> 04 ]</div>
+      <h2>Less than the raw parts cost — built and tested.</h2>
+      <p class="lead">Building the pair yourself means ~29.5 hours of printing, hunting down 16 servos, two power supplies, and cameras — roughly $440 in parts at retail. We hand you the finished pair for $399.</p>
+    </div>
+
+    <div class="er-compare">
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>DIY (build it yourself)</th>
+            <th class="col-mm">MakerMods assembled</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>3D printing</td>
+            <td>~29.5 h + a capable printer</td>
+            <td><span class="done">Done</span></td>
+          </tr>
+          <tr>
+            <td>Source 16 servos + parts</td>
+            <td>You hunt AliExpress</td>
+            <td><span class="done">Done</span></td>
+          </tr>
+          <tr>
+            <td>Assembly + wiring + calibration</td>
+            <td>Hours, error-prone</td>
+            <td><span class="done">Done + tested</span></td>
+          </tr>
+          <tr>
+            <td>Parts cost</td>
+            <td>~$440 (pair, at retail)</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Price</td>
+            <td>your time + ~$440 parts</td>
+            <td><span class="done">$399, ready to run</span></td>
+          </tr>
+          <tr>
+            <td>Support</td>
+            <td>community</td>
+            <td><span class="done">MakerMods</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== IN THE BOX ============================== -->
+<section class="section bg-grid" id="in-the-box" data-screen-label="05 In The Box">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">[ WHAT'S IN THE BOX <span class="b">·</span> 05 ]</div>
+      <h2>The complete teleop rig.</h2>
+      <p class="lead">Everything to run leader-follower teleoperation and record demonstrations, the day it lands on your bench. Bring your own host PC.</p>
+    </div>
+
+    <div class="box-grid">
+      <div class="box-list">
+        <div class="box-item"><div class="thumb" style="font-family:var(--font-mono);font-size:11px">01</div><div><div class="name">Follower arm (assembled)</div><div class="desc">7+1 DoF, 8 × STS3215 12 V servos, calibrated and tested.</div></div><div class="qty">×1</div></div>
+        <div class="box-item"><div class="thumb" style="font-family:var(--font-mono);font-size:11px">02</div><div><div class="name">Leader arm (assembled)</div><div class="desc">Back-drivable, 8 × STS3215 7.4 V servos for smooth teleop.</div></div><div class="qty">×1</div></div>
+        <div class="box-item"><div class="thumb" style="font-family:var(--font-mono);font-size:11px">03</div><div><div class="name">Serial-bus servo driver</div><div class="desc">One per arm. Data over USB A-to-C, motor power external.</div></div><div class="qty">×2</div></div>
+        <div class="box-item"><div class="thumb" style="font-family:var(--font-mono);font-size:11px">04</div><div><div class="name">Power supplies</div><div class="desc">12 V / 4 A for the follower, 7.5 V / 5 A for the leader. No battery.</div></div><div class="qty">×2</div></div>
+        <div class="box-item"><div class="thumb" style="font-family:var(--font-mono);font-size:11px">05</div><div><div class="name">UVC USB cameras</div><div class="desc">Arm-mounted + table-mounted views for data collection.</div></div><div class="qty">×2</div></div>
+        <div class="box-item"><div class="thumb" style="font-family:var(--font-mono);font-size:11px">06</div><div><div class="name">USB A-to-C cables</div><div class="desc">One per arm, host-PC data connection.</div></div><div class="qty">×2</div></div>
+      </div>
+
+      <div class="callout">
+        <div class="e">[ PLUG IN · POWER UP · TELEOP ]</div>
+        <h3>Assembled, calibrated, tested.</h3>
+        <p>Ships fully assembled and paired. Clamp both bases to your bench, connect power and USB, and you're recording demonstrations within minutes.</p>
+        <ul class="checks">
+          <li>Every pair calibrated and QC'd before shipping</li>
+          <li>10 units already built and delivered</li>
+          <li>Open design — STL / STEP / URDF public for spares</li>
+          <li>Foam-packed for international express</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== SPECS ============================== -->
+<section class="section" id="specs" data-screen-label="06 Specs">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">[ SPECS <span class="b">·</span> 06 ]</div>
+      <h2>The numbers. The specs.</h2>
+    </div>
+
+    <div class="spec-card">
+      <div class="spec-card-head">
+        <span>elrobot · assembled by makermods</span>
+        <span>spec_sheet.txt</span>
+      </div>
+      <div class="spec-grid">
+        <div class="spec-row"><span class="k">configuration</span><span class="v"><span class="em">leader + follower pair</span> · teleoperation</span></div>
+        <div class="spec-row"><span class="k">degrees of freedom</span><span class="v">7 + 1</span></div>
+        <div class="spec-row"><span class="k">reach</span><span class="v">430 mm<span class="imp imp-block">16.9"</span></span></div>
+        <div class="spec-row"><span class="k">weight</span><span class="v">~800 g per arm<span class="imp imp-block">1.8 lb</span></span></div>
+        <div class="spec-row"><span class="k">servos</span><span class="v">16 × Feetech STS3215 serial-bus (8 per arm)</span></div>
+        <div class="spec-row"><span class="k">— follower</span><span class="v">8 × STS3215 · 12 V · 30 kg·cm</span></div>
+        <div class="spec-row"><span class="k">— leader</span><span class="v">8 × STS3215 · 7.4 V · back-drivable</span></div>
+        <div class="spec-row"><span class="k">control</span><span class="v">2 × serial-bus servo driver · data over USB A-to-C</span></div>
+        <div class="spec-row"><span class="k">power</span><span class="v">follower 12 V / 4 A · leader 7.5 V / 5 A · no battery</span></div>
+        <div class="spec-row"><span class="k">cameras</span><span class="v">2 × UVC USB (arm-mounted + table-mounted) · included</span></div>
+        <div class="spec-row"><span class="k">structure</span><span class="v">fully 3D-printed (PLA)</span></div>
+        <div class="spec-row"><span class="k">build files</span><span class="v">STL · STEP · URDF · Bambu / Orca 3MF profiles</span></div>
+        <div class="spec-row"><span class="k">design</span><span class="v">NormaCore open hardware · assembled by MakerMods</span></div>
+        <div class="spec-row"><span class="k">host</span><span class="v">bring your own PC</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== PRE-ORDER DETAILS ============================== -->
+<section class="section bg-grid" id="preorder-details" data-screen-label="07 Pre-order Details">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">[ PRE-ORDER <span class="b">·</span> 07 ]</div>
+      <h2>First batch. Five pairs.</h2>
+      <p class="lead">Pre-orders are open for the first international batch — 5 assembled leader + follower pairs at $399 each. Price excludes shipping, customs &amp; tax. Ships by August 22, 2026, with a full refund if we miss our ship-by date.</p>
+    </div>
+
+    <div class="er-cap-row" style="margin-top:0">
+      <div class="er-cap-card">
+        <div class="num">[ 7.1 · RESERVE ]</div>
+        <h3>$399 per pair</h3>
+        <p>Full payment at order reserves one of the 5 first-batch pairs. Excludes shipping, customs &amp; tax.</p>
+      </div>
+      <div class="er-cap-card">
+        <div class="num">[ 7.2 · SHIPS BY ]</div>
+        <h3>August 22, 2026</h3>
+        <p>Delivery ~1 week after dispatch via express; customs times vary by country. We email you at each production step.</p>
+      </div>
+      <div class="er-cap-card">
+        <div class="num">[ 7.3 · REFUND ]</div>
+        <h3>Miss the date, full refund</h3>
+        <p>If we don't ship by August 22, 2026, you get a full refund — no questions asked. Refundable any time before dispatch.</p>
+      </div>
+      <div class="er-cap-card">
+        <div class="num">[ 7.4 · CHINA ]</div>
+        <h3>国内买家</h3>
+        <p>This batch is international only. In China? ElRobot is coming to Taobao via our partner 华秀科技 — link soon.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:var(--s-6);text-align:center">
+      <a class="btn btn-stencil" href="elrobot-buy.html" style="min-width:320px">[ PRE-ORDER · $399 → ]</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== FAQ ============================== -->
+<section class="section" id="faq" data-screen-label="08 FAQ">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">[ FAQ <span class="b">·</span> 08 ]</div>
+      <h2>Things people ask before buying.</h2>
+    </div>
+
+    <div class="faq" data-faq>
+      <div class="faq-item" data-open="true">
+        <button class="faq-q"><span>Does it come assembled or as a kit?</span><span class="icon"></span></button>
+        <div class="faq-a">Fully assembled, wired, calibrated, and tested — both arms. A separate DIY kit (bagged parts, you print the structure) is coming later; email <a href="mailto:isaac@makermods.ai">isaac@makermods.ai</a> to register interest.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>What exactly is a leader + follower pair?</span><span class="icon"></span></button>
+        <div class="faq-a">Two arms. You move the back-drivable leader by hand, and the follower mirrors it in real time. That's how demonstrations are recorded for imitation-learning research — every $399 pre-order includes one leader and one follower.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>When does it ship?</span><span class="icon"></span></button>
+        <div class="faq-a">The first batch ships by August 22, 2026, with delivery about a week after dispatch via express (customs times vary by country). We email you at each production step, and if we miss the ship-by date you get a full refund.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>What servos does it use?</span><span class="icon"></span></button>
+        <div class="faq-a">16 × Feetech STS3215 serial-bus servos across the pair — 8 per arm. The follower runs the 12 V / 30 kg·cm variant; the leader runs the 7.4 V variant so it stays back-drivable for smooth teleop. All standard, off-the-shelf, swappable parts.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>Do I need a PC? Are cameras included?</span><span class="icon"></span></button>
+        <div class="faq-a">You bring a host PC for teleoperation and recording — the arms connect over USB. Two UVC USB cameras are included: one arm-mounted and one for the table view. Both power supplies are included too; there's no battery.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>Is it open source?</span><span class="icon"></span></button>
+        <div class="faq-a">Yes — ElRobot is NormaCore's open hardware design. STL, STEP, URDF, and Bambu/Orca print profiles are public, so you can print spares, repair any part, or mod the arm freely.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>I'm in China — can I buy locally?</span><span class="icon"></span></button>
+        <div class="faq-a">Yes, ElRobot is coming to Taobao through our manufacturing partner 华秀科技. This pre-order batch is international only to keep the channels clean — link coming soon.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== FOOTER ============================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-cols">
+      <div>
+        <img class="footer-logo" src="assets/logo-wordmark.png" alt="MakerMods" style="width:120px;height:48px">
+        <p class="blurb">Physical AI and robotics, made easy for students, makers, and developers.</p>
+      </div>
+      <div>
+        <h5>Shop</h5>
+        <ul>
+          <li><a href="elrobot.html">ElRobot</a></li>
+          <li><a href="metal-arm.html">Metal Arm</a></li>
+          <li><a href="xlerobot.html">XLeRobot</a></li>
+          <li><a href="openbooth">OpenBooth</a></li>
+          <li><a href="makermods-app/">MakerMods App</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Build</h5>
+        <ul>
+          <li><a href="#">Docs</a></li>
+          <li><a href="#">LeRobot</a></li>
+          <li><a href="https://github.com/makermods-robotics" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="#">Schematics</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#">Blog</a></li>
+          <li><a href="https://discord.gg/HpXj3ynhhF" target="_blank" rel="noopener">Community</a></li>
+          <li><a href="mailto:ryan@makermods.ai">ryan@makermods.ai</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bot">
+      <span>© 2026 makermods</span>
+      <span>mit license · open hardware</span>
+    </div>
+  </div>
+</footer>
+
+<!-- minimal page-local interactivity: FAQ accordion + nav-buy hot state -->
+<script>
+(() => {
+  // FAQ accordion
+  document.querySelectorAll('[data-faq] .faq-item').forEach(item => {
+    const q = item.querySelector('.faq-q');
+    if (!q) return;
+    q.addEventListener('click', () => {
+      const wasOpen = item.dataset.open === 'true';
+      document.querySelectorAll('[data-faq] .faq-item').forEach(i => i.dataset.open = 'false');
+      item.dataset.open = wasOpen ? 'false' : 'true';
+    });
+  });
+
+  // Nav buy: hot when hero CTA scrolls out
+  const heroCta = document.getElementById('hero-buy-cta');
+  const navBuy = document.getElementById('nav-buy');
+  if (heroCta && navBuy && 'IntersectionObserver' in window) {
+    const obs = new IntersectionObserver(([entry]) => {
+      const visible = entry.isIntersecting;
+      navBuy.classList.toggle('is-idle', visible);
+      navBuy.classList.toggle('is-hot', !visible);
+    }, { threshold: 0.1 });
+    obs.observe(heroCta);
+  }
+})();
+</script>
+</body>
+</html>
