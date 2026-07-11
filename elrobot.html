@@ -181,39 +181,6 @@
     display: block;
   }
 
-  .er-compare table {
-    width: 100%;
-    border-collapse: collapse;
-    background: var(--surface);
-    border: 1px solid var(--line);
-  }
-  .er-compare th, .er-compare td {
-    border: 1px solid var(--line);
-    padding: 14px 16px;
-    text-align: left;
-    font-size: 14px;
-    line-height: 1.5;
-    color: var(--ink-2);
-    vertical-align: top;
-  }
-  .er-compare th {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--mute);
-    background: var(--paper);
-  }
-  .er-compare th.col-mm { color: var(--orange-2); }
-  .er-compare td:first-child {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: 0.04em;
-    color: var(--ink);
-    white-space: nowrap;
-  }
-  .er-compare td .done { color: var(--orange-2); font-weight: 600; }
-
   @media (max-width: 960px) {
     .er-photo-grid { grid-template-columns: 1fr; }
     .er-cap-row { grid-template-columns: 1fr 1fr; }
@@ -246,8 +213,6 @@
       flex-direction: column;
       gap: 2px;
     }
-    .er-compare { overflow-x: auto; }
-    .er-compare td:first-child { white-space: normal; }
   }
 </style>
 </head>
@@ -470,66 +435,11 @@
   </div>
 </section>
 
-<!-- ============================== ASSEMBLED VS DIY ============================== -->
-<section class="section" id="assembled-vs-diy" data-screen-label="04 Assembled vs DIY">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">[ WHY ASSEMBLED <span class="b">·</span> 04 ]</div>
-      <h2>Less than the raw parts cost — built and tested.</h2>
-      <p class="lead">Building the pair yourself means ~29.5 hours of printing, hunting down 16 servos, two power supplies, and cameras — roughly $440 in parts at retail. We hand you the finished pair for $399.</p>
-    </div>
-
-    <div class="er-compare">
-      <table>
-        <thead>
-          <tr>
-            <th></th>
-            <th>DIY (build it yourself)</th>
-            <th class="col-mm">MakerMods assembled</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>3D printing</td>
-            <td>~29.5 h + a capable printer</td>
-            <td><span class="done">Done</span></td>
-          </tr>
-          <tr>
-            <td>Source 16 servos + parts</td>
-            <td>You hunt AliExpress</td>
-            <td><span class="done">Done</span></td>
-          </tr>
-          <tr>
-            <td>Assembly + wiring + calibration</td>
-            <td>Hours, error-prone</td>
-            <td><span class="done">Done + tested</span></td>
-          </tr>
-          <tr>
-            <td>Parts cost</td>
-            <td>~$440 (pair, at retail)</td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td>Price</td>
-            <td>your time + ~$440 parts</td>
-            <td><span class="done">$399, ready to run</span></td>
-          </tr>
-          <tr>
-            <td>Support</td>
-            <td>community</td>
-            <td><span class="done">MakerMods</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
 <!-- ============================== IN THE BOX ============================== -->
-<section class="section bg-grid" id="in-the-box" data-screen-label="05 In The Box">
+<section class="section" id="in-the-box" data-screen-label="04 In The Box">
   <div class="container">
     <div class="section-head">
-      <div class="eyebrow">[ WHAT'S IN THE BOX <span class="b">·</span> 05 ]</div>
+      <div class="eyebrow">[ WHAT'S IN THE BOX <span class="b">·</span> 04 ]</div>
       <h2>The complete teleop rig.</h2>
       <p class="lead">Everything to run leader-follower teleoperation and record demonstrations, the day it lands on your bench. Bring your own host PC.</p>
     </div>
@@ -560,10 +470,10 @@
 </section>
 
 <!-- ============================== SPECS ============================== -->
-<section class="section" id="specs" data-screen-label="06 Specs">
+<section class="section bg-grid" id="specs" data-screen-label="05 Specs">
   <div class="container">
     <div class="section-head">
-      <div class="eyebrow">[ SPECS <span class="b">·</span> 06 ]</div>
+      <div class="eyebrow">[ SPECS <span class="b">·</span> 05 ]</div>
       <h2>The numbers. The specs.</h2>
     </div>
 
@@ -593,10 +503,10 @@
 </section>
 
 <!-- ============================== PRE-ORDER DETAILS ============================== -->
-<section class="section bg-grid" id="preorder-details" data-screen-label="07 Pre-order Details">
+<section class="section" id="preorder-details" data-screen-label="06 Pre-order Details">
   <div class="container">
     <div class="section-head">
-      <div class="eyebrow">[ PRE-ORDER <span class="b">·</span> 07 ]</div>
+      <div class="eyebrow">[ PRE-ORDER <span class="b">·</span> 06 ]</div>
       <h2>First batch. Five pairs.</h2>
       <p class="lead">Pre-orders are open for the first international batch — 5 assembled leader + follower pairs at $399 each. Price excludes shipping, customs &amp; tax. Ships by August 22, 2026, with a full refund if we miss our ship-by date.</p>
     </div>
@@ -631,10 +541,10 @@
 </section>
 
 <!-- ============================== FAQ ============================== -->
-<section class="section" id="faq" data-screen-label="08 FAQ">
+<section class="section bg-grid" id="faq" data-screen-label="07 FAQ">
   <div class="container">
     <div class="section-head">
-      <div class="eyebrow">[ FAQ <span class="b">·</span> 08 ]</div>
+      <div class="eyebrow">[ FAQ <span class="b">·</span> 07 ]</div>
       <h2>Things people ask before buying.</h2>
     </div>
 
