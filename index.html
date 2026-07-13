@@ -41,7 +41,7 @@
   }
   .product-grid {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--s-6);
   }
   .product-card {
@@ -165,6 +165,7 @@
       padding: var(--s-5) 0 var(--s-7);
     }
     .product-grid {
+      grid-template-columns: 1fr;
       gap: var(--s-4);
     }
     .product-card {
@@ -229,26 +230,6 @@
 <section class="home-products" id="products">
   <div class="container">
     <div class="product-grid">
-      <a href="elrobot.html" class="product-card" aria-label="View ElRobot">
-        <div class="pc-photo">
-          <!-- TODO(media): swap this img for the teleop demo video when captured:
-               <video src="assets/elrobot/banner.mp4" poster="assets/elrobot/gallery-closeup.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video> -->
-          <img src="assets/elrobot/gallery-closeup.jpg" alt="" aria-hidden="true" loading="eager" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
-          <div class="pc-corner tl"></div><div class="pc-corner tr"></div>
-          <div class="pc-corner bl"></div><div class="pc-corner br"></div>
-          <div class="pc-tag">[ NEW · PRE-ORDER ]</div>
-        </div>
-        <div class="pc-body">
-          <div class="pc-eyebrow">7+1 DoF arm pair · leader + follower teleop</div>
-          <h3>ElRobot</h3>
-          <p class="pc-desc">A fully assembled, open 3D-printed teleoperation pair for imitation-learning research. Skip 30 hours of printing — plug in and collect data. First batch of 5.</p>
-          <div class="pc-meta">
-            <span class="pc-price">$399 <span style="font-family:var(--font-mono);font-size:11px;color:var(--mute);font-weight:400;letter-spacing:0.04em">/ pair · fully assembled</span></span>
-            <span class="pc-cta">View →</span>
-          </div>
-        </div>
-      </a>
-
       <a href="metal-arm.html" class="product-card" aria-label="View MakerMods Metal Arm">
         <div class="pc-photo" style="background:#0A0A0A">
           <video src="assets/metal-arm/banner.mp4" poster="assets/metal-arm/hero.png" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
@@ -284,6 +265,24 @@
           <p class="pc-desc">Search and filter the public OpenBooth robotics dataset catalog with thumbnails, contact sheets, task tags, and direct Hugging Face links.</p>
           <div class="pc-meta">
             <span class="pc-price">153 <span style="font-family:var(--font-mono);font-size:11px;color:var(--mute);font-weight:400;letter-spacing:0.04em">datasets</span></span>
+            <span class="pc-cta">View →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="elrobot.html" class="product-card" aria-label="View ElRobot">
+        <div class="pc-photo">
+          <img src="assets/elrobot/hero.jpg" alt="" aria-hidden="true" loading="eager" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
+          <div class="pc-corner tl"></div><div class="pc-corner tr"></div>
+          <div class="pc-corner bl"></div><div class="pc-corner br"></div>
+          <div class="pc-tag">[ NEW · PRE-ORDER ]</div>
+        </div>
+        <div class="pc-body">
+          <div class="pc-eyebrow">7+1 DoF arm pair · leader + follower teleop</div>
+          <h3>ElRobot</h3>
+          <p class="pc-desc">A fully assembled, open 3D-printed teleoperation pair for imitation-learning research. Skip 30 hours of printing — plug in and collect data. Available for pre-order.</p>
+          <div class="pc-meta">
+            <span class="pc-price">$399 <span style="font-family:var(--font-mono);font-size:11px;color:var(--mute);font-weight:400;letter-spacing:0.04em">/ pair · fully assembled</span></span>
             <span class="pc-cta">View →</span>
           </div>
         </div>
