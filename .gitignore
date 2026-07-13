@@ -20,3 +20,6 @@ assets/xlerobot.gif
 # Generated OpenBooth launch video intermediates
 build/openbooth-launch/
 assets/open-booth/openbooth-launch-x.mp4
+
+# AI-generated ElRobot task images (local only, not for GitHub)
+assets/elrobot/tasks/
