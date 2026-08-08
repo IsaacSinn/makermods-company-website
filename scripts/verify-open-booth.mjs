@@ -89,7 +89,7 @@ assert(!page.includes('Each card points to a public Hugging Face recording'), 'O
 
 const buyPage = read('open-booth-buy.html');
 assert(buyPage.includes('<title>Buy OpenBooth | MakerMods</title>'), 'OpenBooth buy page is missing the expected title');
-assert(buyPage.includes('OpenBooth Only'), 'OpenBooth buy page is missing the OpenBooth Only variant');
+assert(buyPage.includes('<span class="opt-name">OpenBooth Kit</span>'), 'OpenBooth buy page is missing the OpenBooth Kit variant');
 assert(buyPage.includes('OpenBooth + SO101 Kit'), 'OpenBooth buy page is missing the SO101 Kit variant');
 assert(buyPage.includes('OpenBooth + SO101 Bimanual Kit'), 'OpenBooth buy page is missing the bimanual kit variant');
 assert(buyPage.includes('assets/open-booth/openbooth-bimanual product.png'), 'OpenBooth buy page is missing the bimanual product image');
