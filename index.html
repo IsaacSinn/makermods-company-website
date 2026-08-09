@@ -2,21 +2,21 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>MakerMods, Physical AI and robotics for makers</title>
+<title>MakerMods | Open Source Ecosystem for Physical AI</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="MakerMods builds open-source robots for makers, students, and researchers. Metal Arm, a lightweight 6-axis manipulator. XLeRobot, a bimanual mobile manipulator.">
+<meta name="description" content="MakerMods makes open-source robots for physical AI. Metal Arm is our flagship six-axis aluminum manipulator, ready for ROS and LeRobot out of the box.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://www.makermods.ai/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="MakerMods">
-<meta property="og:title" content="MakerMods, Physical AI and robotics for makers">
-<meta property="og:description" content="Open-source robots for makers, students, and researchers. Build with Metal Arm, XLeRobot, and the MakerMods app.">
+<meta property="og:title" content="MakerMods | Open Source Ecosystem for Physical AI">
+<meta property="og:description" content="Open robots for physical AI, led by Metal Arm, our six-axis aluminum flagship. Built to be owned and hacked, not just used.">
 <meta property="og:url" content="https://www.makermods.ai/">
-<meta property="og:image" content="https://www.makermods.ai/assets/xlerobot-hero.png">
+<meta property="og:image" content="https://www.makermods.ai/assets/metal-arm/hero.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="MakerMods, Physical AI and robotics for makers">
-<meta name="twitter:description" content="Open-source robots for makers, students, and researchers. Build with Metal Arm, XLeRobot, and the MakerMods app.">
-<meta name="twitter:image" content="https://www.makermods.ai/assets/xlerobot-hero.png">
+<meta name="twitter:title" content="MakerMods | Open Source Ecosystem for Physical AI">
+<meta name="twitter:description" content="Open robots for physical AI, led by Metal Arm, our six-axis aluminum flagship. Built to be owned and hacked, not just used.">
+<meta name="twitter:image" content="https://www.makermods.ai/assets/metal-arm/hero.png">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -36,171 +36,405 @@
 <link rel="stylesheet" href="styles/page.css">
 <link rel="icon" type="image/png" href="assets/logo-mark.png">
 <style>
-  .home-products {
-    padding: var(--s-7) 0 var(--s-9);
-  }
-  .product-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--s-6);
-  }
-  .product-card {
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    color: var(--ink);
-    background: var(--surface);
-    border: 1px solid var(--line);
-    overflow: hidden;
-    clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
-    transition: transform var(--dur-base) var(--ease-std), border-color var(--dur-base) var(--ease-std);
-  }
-  .product-card:hover { transform: translateY(-4px); border-color: var(--ink); opacity: 1; }
-  .product-card .pc-photo {
+  .home-hero {
     position: relative;
-    aspect-ratio: 4/3;
-    background: #ECE7DF;
+    width: 100%;
+    height: clamp(640px, 92vh, 1100px);
     overflow: hidden;
-    border-bottom: 1px solid var(--line);
+    background: var(--ink);
+    border-bottom: var(--bw-1) solid var(--line);
   }
-  .product-card .pc-photo img,
-  .product-card .pc-photo video {
+  .home-hero::after {
+    content: '';
     position: absolute;
-    inset: 0;
+    inset: var(--s-0);
+    z-index: 1;
+    background:
+      linear-gradient(to right, color-mix(in srgb, var(--ink) 72%, transparent), color-mix(in srgb, var(--ink) 20%, transparent) 65%, transparent 90%),
+      linear-gradient(to top, color-mix(in srgb, var(--ink) 82%, transparent), color-mix(in srgb, var(--ink) 25%, transparent) 55%, transparent);
+    pointer-events: none;
+  }
+  .home-hero-video {
+    position: absolute;
+    inset: var(--s-0);
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
   }
-  .product-card .pc-photo .pc-tag {
-    position: absolute;
-    top: 22px;
-    left: 22px;
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: rgba(10,10,10,0.78);
-    border: 1px solid rgba(10,10,10,0.25);
-    background: rgba(255,255,255,0.6);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    padding: 5px 9px;
+  .home-hero-content {
+    position: relative;
     z-index: 2;
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    height: 100%;
+    padding-top: var(--s-9);
+    padding-bottom: var(--s-7);
   }
-  .product-card .pc-photo .pc-tag.pc-tag--dark {
-    color: rgba(245,245,245,0.85);
-    border-color: rgba(245,245,245,0.3);
-    background: rgba(10,10,10,0.35);
-  }
-  .product-card .pc-photo .pc-corner { position: absolute; width: 14px; height: 14px; border: 1px solid rgba(10,10,10,0.4); z-index: 2; }
-  .product-card .pc-photo .pc-corner.tl { top: 14px; left: 14px; border-right: 0; border-bottom: 0; }
-  .product-card .pc-photo .pc-corner.tr { top: 14px; right: 14px; border-left: 0; border-bottom: 0; }
-  .product-card .pc-photo .pc-corner.bl { bottom: 14px; left: 14px; border-right: 0; border-top: 0; }
-  .product-card .pc-photo .pc-corner.br { bottom: 14px; right: 14px; border-left: 0; border-top: 0; }
-
-  .product-card .pc-body {
-    padding: var(--s-6);
+  .home-hero-copy {
     display: flex;
     flex-direction: column;
-    gap: var(--s-3);
-    flex: 1;
+    align-items: flex-start;
+    gap: var(--s-4);
   }
-  .product-card .pc-eyebrow {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--mute);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+  .home-hero-copy .eyebrow,
+  .home-hero-title,
+  .home-hero-sub {
+    color: color-mix(in srgb, var(--paper) 98%, var(--ink));
   }
-  .product-card h3 {
+  .home-hero-title {
+    max-width: 100%;
+    font-size: clamp(44px, 6.5vw, 92px);
+    line-height: var(--lh-tight);
+  }
+  .home-hero-title .o { color: var(--orange); }
+  .home-hero-sub {
+    max-width: 52ch;
+    font-size: var(--t-lead);
+  }
+  .home-hero-label {
+    position: absolute;
+    z-index: 2;
+    top: var(--s-6);
+    left: max(var(--s-6), calc((100vw - var(--container-marketing)) / 2 + var(--s-6)));
+    padding: var(--s-2) var(--s-3);
+    color: color-mix(in srgb, var(--paper) 98%, var(--ink));
+    background: color-mix(in srgb, var(--ink) 45%, transparent);
+    border: var(--bw-1) solid color-mix(in srgb, var(--paper) 30%, transparent);
     font-family: var(--font-display);
+    font-size: var(--t-eyebrow);
     font-weight: 700;
-    font-size: clamp(32px, 3vw, 42px);
-    letter-spacing: -0.025em;
-    line-height: 1.02;
+    letter-spacing: var(--ls-eyebrow);
   }
-  .product-card .pc-desc {
-    font-size: 15px;
-    line-height: 1.55;
+  .home-hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2);
+    color: color-mix(in srgb, var(--paper) 85%, transparent);
+    font-family: var(--font-mono);
+    font-size: var(--t-eyebrow);
+    letter-spacing: var(--ls-wide);
+  }
+  .home-hero-meta span {
+    padding: var(--s-1) var(--s-2);
+    background: color-mix(in srgb, var(--ink) 45%, transparent);
+    backdrop-filter: blur(var(--s-1));
+    -webkit-backdrop-filter: blur(var(--s-1));
+  }
+  .home-hero-corner {
+    position: absolute;
+    z-index: 2;
+    width: var(--s-5);
+    height: var(--s-5);
+    border: var(--bw-1) solid color-mix(in srgb, var(--paper) 98%, var(--ink));
+  }
+  .home-hero-corner--tl { top: var(--s-4); left: var(--s-4); border-right: var(--s-0); border-bottom: var(--s-0); }
+  .home-hero-corner--tr { top: var(--s-4); right: var(--s-4); border-left: var(--s-0); border-bottom: var(--s-0); }
+  .home-hero-corner--bl { bottom: var(--s-4); left: var(--s-4); border-right: var(--s-0); border-top: var(--s-0); }
+  .home-hero-corner--br { bottom: var(--s-4); right: var(--s-4); border-left: var(--s-0); border-top: var(--s-0); }
+  .home-hero-actions .btn-secondary {
+    color: color-mix(in srgb, var(--paper) 98%, var(--ink));
+    background: color-mix(in srgb, var(--ink) 35%, transparent);
+    border-color: color-mix(in srgb, var(--paper) 45%, transparent);
+  }
+  .home-hero-actions .btn-secondary:hover {
+    background: color-mix(in srgb, var(--ink) 62%, transparent);
+  }
+  .home-hero-actions,
+  .ob-home-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--s-3);
+  }
+
+  .ob-home-media {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--s-5);
+    align-items: stretch;
+  }
+  .ob-home-photo {
+    position: relative;
+    min-width: var(--s-0);
+    overflow: hidden;
+    background: var(--surface);
+    border: var(--bw-1) solid var(--line);
+    clip-path: var(--notch-md);
+  }
+  .ob-home-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .ob-home-photo .corner {
+    position: absolute;
+    width: var(--s-4);
+    height: var(--s-4);
+    border: var(--bw-1) solid var(--ink-2);
+  }
+  .ob-home-photo .corner.tl { top: var(--s-4); left: var(--s-4); border-right: var(--s-0); border-bottom: var(--s-0); }
+  .ob-home-photo .corner.tr { top: var(--s-4); right: var(--s-4); border-left: var(--s-0); border-bottom: var(--s-0); }
+  .ob-home-photo .corner.bl { bottom: var(--s-4); left: var(--s-4); border-right: var(--s-0); border-top: var(--s-0); }
+  .ob-home-photo .corner.br { bottom: var(--s-4); right: var(--s-4); border-left: var(--s-0); border-top: var(--s-0); }
+  .ob-home-photo-tag {
+    position: absolute;
+    top: var(--s-6);
+    left: var(--s-6);
+    padding: var(--s-1) var(--s-2);
+    color: var(--ink);
+    background: var(--surface);
+    border: var(--bw-1) solid var(--line-2);
+    font-family: var(--font-mono);
+    font-size: var(--t-eyebrow);
+    letter-spacing: var(--ls-eyebrow);
+  }
+  .ob-home-photo--booth { aspect-ratio: 16 / 10; }
+  .ob-home-photo--arm { min-height: 100%; }
+  .ob-home-steps {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--s-0) var(--s-6);
+    border-top: var(--bw-1) solid var(--line-2);
+    margin-top: var(--s-6);
+  }
+  .ob-home-step {
+    display: grid;
+    grid-template-columns: var(--s-6) 1fr;
+    gap: var(--s-3);
+    padding: var(--s-5) var(--s-0) var(--s-0);
+    align-items: baseline;
+  }
+  .ob-home-foot {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--s-4) var(--s-6);
+    margin-top: var(--s-6);
+  }
+  .ob-home-step-num {
+    font-family: var(--font-mono);
+    font-size: var(--t-caption);
+    color: var(--orange-2);
+  }
+  .ob-home-step-text {
+    font-family: var(--font-display);
+    font-size: var(--t-body);
+    font-weight: 600;
+  }
+  .ob-home-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2) var(--s-4);
+    font-family: var(--font-mono);
+    font-size: var(--t-caption);
+    color: var(--mute);
+  }
+  .ob-home-stats span + span::before {
+    content: '·';
+    margin-right: var(--s-4);
+    color: var(--orange-2);
+  }
+  .ob-home-filmstrip {
+    display: grid;
+    grid-template-columns: repeat(9, minmax(0, 1fr));
+    gap: var(--s-2);
+    margin-top: var(--s-7);
+  }
+  .ob-home-film-item {
+    min-width: var(--s-0);
+    color: var(--ink);
+    background: var(--surface);
+    border: var(--bw-1) solid var(--line);
+    text-decoration: none;
+    transition: border-color var(--dur-base) var(--ease-std), transform var(--dur-base) var(--ease-std);
+  }
+  .ob-home-film-item:hover {
+    border-color: var(--ink);
+    transform: translateY(calc(var(--s-1) * -1));
+    opacity: 1;
+  }
+  .ob-home-film-item img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    display: block;
+    border-bottom: var(--bw-1) solid var(--line);
+  }
+  .ob-home-film-caption {
+    display: block;
+    padding: var(--s-2);
+    overflow: hidden;
+    font-family: var(--font-mono);
+    font-size: var(--t-eyebrow);
+    line-height: var(--lh-snug);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .ob-home-more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1;
+    padding: var(--s-3);
+    font-family: var(--font-mono);
+    font-size: var(--t-caption);
+    text-align: center;
+  }
+
+  .lab-home-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--s-5);
+  }
+  .lab-home-card {
+    display: flex;
+    flex-direction: column;
+    min-width: var(--s-0);
+    overflow: hidden;
+    color: var(--ink);
+    background: var(--surface);
+    border: var(--bw-1) solid var(--line);
+    clip-path: var(--notch-md);
+    text-decoration: none;
+    transition: border-color var(--dur-base) var(--ease-std), transform var(--dur-base) var(--ease-std);
+  }
+  .lab-home-card:hover {
+    border-color: var(--ink);
+    transform: translateY(calc(var(--s-1) / -2));
+    opacity: 1;
+  }
+  .lab-home-media {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-bottom: var(--bw-1) solid var(--line);
+  }
+  .lab-home-media img,
+  .lab-home-media video {
+    position: absolute;
+    inset: var(--s-0);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .lab-home-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: var(--s-3);
+    padding: var(--s-5);
+  }
+  .lab-home-body h3 {
+    font-size: clamp(28px, 2.6vw, 38px);
+    letter-spacing: var(--ls-tight);
+  }
+  .lab-home-body p {
+    font-size: var(--t-small);
     color: var(--ink-2);
-    max-width: 48ch;
   }
-  .product-card .pc-meta {
-    margin-top: auto;
-    padding-top: var(--s-4);
-    border-top: 1px solid var(--line);
+  .lab-home-meta {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    gap: var(--s-3);
+    margin-top: auto;
+    padding-top: var(--s-3);
+    border-top: var(--bw-1) solid var(--line);
     font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: 0.04em;
+    font-size: var(--t-caption);
     color: var(--mute);
   }
-  .product-card .pc-meta .pc-price {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 22px;
-    letter-spacing: -0.02em;
+  .lab-home-meta span:last-child { color: var(--ink); }
+  .lab-home-tag {
+    position: absolute;
+    top: var(--s-5);
+    left: var(--s-5);
+    padding: var(--s-1) var(--s-2);
     color: var(--ink);
-  }
-  .product-card .pc-cta {
+    background: var(--surface);
+    border: var(--bw-1) solid var(--line-2);
     font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink);
-    border-bottom: 1px solid var(--ink);
-    padding-bottom: 2px;
+    font-size: var(--t-eyebrow);
+    letter-spacing: var(--ls-eyebrow);
   }
-  .product-card:hover .pc-cta { color: var(--orange); border-color: var(--orange); }
+  .lab-home-corner {
+    position: absolute;
+    width: var(--s-4);
+    height: var(--s-4);
+    border: var(--bw-1) solid var(--ink-2);
+  }
+  .lab-home-corner--tl { top: var(--s-4); left: var(--s-4); border-right: var(--s-0); border-bottom: var(--s-0); }
+  .lab-home-corner--tr { top: var(--s-4); right: var(--s-4); border-left: var(--s-0); border-bottom: var(--s-0); }
+  .lab-home-corner--bl { bottom: var(--s-4); left: var(--s-4); border-right: var(--s-0); border-top: var(--s-0); }
+  .lab-home-corner--br { bottom: var(--s-4); right: var(--s-4); border-left: var(--s-0); border-top: var(--s-0); }
 
   @media (max-width: 960px) {
-    .product-grid { gap: var(--s-5); }
+    .ob-home-media { grid-template-columns: 1fr 1fr; }
+    .ob-home-steps { grid-template-columns: 1fr; gap: var(--s-0); margin-top: var(--s-5); }
+    .ob-home-step { padding: var(--s-4) var(--s-0); border-bottom: var(--bw-1) solid var(--line-2); }
+    .ob-home-filmstrip { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+    .ob-home-film-item:nth-child(6),
+    .ob-home-film-item:nth-child(7),
+    .ob-home-film-item:nth-child(8) { display: none; }
+    .lab-home-grid { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 600px) {
-    .home-products {
-      padding: var(--s-5) 0 var(--s-7);
+    .home-hero {
+      min-height: 90svh;
+      height: auto;
     }
-    .product-grid {
-      grid-template-columns: 1fr;
-      gap: var(--s-4);
+    .home-hero::after {
+      background:
+        linear-gradient(to right, color-mix(in srgb, var(--ink) 76%, transparent), color-mix(in srgb, var(--ink) 35%, transparent)),
+        linear-gradient(to top, color-mix(in srgb, var(--ink) 90%, transparent), color-mix(in srgb, var(--ink) 45%, transparent) 68%, color-mix(in srgb, var(--ink) 18%, transparent));
     }
-    .product-card {
-      clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
+    .home-hero-content {
+      min-height: 90svh;
+      padding-top: var(--s-10);
+      padding-bottom: var(--s-7);
     }
-    .product-card .pc-photo {
+    .home-hero-title { font-size: clamp(44px, 13vw, 64px); }
+    .home-hero-sub { font-size: var(--t-body); }
+    .home-hero-label {
+      top: var(--s-5);
+      left: var(--s-6);
+    }
+    .home-hero-actions,
+    .ob-home-actions { align-items: stretch; flex-direction: column; }
+    .home-hero-actions .btn,
+    .ob-home-actions .btn { justify-content: center; width: 100%; }
+    .ob-home-photo-tag { top: var(--s-5); left: var(--s-5); }
+    .ob-home-foot { flex-direction: column; align-items: stretch; }
+    .ob-home-media { grid-template-columns: 1fr; }
+    .ob-home-photo--arm { min-height: var(--s-0); aspect-ratio: 4 / 3; }
+    .ob-home-photo--arm img { object-position: 60% 35%; }
+    .ob-home-stats { flex-direction: column; }
+    .ob-home-stats span + span::before { margin-right: var(--s-2); }
+    .ob-home-filmstrip {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--s-2);
+      margin-top: var(--s-5);
+    }
+    .ob-home-film-item--mobile-hide { display: none; }
+    .ob-home-film-caption { padding: var(--s-1); }
+    .lab-home-media {
       aspect-ratio: 16 / 10;
     }
-    .product-card .pc-photo .pc-tag {
-      top: 14px;
-      left: 14px;
-      right: 14px;
-      width: fit-content;
-      max-width: calc(100% - 28px);
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    .product-card .pc-body {
-      padding: var(--s-5);
-    }
-    .product-card h3 {
-      font-size: 30px;
-      letter-spacing: 0;
-    }
-    .product-card .pc-meta {
-      align-items: flex-start;
-      flex-direction: column;
-      gap: var(--s-2);
-    }
-    .product-card .pc-meta .pc-price span {
-      display: block;
-      margin-top: 2px;
-    }
+    .lab-home-body { padding: var(--s-4); }
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ob-home-film-item,
+    .lab-home-card { transition: none; }
+    .ob-home-film-item:hover,
+    .lab-home-card:hover { transform: none; }
+  }
+
 </style>
 </head>
 <body>
@@ -216,7 +450,6 @@
       <a href="metal-arm.html">Metal Arm</a>
       <a href="xlerobot.html">XLeRobot</a>
       <a href="openbooth">OpenBooth</a>
-      <a href="makermods-app/">MakerMods App</a>
       <a href="#">Docs</a>
       <a href="https://discord.gg/HpXj3ynhhF" target="_blank" rel="noopener">Community</a>
     </div>
@@ -226,83 +459,141 @@
   </div>
 </nav>
 
-<!-- ============================== PRODUCTS ============================== -->
-<section class="home-products" id="products">
+<!-- ============================== HERO ============================== -->
+<section class="home-hero" data-screen-label="01 Hero">
+  <video class="home-hero-video" src="assets/metal-arm/banner.mp4" poster="assets/metal-arm/hero.png" autoplay muted loop playsinline preload="metadata" aria-label="MakerMods Metal Arm flagship robot in motion"></video>
+  <div class="home-hero-corner home-hero-corner--tl" aria-hidden="true"></div><div class="home-hero-corner home-hero-corner--tr" aria-hidden="true"></div>
+  <div class="home-hero-corner home-hero-corner--bl" aria-hidden="true"></div><div class="home-hero-corner home-hero-corner--br" aria-hidden="true"></div>
+  <div class="home-hero-label">[ METAL ARM · FLAGSHIP ]</div>
+  <div class="container home-hero-content">
+    <div class="home-hero-copy">
+      <div class="eyebrow">[ OPEN-SOURCE ROBOTICS <span class="b">·</span> PHYSICAL AI ]</div>
+      <h1 class="home-hero-title">Open Source Ecosystem<br>for Physical AI<span class="o">.</span></h1>
+      <p class="home-hero-sub">We make open-source robots for people who'd rather build than wait. This is Metal Arm, our flagship: a six-axis aluminum manipulator that works with ROS and LeRobot the moment you unbox it.</p>
+      <div class="home-hero-actions">
+        <a class="btn btn-stencil" href="metal-arm.html">[ EXPLORE METAL ARM → ]</a>
+        <a class="btn btn-secondary" href="metal-arm-buy.html">Buy now · $2,499</a>
+      </div>
+      <div class="home-hero-meta"><span>6-AXIS</span><span>3 KG PAYLOAD</span><span>±0.1 MM</span><span>CNC ALUMINUM</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== OPENBOOTH ============================== -->
+<section class="section bg-grid" id="openbooth">
   <div class="container">
-    <div class="product-grid">
-      <a href="metal-arm.html" class="product-card" aria-label="View MakerMods Metal Arm">
-        <div class="pc-photo" style="background:#0A0A0A">
-          <video src="assets/metal-arm/banner.mp4" poster="assets/metal-arm/hero.png" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
-          <div class="pc-corner tl" style="border-color:rgba(245,245,245,0.5)"></div>
-          <div class="pc-corner tr" style="border-color:rgba(245,245,245,0.5)"></div>
-          <div class="pc-corner bl" style="border-color:rgba(245,245,245,0.5)"></div>
-          <div class="pc-corner br" style="border-color:rgba(245,245,245,0.5)"></div>
-          <div class="pc-tag pc-tag--dark">[ NEW · SHIPS SEPT ]</div>
-        </div>
-        <div class="pc-body">
-          <div class="pc-eyebrow">6-axis robotic arm · 3 kg payload</div>
-          <h3>Metal Arm</h3>
-          <p class="pc-desc">A lightweight, all-CNC-aluminum six-axis manipulator. ±0.1 mm repeatability, open SDK, ROS1 / ROS2 ready out of the box.</p>
-          <div class="pc-meta">
-            <span class="pc-price">$2,499 <span style="font-family:var(--font-mono);font-size:11px;color:var(--mute);font-weight:400;letter-spacing:0.04em">/ per arm</span></span>
-            <span class="pc-cta">View →</span>
-          </div>
-        </div>
-      </a>
+    <div class="section-head">
+      <div class="eyebrow">[ OPENBOOTH <span class="b">·</span> SO101 ]</div>
+      <h2>OpenBooth SO101.</h2>
+      <p class="lead">Our second flagship, made for classrooms and hackathon floors. The booth gives your SO101 a consistent place to learn, and the community has already recorded 152 skills your robot can start from.</p>
+    </div>
+  </div>
 
-      <a href="openbooth" class="product-card" aria-label="View OpenBooth Dataset">
-        <div class="pc-photo" style="background:#0A0A0A">
-          <video src="assets/open-booth/hero.mp4" poster="assets/open-booth/OpenBooth.png" autoplay muted loop playsinline preload="metadata" aria-label="OpenBooth dataset video plane preview"></video>
-          <div class="pc-corner tl" style="border-color:rgba(245,245,245,0.5)"></div>
-          <div class="pc-corner tr" style="border-color:rgba(245,245,245,0.5)"></div>
-          <div class="pc-corner bl" style="border-color:rgba(245,245,245,0.5)"></div>
-          <div class="pc-corner br" style="border-color:rgba(245,245,245,0.5)"></div>
-          <div class="pc-tag pc-tag--dark">[ OPEN BOOTH · DATASET ]</div>
-        </div>
-        <div class="pc-body">
-          <div class="pc-eyebrow">153 public datasets · Hugging Face catalog</div>
-          <h3>OpenBooth</h3>
-          <p class="pc-desc">Search and filter the public OpenBooth robotics dataset catalog with thumbnails, contact sheets, task tags, and direct Hugging Face links.</p>
-          <div class="pc-meta">
-            <span class="pc-price">153 <span style="font-family:var(--font-mono);font-size:11px;color:var(--mute);font-weight:400;letter-spacing:0.04em">datasets</span></span>
-            <span class="pc-cta">View →</span>
-          </div>
-        </div>
-      </a>
+  <div class="container-wide">
+    <div class="ob-home-media">
+      <div class="ob-home-photo ob-home-photo--booth">
+        <img src="assets/open-booth/openbooth-bimanual product.png" alt="OpenBooth with two SO101 arms recording a skill inside the booth" loading="lazy" decoding="async">
+        <div class="corner tl" aria-hidden="true"></div><div class="corner tr" aria-hidden="true"></div>
+        <div class="corner bl" aria-hidden="true"></div><div class="corner br" aria-hidden="true"></div>
+        <div class="ob-home-photo-tag">[ OPENBOOTH ]</div>
+      </div>
+      <div class="ob-home-photo ob-home-photo--arm">
+        <img src="assets/open-booth/so101-arm.png" alt="A single SO101 arm on its base inside the booth" loading="lazy" decoding="async">
+        <div class="corner tl" aria-hidden="true"></div><div class="corner tr" aria-hidden="true"></div>
+        <div class="corner bl" aria-hidden="true"></div><div class="corner br" aria-hidden="true"></div>
+        <div class="ob-home-photo-tag">[ SO101 ]</div>
+      </div>
+    </div>
 
-      <a href="elrobot.html" class="product-card" aria-label="View ElRobot">
-        <div class="pc-photo">
-          <img src="assets/elrobot/hero.jpg" alt="" aria-hidden="true" loading="eager" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
-          <div class="pc-corner tl"></div><div class="pc-corner tr"></div>
-          <div class="pc-corner bl"></div><div class="pc-corner br"></div>
-          <div class="pc-tag">[ NEW · PRE-ORDER ]</div>
-        </div>
-        <div class="pc-body">
-          <div class="pc-eyebrow">7+1 DoF arm pair · leader + follower teleop</div>
-          <h3>ElRobot</h3>
-          <p class="pc-desc">A fully assembled, open 3D-printed teleoperation pair for imitation-learning research. Skip 30 hours of printing — plug in and collect data. Available for pre-order.</p>
-          <div class="pc-meta">
-            <span class="pc-price">$399 <span style="font-family:var(--font-mono);font-size:11px;color:var(--mute);font-weight:400;letter-spacing:0.04em">/ pair · fully assembled</span></span>
-            <span class="pc-cta">View →</span>
-          </div>
-        </div>
-      </a>
+    <div class="ob-home-steps" role="group" aria-label="How OpenBooth works">
+          <div class="ob-home-step"><span class="ob-home-step-num">01</span><span class="ob-home-step-text">Pick a skill from the public catalog.</span></div>
+          <div class="ob-home-step"><span class="ob-home-step-num">02</span><span class="ob-home-step-text">Put your SO101 in the booth. Same lighting and background, every time.</span></div>
+          <div class="ob-home-step"><span class="ob-home-step-num">03</span><span class="ob-home-step-text">Record a little of your own data and train.</span></div>
+    </div>
 
-      <a href="xlerobot.html" class="product-card" aria-label="View XLeRobot">
-        <div class="pc-photo">
+    <div class="ob-home-foot">
+      <div class="ob-home-stats" role="group" aria-label="OpenBooth skill library stats">
+        <span>152 public skills</span><span>17.7 hours</span><span>41 task tags</span>
+      </div>
+      <div class="ob-home-actions">
+        <a class="btn btn-stencil" href="openbooth">[ BROWSE SKILLS → ]</a>
+        <a class="btn btn-secondary" href="open-booth-buy.html">Buy OpenBooth</a>
+      </div>
+    </div>
+
+    <div class="ob-home-filmstrip" role="group" aria-label="Community skill filmstrip">
+      <a class="ob-home-film-item" href="openbooth" aria-label="Browse the put toy OpenBooth skill">
+        <img src="assets/open-booth/thumbnails/Alan49chan__makermods_puttoy.jpg" alt="SO101 arms positioned to put away a toy" loading="lazy" decoding="async">
+        <span class="ob-home-film-caption">put toy</span>
+      </a>
+      <a class="ob-home-film-item" href="openbooth" aria-label="Browse the stack cups OpenBooth skill">
+        <img src="assets/open-booth/thumbnails/ArjunPrasaath__makermods_stack_cups.jpg" alt="Three cups arranged for a cup-stacking robot skill" loading="lazy" decoding="async">
+        <span class="ob-home-film-caption">stack cups</span>
+      </a>
+      <a class="ob-home-film-item" href="openbooth" aria-label="Browse the cube into box OpenBooth skill">
+        <img src="assets/open-booth/thumbnails/IsaacSinn__makermods_pick_up_red_cube_place_in_box.jpg" alt="Red cube and open box prepared for a pick-and-place skill" loading="lazy" decoding="async">
+        <span class="ob-home-film-caption">cube into box</span>
+      </a>
+      <a class="ob-home-film-item" href="openbooth" aria-label="Browse the push toast button OpenBooth skill">
+        <img src="assets/open-booth/thumbnails/JonathanHawkins__makermods_push_toast_button.jpg" alt="SO101 arm pressing a button on a toaster" loading="lazy" decoding="async">
+        <span class="ob-home-film-caption">push toast</span>
+      </a>
+      <a class="ob-home-film-item" href="openbooth" aria-label="Browse the bottle warmer OpenBooth skill">
+        <img src="assets/open-booth/thumbnails/ajkoder__makermods_bottleinwarmer_10.jpg" alt="SO101 arm placing a bottle into a bottle warmer" loading="lazy" decoding="async">
+        <span class="ob-home-film-caption">bottle warmer</span>
+      </a>
+      <a class="ob-home-film-item ob-home-film-item--mobile-hide" href="openbooth" aria-label="Browse the pour drinks OpenBooth skill">
+        <img src="assets/open-booth/thumbnails/dhyuti-n__makermods_pour_drinks.jpg" alt="Cup and orange drink arranged for a pouring skill" loading="lazy" decoding="async">
+        <span class="ob-home-film-caption">pour drinks</span>
+      </a>
+      <a class="ob-home-film-item ob-home-film-item--mobile-hide" href="openbooth" aria-label="Browse the pick and place book OpenBooth skill">
+        <img src="assets/open-booth/thumbnails/hdhruva__makermods_pick_book_place.jpg" alt="Books arranged upright for a robot pick-and-place skill" loading="lazy" decoding="async">
+        <span class="ob-home-film-caption">place book</span>
+      </a>
+      <a class="ob-home-film-item ob-home-film-item--mobile-hide" href="openbooth" aria-label="Browse the dual-hand bread OpenBooth skill">
+        <img src="assets/open-booth/thumbnails/maria1211__makermods_3episode_dual_hand.jpg" alt="Two SO101 arms moving bread in a pan" loading="lazy" decoding="async">
+        <span class="ob-home-film-caption">dual-hand bread</span>
+      </a>
+      <a class="ob-home-film-item ob-home-more" href="openbooth" aria-label="Browse 144 more OpenBooth skills">+144 more →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== LAB ============================== -->
+<section class="section" id="lab">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">[ ALSO FROM MAKERMODS ]</div>
+      <h2>In the lab.</h2>
+      <p class="lead">Two more robots we're shipping right now.</p>
+    </div>
+
+    <div class="lab-home-grid">
+      <a class="lab-home-card" href="xlerobot.html" aria-label="View XLeRobot, a bimanual mobile manipulator">
+        <div class="lab-home-media">
           <video src="assets/xlerobot.mp4" poster="assets/xlerobot-hero.png" autoplay muted loop playsinline preload="metadata" aria-label="XLeRobot bimanual mobile manipulator in motion"></video>
-          <div class="pc-corner tl"></div><div class="pc-corner tr"></div>
-          <div class="pc-corner bl"></div><div class="pc-corner br"></div>
-          <div class="pc-tag">[ XLEROBOT · WHITE ]</div>
+          <div class="lab-home-corner lab-home-corner--tl" aria-hidden="true"></div><div class="lab-home-corner lab-home-corner--tr" aria-hidden="true"></div>
+          <div class="lab-home-corner lab-home-corner--bl" aria-hidden="true"></div><div class="lab-home-corner lab-home-corner--br" aria-hidden="true"></div>
+          <div class="lab-home-tag">[ MOBILE · BIMANUAL ]</div>
         </div>
-        <div class="pc-body">
-          <div class="pc-eyebrow">bimanual mobile manipulator · 5+1 DOF</div>
+        <div class="lab-home-body">
           <h3>XLeRobot</h3>
-          <p class="pc-desc">A bimanual mobile manipulator built for makers, students, and researchers. Ships fully assembled, LeRobot-compatible, teleop on day one.</p>
-          <div class="pc-meta">
-            <span class="pc-price">$999</span>
-            <span class="pc-cta">View →</span>
-          </div>
+          <p>A two-armed robot on wheels. It arrives assembled and ready for LeRobot.</p>
+          <div class="lab-home-meta"><span>$999</span><span>View →</span></div>
+        </div>
+      </a>
+
+      <a class="lab-home-card" href="elrobot.html" aria-label="View ElRobot, a 3D-printed teleoperation pair">
+        <div class="lab-home-media">
+          <img src="assets/elrobot/hero.jpg" alt="ElRobot 3D-printed leader and follower teleoperation arms" loading="lazy" decoding="async">
+          <div class="lab-home-corner lab-home-corner--tl" aria-hidden="true"></div><div class="lab-home-corner lab-home-corner--tr" aria-hidden="true"></div>
+          <div class="lab-home-corner lab-home-corner--bl" aria-hidden="true"></div><div class="lab-home-corner lab-home-corner--br" aria-hidden="true"></div>
+          <div class="lab-home-tag">[ TELEOP · IMITATION LEARNING ]</div>
+        </div>
+        <div class="lab-home-body">
+          <h3>ElRobot</h3>
+          <p>A leader and follower arm pair for teaching robots by demonstration. No printing or assembly on your end.</p>
+          <div class="lab-home-meta"><span>$399 · pre-order</span><span>View →</span></div>
         </div>
       </a>
     </div>
@@ -315,7 +606,7 @@
     <div class="footer-cols">
       <div>
         <img class="footer-logo" src="assets/logo-wordmark.png" alt="MakerMods" style="width:120px;height:48px">
-        <p class="blurb">Physical AI and robotics, made easy for students, makers, and developers.</p>
+        <p class="blurb">Open robots and the tools to teach them, built in the open.</p>
       </div>
       <div>
         <h5>Shop</h5>
@@ -324,7 +615,6 @@
           <li><a href="metal-arm.html">Metal Arm</a></li>
           <li><a href="xlerobot.html">XLeRobot</a></li>
           <li><a href="openbooth">OpenBooth</a></li>
-          <li><a href="makermods-app/">MakerMods App</a></li>
           <li><a href="#">Parts</a></li>
         </ul>
       </div>
@@ -353,5 +643,13 @@
   </div>
 </footer>
 
+<script>
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  document.querySelectorAll('video[autoplay]').forEach(function (v) {
+    v.removeAttribute('autoplay');
+    v.pause();
+  });
+}
+</script>
 </body>
 </html>
