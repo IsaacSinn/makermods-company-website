@@ -2,20 +2,20 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>MakerMods | Open Source Ecosystem for Physical AI</title>
+<title>MakerMods | Open Ecosystem for Physical AI</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="MakerMods makes open-source robots for physical AI. Metal Arm is our flagship six-axis aluminum manipulator, ready for ROS and LeRobot out of the box.">
+<meta name="description" content="MakerMods makes open-source robots for physical AI. Metal Arm is our flagship seven-axis aluminum manipulator, ready for ROS and LeRobot out of the box.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://www.makermods.ai/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="MakerMods">
-<meta property="og:title" content="MakerMods | Open Source Ecosystem for Physical AI">
-<meta property="og:description" content="Open robots for physical AI, led by Metal Arm, our six-axis aluminum flagship. Built to be owned and hacked, not just used.">
+<meta property="og:title" content="MakerMods | Open Ecosystem for Physical AI">
+<meta property="og:description" content="Open robots for physical AI, led by Metal Arm, our seven-axis aluminum flagship. Built to be owned and hacked, not just used.">
 <meta property="og:url" content="https://www.makermods.ai/">
 <meta property="og:image" content="https://www.makermods.ai/assets/metal-arm/hero.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="MakerMods | Open Source Ecosystem for Physical AI">
-<meta name="twitter:description" content="Open robots for physical AI, led by Metal Arm, our six-axis aluminum flagship. Built to be owned and hacked, not just used.">
+<meta name="twitter:title" content="MakerMods | Open Ecosystem for Physical AI">
+<meta name="twitter:description" content="Open robots for physical AI, led by Metal Arm, our seven-axis aluminum flagship. Built to be owned and hacked, not just used.">
 <meta name="twitter:image" content="https://www.makermods.ai/assets/metal-arm/hero.png">
 <script type="application/ld+json">
 {
@@ -39,7 +39,8 @@
   .home-hero {
     position: relative;
     width: 100%;
-    height: clamp(640px, 92vh, 1100px);
+    height: calc(100svh - 173px);
+    min-height: 520px;
     overflow: hidden;
     background: var(--ink);
     border-bottom: var(--bw-1) solid var(--line);
@@ -151,9 +152,7 @@
 
   .ob-home-media {
     display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: var(--s-5);
-    align-items: stretch;
+    grid-template-columns: minmax(0, 1fr);
   }
   .ob-home-photo {
     position: relative;
@@ -192,7 +191,6 @@
     letter-spacing: var(--ls-eyebrow);
   }
   .ob-home-photo--booth { aspect-ratio: 16 / 10; }
-  .ob-home-photo--arm { min-height: 100%; }
   .ob-home-steps {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -373,7 +371,6 @@
   .lab-home-corner--br { bottom: var(--s-4); right: var(--s-4); border-left: var(--s-0); border-top: var(--s-0); }
 
   @media (max-width: 960px) {
-    .ob-home-media { grid-template-columns: 1fr 1fr; }
     .ob-home-steps { grid-template-columns: 1fr; gap: var(--s-0); margin-top: var(--s-5); }
     .ob-home-step { padding: var(--s-4) var(--s-0); border-bottom: var(--bw-1) solid var(--line-2); }
     .ob-home-filmstrip { grid-template-columns: repeat(6, minmax(0, 1fr)); }
@@ -385,8 +382,8 @@
 
   @media (max-width: 600px) {
     .home-hero {
-      min-height: 90svh;
-      height: auto;
+      height: calc(100svh - 148px);
+      min-height: 480px;
     }
     .home-hero::after {
       background:
@@ -394,7 +391,6 @@
         linear-gradient(to top, color-mix(in srgb, var(--ink) 90%, transparent), color-mix(in srgb, var(--ink) 45%, transparent) 68%, color-mix(in srgb, var(--ink) 18%, transparent));
     }
     .home-hero-content {
-      min-height: 90svh;
       padding-top: var(--s-10);
       padding-bottom: var(--s-7);
     }
@@ -410,9 +406,7 @@
     .ob-home-actions .btn { justify-content: center; width: 100%; }
     .ob-home-photo-tag { top: var(--s-5); left: var(--s-5); }
     .ob-home-foot { flex-direction: column; align-items: stretch; }
-    .ob-home-media { grid-template-columns: 1fr; }
-    .ob-home-photo--arm { min-height: var(--s-0); aspect-ratio: 4 / 3; }
-    .ob-home-photo--arm img { object-position: 60% 35%; }
+    .ob-home-photo--booth { aspect-ratio: 4 / 3; }
     .ob-home-stats { flex-direction: column; }
     .ob-home-stats span + span::before { margin-right: var(--s-2); }
     .ob-home-filmstrip {
@@ -450,6 +444,7 @@
       <a href="metal-arm.html">Metal Arm</a>
       <a href="xlerobot.html">XLeRobot</a>
       <a href="openbooth">OpenBooth</a>
+      <a href="makermods-app/">MakerMods App</a>
       <a href="#">Docs</a>
       <a href="https://discord.gg/HpXj3ynhhF" target="_blank" rel="noopener">Community</a>
     </div>
@@ -468,13 +463,13 @@
   <div class="container home-hero-content">
     <div class="home-hero-copy">
       <div class="eyebrow">[ OPEN-SOURCE ROBOTICS <span class="b">·</span> PHYSICAL AI ]</div>
-      <h1 class="home-hero-title">Open Source Ecosystem<br>for Physical AI<span class="o">.</span></h1>
-      <p class="home-hero-sub">We make open-source robots for people who'd rather build than wait. This is Metal Arm, our flagship: a six-axis aluminum manipulator that works with ROS and LeRobot the moment you unbox it.</p>
+      <h1 class="home-hero-title">Open Ecosystem<br>for Physical AI<span class="o">.</span></h1>
+      <p class="home-hero-sub">We make open-source robots for people who'd rather build than wait. This is Metal Arm, our flagship: a seven-axis aluminum manipulator that works with ROS and LeRobot the moment you unbox it.</p>
       <div class="home-hero-actions">
-        <a class="btn btn-stencil" href="metal-arm.html">[ EXPLORE METAL ARM → ]</a>
-        <a class="btn btn-secondary" href="metal-arm-buy.html">Buy now · $2,499</a>
+        <a class="btn btn-stencil" href="metal-arm-buy.html">[ BUY NOW · $2,499 → ]</a>
+        <a class="btn btn-secondary" href="metal-arm.html">Explore Metal Arm</a>
       </div>
-      <div class="home-hero-meta"><span>6-AXIS</span><span>3 KG PAYLOAD</span><span>±0.1 MM</span><span>CNC ALUMINUM</span></div>
+      <div class="home-hero-meta"><span>7-AXIS</span><span>3 KG PAYLOAD</span><span>±0.1 MM</span><span>CNC ALUMINUM</span></div>
     </div>
   </div>
 </section>
@@ -489,19 +484,13 @@
     </div>
   </div>
 
-  <div class="container-wide">
+  <div class="container">
     <div class="ob-home-media">
       <div class="ob-home-photo ob-home-photo--booth">
-        <img src="assets/open-booth/openbooth-bimanual product.png" alt="OpenBooth with two SO101 arms recording a skill inside the booth" loading="lazy" decoding="async">
+        <img src="assets/open-booth/openbooth-wide.png" alt="OpenBooth with two SO101 arms recording a skill inside the booth" loading="lazy" decoding="async">
         <div class="corner tl" aria-hidden="true"></div><div class="corner tr" aria-hidden="true"></div>
         <div class="corner bl" aria-hidden="true"></div><div class="corner br" aria-hidden="true"></div>
         <div class="ob-home-photo-tag">[ OPENBOOTH ]</div>
-      </div>
-      <div class="ob-home-photo ob-home-photo--arm">
-        <img src="assets/open-booth/so101-arm.png" alt="A single SO101 arm on its base inside the booth" loading="lazy" decoding="async">
-        <div class="corner tl" aria-hidden="true"></div><div class="corner tr" aria-hidden="true"></div>
-        <div class="corner bl" aria-hidden="true"></div><div class="corner br" aria-hidden="true"></div>
-        <div class="ob-home-photo-tag">[ SO101 ]</div>
       </div>
     </div>
 
@@ -516,8 +505,8 @@
         <span>152 public skills</span><span>17.7 hours</span><span>41 task tags</span>
       </div>
       <div class="ob-home-actions">
-        <a class="btn btn-stencil" href="openbooth">[ BROWSE SKILLS → ]</a>
-        <a class="btn btn-secondary" href="open-booth-buy.html">Buy OpenBooth</a>
+        <a class="btn btn-stencil" href="open-booth-buy.html">[ BUY OPENBOOTH → ]</a>
+        <a class="btn btn-secondary" href="openbooth">Browse skills</a>
       </div>
     </div>
 
@@ -615,6 +604,7 @@
           <li><a href="metal-arm.html">Metal Arm</a></li>
           <li><a href="xlerobot.html">XLeRobot</a></li>
           <li><a href="openbooth">OpenBooth</a></li>
+          <li><a href="makermods-app/">MakerMods App</a></li>
           <li><a href="#">Parts</a></li>
         </ul>
       </div>

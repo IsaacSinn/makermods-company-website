@@ -144,9 +144,9 @@ a:hover { opacity: 0.7; }
   -webkit-backdrop-filter: saturate(140%) blur(8px);
   border-bottom: 1px solid var(--line);
 }
-.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 88px; }
-.nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-.nav-logo img { height: 52px; display: block; }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 92px; }
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav-logo img { height: 54px; display: block; }
 html.dark .nav-logo img.light-logo { display: none; }
 .nav-logo img.dark-logo { display: none; }
 html.dark .nav-logo img.dark-logo { display: inline-block; }
@@ -162,6 +162,18 @@ html.dark .nav-logo img.dark-logo { display: inline-block; }
 }
 .nav-links a:hover { color: var(--orange); opacity: 1; }
 .nav-actions { display: flex; gap: var(--s-3); align-items: center; }
+
+/* Nav links stay centred regardless of the actions group width, so the bar
+   does not shift horizontally when moving between pages. */
+@media (min-width: 1060px) {
+  .nav-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  }
+  .nav-logo { justify-self: start; }
+  .nav-links { justify-self: center; }
+  .nav-actions { justify-self: end; }
+}
 
 /* ============================== BUTTONS ============================== */
 .btn {
@@ -588,4 +600,15 @@ html.dark .footer-logo.dark-logo { display: inline-block; }
   .nav-links { display: none; }
   .section-head { grid-template-columns: 1fr; }
   .waitlist-form .row-2 { grid-template-columns: 1fr; }
+}
+
+/* Small screens: match the site nav in styles/page.css so the header keeps the
+   same height and never overflows. GitHub moves to the footer here. */
+@media (max-width: 600px) {
+  .nav-inner { height: 64px; gap: var(--s-3); }
+  .nav-logo { min-width: 0; flex-shrink: 1; }
+  .nav-logo img { height: 40px; width: auto; max-width: min(48vw, 180px); object-fit: contain; }
+  .nav-actions { flex-shrink: 0; gap: var(--s-2); }
+  .nav-actions .btn-ghost { display: none; }
+  .nav-actions .btn { padding: 8px 12px; font-size: 12px; }
 }

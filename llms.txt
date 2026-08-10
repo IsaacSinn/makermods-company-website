@@ -11,7 +11,7 @@ Contact: ryan@makermods.ai
 ## Key Pages
 
 - [MakerMods home](https://www.makermods.ai/): Overview of MakerMods robotics products and software.
-- [Metal Arm](https://www.makermods.ai/metal-arm): Lightweight all-metal six-axis robotic arm for embodied AI, research, and education.
+- [Metal Arm](https://www.makermods.ai/metal-arm): Lightweight all-metal seven-axis robotic arm for embodied AI, research, and education.
 - [Pre-order Metal Arm](https://www.makermods.ai/metal-arm-buy): Reserve a MakerMods Metal Arm with a refundable deposit.
 - [XLeRobot](https://www.makermods.ai/xlerobot): Fully assembled LeRobot-compatible bimanual mobile manipulator for makers, students, and researchers.
 - [Buy XLeRobot](https://www.makermods.ai/buy): Configure and buy XLeRobot builds.
@@ -23,11 +23,11 @@ Contact: ryan@makermods.ai
 
 ### MakerMods Metal Arm
 
-MakerMods Metal Arm is a lightweight, all-metal six-axis robotic arm built for embodied AI, research, and education.
+MakerMods Metal Arm is a lightweight, all-metal seven-axis robotic arm built for embodied AI, research, and education.
 
 Important details:
 
-- Six-axis robotic arm
+- Seven-axis robotic arm
 - 3 kg payload
 - +/- 0.1 mm repeatability
 - Open SDK
