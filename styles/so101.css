@@ -189,7 +189,7 @@
 
 .so-links {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--s-4);
 }
 .so-link-card {
@@ -310,7 +310,6 @@
 
 @media (max-width: 960px) {
   .so-links { grid-template-columns: 1fr 1fr; }
-  .so-links > :last-child { grid-column: 1 / -1; }
   .so-teleop-media { aspect-ratio: 4 / 3; }
   .so-openbooth { grid-template-columns: 1fr; }
   .so-openbooth__media { min-height: 380px; }
@@ -326,7 +325,6 @@
   .so-flow { grid-template-columns: repeat(2, auto); justify-content: center; gap: 5px 12px; font-size: 7px; }
   .so-flow span + span::before { margin-right: 5px; }
   .so-links { grid-template-columns: 1fr; }
-  .so-links > :last-child { grid-column: auto; }
   .so-teleop-media { aspect-ratio: 16 / 10; }
   .so-openbooth__media { min-height: 0; aspect-ratio: 16/11; }
   .so-openbooth__copy h2 { font-size: 34px; }
