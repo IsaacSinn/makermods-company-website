@@ -98,6 +98,11 @@ body { margin: 0; }
   .nav-actions { justify-self: end; }
 }
 
+@media (min-width: 961px) and (max-width: 1199px) {
+  .nav-links { gap: var(--s-3); }
+  .nav-links a { font-size: 13px; }
+}
+
 /* Nav buy button — flips to orange when hero CTA scrolls out of view */
 .nav-buy {
   font-family: var(--font-mono);

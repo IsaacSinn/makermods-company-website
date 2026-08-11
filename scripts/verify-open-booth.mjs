@@ -108,7 +108,7 @@ assert(!/pre-?order|deposit|balance/i.test(buyPage), 'OpenBooth buy page should 
 const index = read('index.html');
 assert(index.includes('href="openbooth"'), 'Homepage is missing an OpenBooth link');
 assert(index.includes('OpenBooth'), 'Homepage is missing OpenBooth copy');
-assert(index.indexOf('href="openbooth" class="product-card"') < index.indexOf('href="xlerobot.html" class="product-card"'), 'Homepage should show OpenBooth before XLeRobot in the product grid');
+assert(index.indexOf('id="openbooth"') < index.indexOf('id="lab"'), 'Homepage should show the OpenBooth showcase before the lab products');
 
 const sitemap = read('sitemap.xml');
 assert(sitemap.includes('https://www.makermods.ai/openbooth'), 'Sitemap is missing /openbooth');

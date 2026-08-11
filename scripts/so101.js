@@ -42,6 +42,7 @@
       control: 'bimanual',
       tag: '[ SO-101 · BIMANUAL ]',
       cartUrl: 'https://makermods.myshopify.com/cart/51851988042045:1',
+      showProductImage: true,
     },
     boothPair: {
       label: 'SO-101 kit + OpenBooth',
@@ -81,6 +82,13 @@
     write('[data-so-buy-parts]', tier.parts);
     write('[data-so-buy-control]', tier.control);
     write('[data-so-buy-tag]', tier.tag);
+    const hasProductImage = tier.showProductImage === true;
+    const productImage = document.querySelector('[data-so-buy-image]');
+    const placeholder = document.querySelector('[data-so-buy-placeholder]');
+    const visual = document.querySelector('[data-so-buy-visual]');
+    if (productImage) productImage.hidden = !hasProductImage;
+    if (placeholder) placeholder.hidden = hasProductImage;
+    if (visual) visual.dataset.hasProductImage = hasProductImage ? 'true' : 'false';
     const cta = document.querySelector('[data-so-buy-cta]');
     if (cta) {
       cta.href = tier.cartUrl;

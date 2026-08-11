@@ -175,6 +175,11 @@ html.dark .nav-logo img.dark-logo { display: inline-block; }
   .nav-actions { justify-self: end; }
 }
 
+@media (min-width: 981px) and (max-width: 1199px) {
+  .nav-links { gap: var(--s-2); }
+  .nav-links a { font-size: 13px; }
+}
+
 /* ============================== BUTTONS ============================== */
 .btn {
   font-family: var(--font-display); font-weight: 600; font-size: 14px;

@@ -150,47 +150,35 @@
     gap: var(--s-3);
   }
 
-  .ob-home-media {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .ob-home-photo {
+  .ob-home-banner {
     position: relative;
-    min-width: var(--s-0);
+    width: 100%;
+    height: calc(100svh - 173px);
+    min-height: 520px;
     overflow: hidden;
-    background: var(--surface);
-    border: var(--bw-1) solid var(--line);
-    clip-path: var(--notch-md);
+    background: var(--ink);
+    border-top: var(--bw-1) solid var(--line);
+    border-bottom: var(--bw-1) solid var(--line);
   }
-  .ob-home-photo img {
+  .ob-home-banner-video {
+    position: absolute;
+    inset: var(--s-0);
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
   }
-  .ob-home-photo .corner {
+  .ob-home-banner-corner {
     position: absolute;
-    width: var(--s-4);
-    height: var(--s-4);
-    border: var(--bw-1) solid var(--ink-2);
+    z-index: 2;
+    width: var(--s-5);
+    height: var(--s-5);
+    border: var(--bw-1) solid color-mix(in srgb, var(--paper) 98%, var(--ink));
   }
-  .ob-home-photo .corner.tl { top: var(--s-4); left: var(--s-4); border-right: var(--s-0); border-bottom: var(--s-0); }
-  .ob-home-photo .corner.tr { top: var(--s-4); right: var(--s-4); border-left: var(--s-0); border-bottom: var(--s-0); }
-  .ob-home-photo .corner.bl { bottom: var(--s-4); left: var(--s-4); border-right: var(--s-0); border-top: var(--s-0); }
-  .ob-home-photo .corner.br { bottom: var(--s-4); right: var(--s-4); border-left: var(--s-0); border-top: var(--s-0); }
-  .ob-home-photo-tag {
-    position: absolute;
-    top: var(--s-6);
-    left: var(--s-6);
-    padding: var(--s-1) var(--s-2);
-    color: var(--ink);
-    background: var(--surface);
-    border: var(--bw-1) solid var(--line-2);
-    font-family: var(--font-mono);
-    font-size: var(--t-eyebrow);
-    letter-spacing: var(--ls-eyebrow);
-  }
-  .ob-home-photo--booth { aspect-ratio: 16 / 10; }
+  .ob-home-banner-corner--tl { top: var(--s-4); left: var(--s-4); border-right: var(--s-0); border-bottom: var(--s-0); }
+  .ob-home-banner-corner--tr { top: var(--s-4); right: var(--s-4); border-left: var(--s-0); border-bottom: var(--s-0); }
+  .ob-home-banner-corner--bl { bottom: var(--s-4); left: var(--s-4); border-right: var(--s-0); border-top: var(--s-0); }
+  .ob-home-banner-corner--br { bottom: var(--s-4); right: var(--s-4); border-left: var(--s-0); border-top: var(--s-0); }
   .ob-home-steps {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -404,9 +392,11 @@
     .ob-home-actions { align-items: stretch; flex-direction: column; }
     .home-hero-actions .btn,
     .ob-home-actions .btn { justify-content: center; width: 100%; }
-    .ob-home-photo-tag { top: var(--s-5); left: var(--s-5); }
     .ob-home-foot { flex-direction: column; align-items: stretch; }
-    .ob-home-photo--booth { aspect-ratio: 4 / 3; }
+    .ob-home-banner {
+      height: calc(100svh - 148px);
+      min-height: 480px;
+    }
     .ob-home-stats { flex-direction: column; }
     .ob-home-stats span + span::before { margin-right: var(--s-2); }
     .ob-home-filmstrip {
@@ -440,6 +430,7 @@
       <img src="assets/logo-wordmark.png" alt="MakerMods">
     </a>
     <div class="nav-links">
+      <a href="so101.html">SO-101</a>
       <a href="elrobot.html">ElRobot</a>
       <a href="metal-arm.html">Metal Arm</a>
       <a href="xlerobot.html">XLeRobot</a>
@@ -484,16 +475,13 @@
     </div>
   </div>
 
-  <div class="container">
-    <div class="ob-home-media">
-      <div class="ob-home-photo ob-home-photo--booth">
-        <img src="assets/open-booth/openbooth-wide.png" alt="OpenBooth with two SO101 arms recording a skill inside the booth" loading="lazy" decoding="async">
-        <div class="corner tl" aria-hidden="true"></div><div class="corner tr" aria-hidden="true"></div>
-        <div class="corner bl" aria-hidden="true"></div><div class="corner br" aria-hidden="true"></div>
-        <div class="ob-home-photo-tag">[ OPENBOOTH ]</div>
-      </div>
-    </div>
+  <div class="ob-home-banner">
+    <video class="ob-home-banner-video" src="assets/open-booth/openbooth-demo-banner.mp4" poster="assets/open-booth/openbooth-demo-banner.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Two SO101 arms performing a coordinated manipulation task inside OpenBooth"></video>
+    <div class="ob-home-banner-corner ob-home-banner-corner--tl" aria-hidden="true"></div><div class="ob-home-banner-corner ob-home-banner-corner--tr" aria-hidden="true"></div>
+    <div class="ob-home-banner-corner ob-home-banner-corner--bl" aria-hidden="true"></div><div class="ob-home-banner-corner ob-home-banner-corner--br" aria-hidden="true"></div>
+  </div>
 
+  <div class="container">
     <div class="ob-home-steps" role="group" aria-label="How OpenBooth works">
           <div class="ob-home-step"><span class="ob-home-step-num">01</span><span class="ob-home-step-text">Pick a skill from the public catalog.</span></div>
           <div class="ob-home-step"><span class="ob-home-step-num">02</span><span class="ob-home-step-text">Put your SO101 in the booth. Same lighting and background, every time.</span></div>

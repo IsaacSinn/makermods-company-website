@@ -66,15 +66,10 @@
 <main>
   <section class="hero" data-screen-label="01 Hero">
     <div class="container hero-inner">
-      <div class="hero-photo so-visual" role="img" aria-label="Technical placeholder for an SO-101 leader and follower robot arm pair">
+      <div class="hero-photo hero-photo--photo so-visual so-visual--photo">
+        <img class="hero-img so-visual__image" src="assets/open-booth/notused_so101-kit.png" alt="Two white SO-101 robot arms with grippers and serial-bus wiring" width="2400" height="1792" loading="eager" decoding="async" fetchpriority="high">
         <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
         <div class="label-tag">STANDARD OPEN ARM · LEADER / FOLLOWER</div>
-        <div class="so-visual__field">
-          <div class="so-arm-mark"><div class="so-arm-mark__id">S<em>O</em></div><div class="so-arm-mark__role">leader · you move</div><div class="so-axis"><span></span></div></div>
-          <div class="so-visual__divider"></div>
-          <div class="so-arm-mark"><div class="so-arm-mark__id">1<em>01</em></div><div class="so-arm-mark__role">follower · it mirrors</div><div class="so-axis"><span></span></div></div>
-        </div>
-        <div class="so-flow"><span>teleoperate</span><span>record</span><span>train</span><span>run</span></div>
         <div class="meta-strip"><span>5 JOINTS + GRIPPER</span><span>12 × SERIAL-BUS SERVOS / PAIR</span></div>
       </div>
 
@@ -104,66 +99,8 @@
         <h2>Built to teach by showing.</h2>
         <p class="lead">SO-101 is a paired teleoperation system. Guide the low-resistance leader arm through a task; the follower reproduces the motion while LeRobot captures the observations and actions that become training data.</p>
       </div>
-      <div class="so-proof-grid">
-        <article class="so-proof">
-          <span class="so-proof__num">01 / GUIDE</span>
-          <div class="so-proof__signal" aria-hidden="true"><i style="--h:28%"></i><i style="--h:60%"></i><i style="--h:42%"></i><i style="--h:76%"></i><i style="--h:50%"></i><i style="--h:92%"></i></div>
-          <h3>Move the leader.</h3>
-          <p>Mixed-ratio motors make the leader easier to move by hand while still supporting its own structure.</p>
-        </article>
-        <article class="so-proof">
-          <span class="so-proof__num">02 / MIRROR</span>
-          <div class="so-proof__signal" aria-hidden="true"><i style="--h:28%"></i><i style="--h:60%"></i><i style="--h:42%"></i><i style="--h:76%"></i><i style="--h:50%"></i><i style="--h:92%"></i></div>
-          <h3>Watch the follower.</h3>
-          <p>Six geared serial-bus servos reproduce the leader's pose: five arm joints plus the gripper.</p>
-        </article>
-        <article class="so-proof">
-          <span class="so-proof__num">03 / LEARN</span>
-          <div class="so-proof__signal" aria-hidden="true"><i style="--h:88%"></i><i style="--h:50%"></i><i style="--h:72%"></i><i style="--h:36%"></i><i style="--h:58%"></i><i style="--h:26%"></i></div>
-          <h3>Train the behavior.</h3>
-          <p>LeRobot stores synchronized video and state/action data, then uses those demonstrations to train and evaluate a policy.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section bg-grid" id="workflow">
-    <div class="container">
-      <div class="section-head">
-        <div class="eyebrow">[ THE LEROBOT LOOP <span class="b">·</span> 03 ]</div>
-        <h2>From a human motion to an autonomous task.</h2>
-        <p class="lead">The same open software path takes you from first connection to a policy running on the follower arm.</p>
-      </div>
-      <div class="so-process">
-        <article class="so-process__step"><span class="so-process__num">01</span><h3>Set up + calibrate</h3><p>Assign motor IDs, identify each USB port, then move every joint through its range so leader and follower share the same position map.</p></article>
-        <article class="so-process__step"><span class="so-process__num">02</span><h3>Teleoperate</h3><p>Move the leader by hand and build confidence with the task before recording. LeRobot can surface camera feeds and joint positions.</p></article>
-        <article class="so-process__step"><span class="so-process__num">03</span><h3>Record + train</h3><p>Capture repeatable episodes, keep the cameras fixed, and train an imitation-learning policy such as ACT on your dataset.</p></article>
-        <article class="so-process__step"><span class="so-process__num">04</span><h3>Evaluate + iterate</h3><p>Run the checkpoint on the follower, inspect successes and misses, then collect the next useful demonstrations.</p></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="software">
-    <div class="container sw">
-      <div class="sw-text">
-        <div class="eyebrow">[ SOFTWARE <span class="b">·</span> 04 ]</div>
-        <h2><span class="step">Connect</span><span class="step">Record</span><span class="step">Train</span></h2>
-        <p>SO-101 is a flagship hardware path in Hugging Face LeRobot: a Python-native toolkit for robot control, datasets, training, and deployment.</p>
-        <div class="sw-tags"><div class="row"><span class="lit">data</span> · synchronized video + state/action</div><div class="row"><span class="lit">policies</span> · ACT · Diffusion · VLA workflows</div><div class="row"><span class="lit">hub</span> · share datasets + checkpoints</div></div>
-      </div>
-      <div class="terminal" aria-label="Example SO-101 LeRobot teleoperation command">
-        <div class="bar"><div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div><span class="ttl">so101_teleoperate.sh</span></div>
-        <div class="body">
-          <div class="l"><span class="p">$</span> python -m lerobot.teleoperate \</div>
-          <div class="l">&nbsp;&nbsp;--robot.type=<span class="b">so101_follower</span> \</div>
-          <div class="l">&nbsp;&nbsp;--robot.port=/dev/tty.usbmodem... \</div>
-          <div class="l">&nbsp;&nbsp;--teleop.type=<span class="b">so101_leader</span> \</div>
-          <div class="l">&nbsp;&nbsp;--teleop.port=/dev/tty.usbmodem...</div>
-          <br>
-          <div class="l"><span class="ok">✓</span> follower connected</div>
-          <div class="l"><span class="ok">✓</span> leader connected</div>
-          <div class="l"><span class="c"># teleoperation active</span></div>
-        </div>
+      <div class="so-teleop-media" aria-label="SO-101 leader arm teleoperating a follower arm">
+        <video class="so-teleop-video" src="assets/so101/leader-follower-teleoperation.mp4" poster="assets/so101/leader-follower-teleoperation.jpg" autoplay muted loop playsinline preload="metadata" aria-label="An operator moving an SO-101 leader arm while the follower arm mirrors the motion"></video>
       </div>
     </div>
   </section>
@@ -175,7 +112,7 @@
         <span class="so-openbooth__tag">OpenBooth · SO-101 skill lab</span>
       </div>
       <div class="so-openbooth__copy">
-        <div class="eyebrow">[ ADD OPENBOOTH <span class="b">·</span> 05 ]</div>
+        <div class="eyebrow">[ ADD OPENBOOTH <span class="b">·</span> 03 ]</div>
         <h2>Give every task the same stage.</h2>
         <p class="lead">OpenBooth adds a controlled workspace, two cameras, and a public catalog of recorded SO-101 skills. Start from community data, then record the demonstrations your next behavior still needs.</p>
         <ul class="so-openbooth__list"><li><span>01</span>Consistent camera views and background</li><li><span>02</span>Single-arm or bimanual SO-101 configurations</li><li><span>03</span>Public skills hosted on Hugging Face</li></ul>
@@ -186,7 +123,7 @@
 
   <section class="section" id="specs">
     <div class="container">
-      <div class="section-head"><div class="eyebrow">[ HARDWARE <span class="b">·</span> 06 ]</div><h2>The open desktop learning arm.</h2><p class="lead">A repairable structure, off-the-shelf servos, and published build files keep the system understandable from the gripper to the training code.</p></div>
+      <div class="section-head"><div class="eyebrow">[ HARDWARE <span class="b">·</span> 04 ]</div><h2>The open desktop learning arm.</h2><p class="lead">A repairable structure, off-the-shelf servos, and published build files keep the system understandable from the gripper to the training code.</p></div>
       <div class="spec-card">
         <div class="spec-card-head"><span>so-101 · standard open arm</span><span>spec_sheet.txt</span></div>
         <div class="spec-grid">
@@ -207,7 +144,7 @@
 
   <section class="section bg-grid" id="open-source">
     <div class="container">
-      <div class="section-head"><div class="eyebrow">[ READ THE SOURCE <span class="b">·</span> 07 ]</div><h2>Documented all the way down.</h2><p class="lead">Build it, inspect it, repair it, or learn from the complete official workflow.</p></div>
+      <div class="section-head"><div class="eyebrow">[ READ THE SOURCE <span class="b">·</span> 05 ]</div><h2>Documented all the way down.</h2><p class="lead">Build it, inspect it, repair it, or learn from the complete official workflow.</p></div>
       <div class="so-links">
         <a class="so-link-card" href="https://huggingface.co/docs/lerobot/so101" target="_blank" rel="noopener"><span class="so-link-card__eyebrow">Hugging Face</span><h3>SO-101 setup guide</h3><p>Motor setup, assembly, ports, and calibration.</p><span class="so-link-card__arrow">OPEN DOCS ↗</span></a>
         <a class="so-link-card" href="https://huggingface.co/docs/lerobot/main/en/getting_started_real_world_robot" target="_blank" rel="noopener"><span class="so-link-card__eyebrow">LeRobot</span><h3>Real-world robot guide</h3><p>Teleoperate, record, train, replay, and evaluate.</p><span class="so-link-card__arrow">OPEN TUTORIAL ↗</span></a>
@@ -218,7 +155,7 @@
 
   <section class="section" id="faq">
     <div class="container">
-      <div class="section-head"><div class="eyebrow">[ FAQ <span class="b">·</span> 08 ]</div><h2>Before your first episode.</h2></div>
+      <div class="section-head"><div class="eyebrow">[ FAQ <span class="b">·</span> 06 ]</div><h2>Before your first episode.</h2></div>
       <div class="faq">
         <div class="faq-item" data-open="true"><button class="faq-q" type="button" aria-expanded="true">What does leader + follower mean?<span class="icon"></span></button><div class="faq-a">You guide the leader arm by hand and the powered follower mirrors it. LeRobot records the follower's motion and any connected camera views as demonstrations for robot-learning datasets.</div></div>
         <div class="faq-item" data-open="false"><button class="faq-q" type="button" aria-expanded="false">What can I do with SO-101?<span class="icon"></span></button><div class="faq-a">Start with direct teleoperation, then record tasks such as pick-and-place, train an imitation-learning policy, replay episodes, and evaluate the learned behavior on the follower arm.</div></div>
