@@ -34,7 +34,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="styles/tokens.css">
 <link rel="stylesheet" href="styles/page.css">
-<link rel="icon" type="image/png" href="assets/logo-mark.png">
+<link rel="stylesheet" href="/styles/site-nav.css">
+<script src="/scripts/site-nav.js"></script>
+<link rel="icon" type="image/png" sizes="256x256" href="/assets/favicon.png">
 <style>
   .home-hero {
     position: relative;
@@ -434,25 +436,7 @@
 <body>
 
 <!-- ============================== NAV ============================== -->
-<nav class="nav">
-  <div class="container nav-inner">
-    <a href="index.html" class="nav-logo" aria-label="MakerMods">
-      <img src="assets/logo-wordmark.png" alt="MakerMods">
-    </a>
-    <div class="nav-links">
-      <a href="elrobot.html">ElRobot</a>
-      <a href="metal-arm.html">Metal Arm</a>
-      <a href="xlerobot.html">XLeRobot</a>
-      <a href="openbooth">OpenBooth</a>
-      <a href="makermods-app/">MakerMods App</a>
-      <a href="#">Docs</a>
-      <a href="https://discord.gg/HpXj3ynhhF" target="_blank" rel="noopener">Community</a>
-    </div>
-    <div class="nav-actions">
-      <span class="nav-cart">cart · 0</span>
-    </div>
-  </div>
-</nav>
+<maker-nav></maker-nav>
 
 <!-- ============================== HERO ============================== -->
 <section class="home-hero" data-screen-label="01 Hero">
@@ -487,7 +471,7 @@
   <div class="container">
     <div class="ob-home-media">
       <div class="ob-home-photo ob-home-photo--booth">
-        <img src="assets/open-booth/openbooth-wide.png" alt="OpenBooth with two SO101 arms recording a skill inside the booth" loading="lazy" decoding="async">
+        <img class="ob-home-photo-image" src="assets/open-booth/openbooth-wide.png" alt="OpenBooth with two SO101 arms recording a skill inside the booth" loading="lazy" decoding="async">
         <div class="corner tl" aria-hidden="true"></div><div class="corner tr" aria-hidden="true"></div>
         <div class="corner bl" aria-hidden="true"></div><div class="corner br" aria-hidden="true"></div>
         <div class="ob-home-photo-tag">[ OPENBOOTH ]</div>

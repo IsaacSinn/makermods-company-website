@@ -7,7 +7,9 @@ const requiredFiles = [
   'openbooth/index.html',
   'open-booth-buy.html',
   'styles/open-booth.css',
+  'styles/site-nav.css',
   'scripts/open-booth.js',
+  'scripts/site-nav.js',
   'assets/open-booth/hero.mp4',
   'assets/open-booth/OpenBooth.png',
   'assets/open-booth/openbooth-bimanual product.png',
@@ -58,13 +60,15 @@ for (const filePath of requiredFiles.filter((asset) => asset.endsWith('_clip.mp4
 
 const page = read('openbooth/index.html');
 const openBoothScript = read('scripts/open-booth.js');
+const siteNavScript = read('scripts/site-nav.js');
 assert(page.includes('<title>OpenBooth Dataset | MakerMods</title>'), 'OpenBooth page is missing the expected title');
 assert(page.includes('canonical" href="https://www.makermods.ai/openbooth"'), 'OpenBooth page is missing canonical metadata');
 assert(page.includes('/assets/open-booth/hero.mp4'), 'OpenBooth page does not reference the hero video');
 assert(page.includes('/assets/open-booth/OpenBooth.png'), 'OpenBooth page does not reference the product image');
 assert(page.includes('/assets/open-booth/catalog.json'), 'OpenBooth page does not expose the catalog path');
 assert(page.includes('/open-booth-buy'), 'OpenBooth page is missing the buy-page link');
-assert(page.includes('href="/open-booth-buy" id="nav-buy" class="btn nav-buy is-idle"'), 'OpenBooth nav is missing the top-right buy button');
+assert(page.includes('<maker-nav active="openbooth" cta-label="Buy →" cta-href="/open-booth-buy">'), 'OpenBooth nav is missing the configured top-right buy button');
+assert(siteNavScript.includes("cta.id = 'nav-buy'"), 'The universal nav must expose its CTA for OpenBooth hot-state behavior');
 assert(openBoothScript.includes("document.getElementById('nav-buy')"), 'OpenBooth script is missing nav buy hot-state behavior');
 assert(openBoothScript.includes("document.querySelector('.ob-hero')"), 'OpenBooth script should bind nav hot state to the full hero section');
 assert(!openBoothScript.includes("document.querySelector('.ob-buy-hero')"), 'OpenBooth script should not bind nav hot state to only the hero buy CTA');
@@ -108,7 +112,7 @@ assert(!/pre-?order|deposit|balance/i.test(buyPage), 'OpenBooth buy page should 
 const index = read('index.html');
 assert(index.includes('href="openbooth"'), 'Homepage is missing an OpenBooth link');
 assert(index.includes('OpenBooth'), 'Homepage is missing OpenBooth copy');
-assert(index.indexOf('href="openbooth" class="product-card"') < index.indexOf('href="xlerobot.html" class="product-card"'), 'Homepage should show OpenBooth before XLeRobot in the product grid');
+assert(index.indexOf('id="openbooth"') < index.indexOf('id="lab"'), 'Homepage should show the OpenBooth showcase before the lab products');
 
 const sitemap = read('sitemap.xml');
 assert(sitemap.includes('https://www.makermods.ai/openbooth'), 'Sitemap is missing /openbooth');

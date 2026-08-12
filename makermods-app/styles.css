@@ -136,45 +136,6 @@ a:hover { opacity: 0.7; }
 
 .container { max-width: 1280px; margin: 0 auto; padding: 0 var(--s-6); }
 
-/* ============================== NAV ============================== */
-.nav {
-  position: sticky; top: 0; z-index: 50;
-  background: color-mix(in srgb, var(--paper) 80%, transparent);
-  backdrop-filter: saturate(140%) blur(8px);
-  -webkit-backdrop-filter: saturate(140%) blur(8px);
-  border-bottom: 1px solid var(--line);
-}
-.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 92px; }
-.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-.nav-logo img { height: 54px; display: block; }
-html.dark .nav-logo img.light-logo { display: none; }
-.nav-logo img.dark-logo { display: none; }
-html.dark .nav-logo img.dark-logo { display: inline-block; }
-.nav-logo .beta {
-  font-family: var(--font-mono); font-size: 10px; padding: 2px 6px;
-  border: 1px solid var(--line-2); color: var(--mute);
-  letter-spacing: 0.08em; border-radius: var(--r-sm);
-}
-.nav-links { display: flex; gap: var(--s-6); }
-.nav-links a {
-  font-family: var(--font-display); font-weight: 600; font-size: 14px;
-  text-decoration: none; color: var(--ink); letter-spacing: 0;
-}
-.nav-links a:hover { color: var(--orange); opacity: 1; }
-.nav-actions { display: flex; gap: var(--s-3); align-items: center; }
-
-/* Nav links stay centred regardless of the actions group width, so the bar
-   does not shift horizontally when moving between pages. */
-@media (min-width: 1060px) {
-  .nav-inner {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-  }
-  .nav-logo { justify-self: start; }
-  .nav-links { justify-self: center; }
-  .nav-actions { justify-self: end; }
-}
-
 /* ============================== BUTTONS ============================== */
 .btn {
   font-family: var(--font-display); font-weight: 600; font-size: 14px;
@@ -199,7 +160,6 @@ html.dark .nav-logo img.dark-logo { display: inline-block; }
 }
 .btn-stencil:hover { background: var(--orange-2); color: #FFFFFF; }
 .btn-lg { padding: 16px 26px; font-size: 16px; }
-
 /* ============================== HERO ============================== */
 .hero { padding: var(--s-8) 0 var(--s-9); position: relative; overflow: hidden; }
 .hero-grid {
@@ -597,18 +557,10 @@ html.dark .footer-logo.dark-logo { display: inline-block; }
   .step-card .arrow { display: none; }
   .waitlist-inner { grid-template-columns: 1fr; gap: var(--s-7); padding: var(--s-7) 0; }
   .footer-cols { grid-template-columns: 1fr 1fr; }
-  .nav-links { display: none; }
   .section-head { grid-template-columns: 1fr; }
   .waitlist-form .row-2 { grid-template-columns: 1fr; }
 }
 
-/* Small screens: match the site nav in styles/page.css so the header keeps the
-   same height and never overflows. GitHub moves to the footer here. */
 @media (max-width: 600px) {
-  .nav-inner { height: 64px; gap: var(--s-3); }
-  .nav-logo { min-width: 0; flex-shrink: 1; }
-  .nav-logo img { height: 40px; width: auto; max-width: min(48vw, 180px); object-fit: contain; }
-  .nav-actions { flex-shrink: 0; gap: var(--s-2); }
-  .nav-actions .btn-ghost { display: none; }
-  .nav-actions .btn { padding: 8px 12px; font-size: 12px; }
+  .container { padding-left: var(--s-4); padding-right: var(--s-4); }
 }

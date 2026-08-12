@@ -11,11 +11,15 @@ const sourceFiles = [
   'metal-arm-buy.html',
   'openbooth/index.html',
   'open-booth-buy.html',
+  'so101.html',
+  'so101-buy.html',
   'makermods-app/index.html',
   'styles/page.css',
   'styles/open-booth.css',
+  'styles/so101.css',
   'scripts/main.js',
   'scripts/open-booth.js',
+  'scripts/so101.js',
 ];
 
 const ignoredSourceMedia = [

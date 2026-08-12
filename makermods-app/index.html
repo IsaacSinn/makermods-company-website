@@ -17,34 +17,15 @@
 <meta name="twitter:title" content="MakerMods App, Web UI for your robot arm">
 <meta name="twitter:description" content="Plug in, calibrate, teleop, record episodes, and train policies on a remote GPU from a browser tab.">
 <meta name="twitter:image" content="https://www.makermods.ai/makermods-app/hero-with-video.png">
+<link rel="icon" type="image/png" sizes="256x256" href="/assets/favicon.png">
 <link rel="stylesheet" href="styles.css">
-<style>
-  /* Match main-site nav dimensions exactly (overrides styles.css) */
-</style>
+<link rel="stylesheet" href="/styles/site-nav.css">
+<script src="/scripts/site-nav.js"></script>
 </head>
 <body>
 
 <!-- ===== NAV ===== -->
-<nav class="nav">
-  <div class="container nav-inner">
-    <a href="../index.html" class="nav-logo" aria-label="MakerMods">
-      <img src="assets/logo-wordmark.png" alt="MakerMods">
-    </a>
-    <div class="nav-links">
-      <a href="../elrobot.html">ElRobot</a>
-      <a href="../metal-arm.html">Metal Arm</a>
-      <a href="../xlerobot.html">XLeRobot</a>
-      <a href="../openbooth">OpenBooth</a>
-      <a href="index.html">MakerMods App</a>
-      <a href="#">Docs</a>
-      <a href="https://discord.gg/HpXj3ynhhF" target="_blank" rel="noopener">Community</a>
-    </div>
-    <div class="nav-actions">
-      <a href="https://github.com/makermods-robotics/MakerMods-App" target="_blank" rel="noopener" class="btn btn-ghost">GitHub →</a>
-      <a href="#waitlist" class="btn btn-primary">Join waitlist</a>
-    </div>
-  </div>
-</nav>
+<maker-nav active="makermods-lab" cta-label="Join waitlist" cta-href="#waitlist"></maker-nav>
 
 <!-- ===== HERO ===== -->
 <section class="hero" id="top">
