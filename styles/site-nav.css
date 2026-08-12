@@ -1,0 +1,210 @@
+maker-nav {
+  display: block;
+  position: relative;
+  z-index: 50;
+}
+
+maker-nav:not(:defined) {
+  box-sizing: border-box;
+  min-height: 92px;
+  padding: 34px var(--s-6, 32px);
+  border-bottom: 1px solid var(--line, #e5e5e5);
+  background: var(--paper, #fafafa);
+}
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid var(--line, #e5e5e5);
+  background: color-mix(in srgb, var(--paper, #fafafa) 82%, transparent);
+  backdrop-filter: saturate(140%) blur(8px);
+  -webkit-backdrop-filter: saturate(140%) blur(8px);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1280px;
+  height: 92px;
+  margin: 0 auto;
+  padding: 0 var(--s-6, 32px);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.nav-logo img {
+  display: block;
+  width: auto;
+  height: 54px;
+}
+
+.nav-logo-dark {
+  display: none !important;
+}
+
+html.dark .nav-logo-light,
+html[data-theme='dark'] .nav-logo-light {
+  display: none;
+}
+
+html.dark .nav-logo-dark,
+html[data-theme='dark'] .nav-logo-dark {
+  display: block !important;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  white-space: nowrap;
+}
+
+.nav-links a {
+  color: var(--ink, #0a0a0a);
+  font-family: var(--font-display, system-ui, sans-serif);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-decoration: none;
+}
+
+.nav-links a:hover {
+  color: var(--orange, #ff6b2c);
+  opacity: 1;
+}
+
+.nav-links a[aria-current='page'] {
+  color: var(--orange-2, #e55418);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 138px;
+}
+
+.nav-buy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 138px;
+  min-height: 38px;
+  padding: 10px 16px;
+  border: 1px solid var(--line-2, #d4d4d4);
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink, #0a0a0a);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition:
+    background-color var(--dur-base, 120ms) var(--ease-std, ease),
+    color var(--dur-base, 120ms) var(--ease-std, ease),
+    border-color var(--dur-base, 120ms) var(--ease-std, ease),
+    transform var(--dur-base, 120ms) var(--ease-std, ease);
+}
+
+.nav-buy.is-idle:hover {
+  border-color: var(--ink, #0a0a0a);
+  background: var(--ink, #0a0a0a);
+  color: var(--paper, #fafafa);
+  opacity: 1;
+}
+
+.nav-buy.is-hot {
+  border-color: var(--orange, #ff6b2c);
+  background: var(--orange, #ff6b2c);
+  color: var(--orange-ink, #0a0a0a);
+  animation: nav-buy-pop 0.35s var(--ease-std, ease);
+}
+
+.nav-buy.is-hot:hover {
+  border-color: var(--orange-2, #e55418);
+  background: var(--orange-2, #e55418);
+  color: #fff;
+  opacity: 1;
+}
+
+@keyframes nav-buy-pop {
+  0% { transform: scale(0.92); }
+  60% { transform: scale(1.04); }
+  100% { transform: scale(1); }
+}
+
+@media (min-width: 1060px) {
+  .nav-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  }
+
+  .nav-logo { justify-self: start; }
+  .nav-links { justify-self: center; }
+  .nav-actions { justify-self: end; }
+}
+
+@media (min-width: 981px) and (max-width: 1199px) {
+  .nav-links {
+    gap: var(--s-3, 12px);
+  }
+}
+
+@media (max-width: 980px) {
+  .nav-links {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  maker-nav:not(:defined) {
+    min-height: 64px;
+    padding: 22px var(--s-4, 16px);
+  }
+
+  .nav-inner {
+    height: 64px;
+    gap: var(--s-3, 12px);
+    padding: 0 var(--s-4, 16px);
+  }
+
+  .nav-logo {
+    min-width: 0;
+    flex-shrink: 1;
+  }
+
+  .nav-logo img {
+    width: auto;
+    max-width: min(48vw, 180px);
+    height: 40px;
+    object-fit: contain;
+  }
+
+  .nav-actions {
+    flex-shrink: 0;
+  }
+
+  .nav-actions:empty {
+    width: 0;
+  }
+
+  .nav-buy {
+    padding: 8px 10px;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+  }
+}

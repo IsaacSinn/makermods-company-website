@@ -41,32 +41,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="/styles/tokens.css">
 <link rel="stylesheet" href="/styles/page.css">
+<link rel="stylesheet" href="/styles/site-nav.css">
 <link rel="stylesheet" href="/styles/open-booth.css">
+<script src="/scripts/site-nav.js"></script>
 <link rel="icon" type="image/png" href="/assets/logo-mark.png">
 </head>
 <body data-open-booth data-catalog-src="/assets/open-booth/catalog.json">
 
 <!-- ============================== NAV ============================== -->
-<nav class="nav">
-  <div class="container nav-inner">
-    <a href="/" class="nav-logo" aria-label="MakerMods">
-      <img src="/assets/logo-wordmark.png" alt="MakerMods">
-    </a>
-    <div class="nav-links">
-      <a href="/metal-arm">Metal Arm</a>
-      <a href="/openbooth" aria-current="page">OpenBooth</a>
-      <a href="/makermods-app/">MakerMods Lab</a>
-      <a href="/so101">SO-101</a>
-      <a href="/xlerobot">XLeRobot</a>
-      <a href="/elrobot">ElRobot</a>
-      <a href="https://github.com/makermods-robotics" target="_blank" rel="noopener">Docs</a>
-      <a href="https://discord.gg/HpXj3ynhhF" target="_blank" rel="noopener">Community</a>
-    </div>
-    <div class="nav-actions">
-      <a href="/open-booth-buy" id="nav-buy" class="btn nav-buy is-idle">Buy →</a>
-    </div>
-  </div>
-</nav>
+<maker-nav active="openbooth" cta-label="Buy →" cta-href="/open-booth-buy"></maker-nav>
 
 <!-- ============================== HERO ============================== -->
 <header class="ob-hero">

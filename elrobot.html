@@ -42,6 +42,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="styles/tokens.css">
 <link rel="stylesheet" href="styles/page.css">
+<link rel="stylesheet" href="/styles/site-nav.css">
+<script src="/scripts/site-nav.js"></script>
 <link rel="icon" type="image/png" href="assets/logo-mark.png">
 <style>
   /* page-local: extras used only on the elrobot pages */
@@ -219,26 +221,7 @@
 <body>
 
 <!-- ============================== NAV ============================== -->
-<nav class="nav">
-  <div class="container nav-inner">
-    <a href="/" class="nav-logo" aria-label="MakerMods">
-      <img src="/assets/logo-wordmark.png" alt="MakerMods">
-    </a>
-    <div class="nav-links">
-      <a href="/metal-arm">Metal Arm</a>
-      <a href="/openbooth">OpenBooth</a>
-      <a href="/makermods-app/">MakerMods Lab</a>
-      <a href="/so101">SO-101</a>
-      <a href="/xlerobot">XLeRobot</a>
-      <a href="/elrobot" aria-current="page">ElRobot</a>
-      <a href="https://github.com/makermods-robotics" target="_blank" rel="noopener">Docs</a>
-      <a href="https://discord.gg/HpXj3ynhhF" target="_blank" rel="noopener">Community</a>
-    </div>
-    <div class="nav-actions">
-      <a href="https://makermods.myshopify.com/cart/51969031012669:1" id="nav-buy" class="btn nav-buy is-idle">Buy →</a>
-    </div>
-  </div>
-</nav>
+<maker-nav active="elrobot" cta-label="Buy →" cta-href="https://makermods.myshopify.com/cart/51969031012669:1"></maker-nav>
 
 <!-- ============================== CRUMBS ============================== -->
 <div class="container">

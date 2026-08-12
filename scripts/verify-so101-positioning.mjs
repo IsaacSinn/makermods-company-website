@@ -19,6 +19,7 @@ function withoutAllowedHuggingFaceUrls(page) {
 
 const productPage = read('so101.html');
 const buyPage = read('so101-buy.html');
+const siteNav = read('scripts/site-nav.js');
 
 for (const [name, page] of [
   ['SO-101 product page', productPage],
@@ -26,8 +27,10 @@ for (const [name, page] of [
 ]) {
   assert(page.includes('MakerMods Lab'), `${name} must position MakerMods Lab as the operating software`);
   assert(!/\blerobot\b/i.test(withoutAllowedHuggingFaceUrls(page)), `${name} must not contain visible LeRobot positioning`);
-  assert(page.includes('>MakerMods Lab</a>'), `${name} navigation must use the MakerMods Lab label`);
+  assert(page.includes('<maker-nav'), `${name} must use the universal navigation component`);
 }
+
+assert(siteNav.includes("label: 'MakerMods Lab'"), 'Universal navigation must use the MakerMods Lab label');
 
 const sourceIndex = productPage.indexOf('id="open-source"');
 const specsIndex = productPage.indexOf('id="specs"');
