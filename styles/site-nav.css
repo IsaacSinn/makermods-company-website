@@ -43,7 +43,7 @@ maker-nav:not(:defined) {
 .nav-logo img {
   display: block;
   width: auto;
-  height: 54px;
+  height: 70.2px;
 }
 
 .nav-logo-dark {
@@ -70,7 +70,7 @@ html[data-theme='dark'] .nav-logo-dark {
 .nav-links a {
   color: var(--ink, #0a0a0a);
   font-family: var(--font-display, system-ui, sans-serif);
-  font-size: 13px;
+  font-size: 16.9px;
   font-weight: 600;
   letter-spacing: 0;
   text-decoration: none;
@@ -89,7 +89,7 @@ html[data-theme='dark'] .nav-logo-dark {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  width: 138px;
+  width: 179.4px;
 }
 
 .nav-buy {
@@ -97,15 +97,15 @@ html[data-theme='dark'] .nav-logo-dark {
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  width: 138px;
-  min-height: 38px;
-  padding: 10px 16px;
+  width: 179.4px;
+  min-height: 49.4px;
+  padding: 13px 20.8px;
   border: 1px solid var(--line-2, #d4d4d4);
   border-radius: var(--r-md, 6px);
   background: transparent;
   color: var(--ink, #0a0a0a);
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 15.6px;
   font-weight: 700;
   letter-spacing: 0.08em;
   line-height: 1;
@@ -147,7 +147,7 @@ html[data-theme='dark'] .nav-logo-dark {
   100% { transform: scale(1); }
 }
 
-@media (min-width: 1060px) {
+@media (min-width: 1200px) {
   .nav-inner {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
@@ -158,13 +158,13 @@ html[data-theme='dark'] .nav-logo-dark {
   .nav-actions { justify-self: end; }
 }
 
-@media (min-width: 981px) and (max-width: 1199px) {
+@media (min-width: 1121px) and (max-width: 1199px) {
   .nav-links {
     gap: var(--s-3, 12px);
   }
 }
 
-@media (max-width: 980px) {
+@media (max-width: 1120px) {
   .nav-links {
     display: none;
   }
@@ -189,8 +189,8 @@ html[data-theme='dark'] .nav-logo-dark {
 
   .nav-logo img {
     width: auto;
-    max-width: min(48vw, 180px);
-    height: 40px;
+    max-width: min(62.4vw, 234px);
+    height: 52px;
     object-fit: contain;
   }
 
@@ -203,8 +203,8 @@ html[data-theme='dark'] .nav-logo-dark {
   }
 
   .nav-buy {
-    padding: 8px 10px;
-    font-size: 10px;
+    padding: 10.4px 13px;
+    font-size: 13px;
     letter-spacing: 0.06em;
   }
 }

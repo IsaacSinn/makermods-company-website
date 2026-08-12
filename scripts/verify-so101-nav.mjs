@@ -84,8 +84,11 @@ for (const [label, href] of expectedLinks) {
 assert(/customElements\.define\('maker-nav',\s*MakerNav\)/.test(component), 'site-nav.js must register maker-nav');
 assert(/getAttribute\('cta-label'\)/.test(component), 'maker-nav must read its configurable CTA label');
 assert(/getAttribute\('cta-href'\)/.test(component), 'maker-nav must read its configurable CTA destination');
-assert(/\.nav-actions\s*\{[^}]*width:\s*138px/.test(stylesheet), 'The shared navbar must reserve one CTA width');
-assert(/\.nav-buy\s*\{[^}]*width:\s*138px/.test(stylesheet), 'Every navbar CTA must use the shared width');
+assert(/\.nav-actions\s*\{[^}]*width:\s*179\.4px/.test(stylesheet), 'The shared navbar must reserve the enlarged CTA width');
+assert(/\.nav-buy\s*\{[^}]*width:\s*179\.4px/.test(stylesheet), 'Every navbar CTA must use the enlarged shared width');
+assert(/\.nav-logo img\s*\{[^}]*height:\s*70\.2px/.test(stylesheet), 'The desktop navbar logo must be 30% larger');
+assert(/\.nav-links a\s*\{[^}]*font-size:\s*16\.9px/.test(stylesheet), 'The desktop navbar links must be 30% larger');
+assert(/\.nav-buy\s*\{[^}]*font-size:\s*15\.6px/.test(stylesheet), 'The desktop navbar CTA text must be 30% larger');
 assert(/\.nav-buy\s*\{[^}]*font-family:\s*var\(--font-mono\)/.test(stylesheet), 'Every navbar CTA must use the shared font');
 assert(/\.nav-buy\s*\{[^}]*border-radius:\s*var\(--r-md,\s*6px\)/.test(stylesheet), 'Every navbar CTA must restore the previous subtle corner radius');
 
