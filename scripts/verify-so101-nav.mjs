@@ -87,6 +87,7 @@ assert(/getAttribute\('cta-href'\)/.test(component), 'maker-nav must read its co
 assert(/\.nav-actions\s*\{[^}]*width:\s*138px/.test(stylesheet), 'The shared navbar must reserve one CTA width');
 assert(/\.nav-buy\s*\{[^}]*width:\s*138px/.test(stylesheet), 'Every navbar CTA must use the shared width');
 assert(/\.nav-buy\s*\{[^}]*font-family:\s*var\(--font-mono\)/.test(stylesheet), 'Every navbar CTA must use the shared font');
+assert(/\.nav-buy\s*\{[^}]*border-radius:\s*var\(--r-md,\s*6px\)/.test(stylesheet), 'Every navbar CTA must restore the previous subtle corner radius');
 
 for (const cssPath of ['styles/page.css', 'makermods-app/styles.css']) {
   const css = fs.readFileSync(path.join(root, cssPath), 'utf8');

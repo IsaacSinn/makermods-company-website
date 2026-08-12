@@ -101,7 +101,7 @@ html[data-theme='dark'] .nav-logo-dark {
   min-height: 38px;
   padding: 10px 16px;
   border: 1px solid var(--line-2, #d4d4d4);
-  border-radius: 0;
+  border-radius: var(--r-md, 6px);
   background: transparent;
   color: var(--ink, #0a0a0a);
   font-family: var(--font-mono);
