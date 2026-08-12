@@ -155,13 +155,14 @@ html.dark .nav-logo img.dark-logo { display: inline-block; }
   border: 1px solid var(--line-2); color: var(--mute);
   letter-spacing: 0.08em; border-radius: var(--r-sm);
 }
-.nav-links { display: flex; gap: var(--s-6); }
+.nav-links { display: flex; align-items: center; gap: 18px; white-space: nowrap; }
 .nav-links a {
-  font-family: var(--font-display); font-weight: 600; font-size: 14px;
+  font-family: var(--font-display); font-weight: 600; font-size: 13px;
   text-decoration: none; color: var(--ink); letter-spacing: 0;
 }
 .nav-links a:hover { color: var(--orange); opacity: 1; }
-.nav-actions { display: flex; gap: var(--s-3); align-items: center; }
+.nav-links a[aria-current="page"] { color: var(--orange-2); }
+.nav-actions { display: flex; align-items: center; justify-content: flex-end; width: 138px; }
 
 /* Nav links stay centred regardless of the actions group width, so the bar
    does not shift horizontally when moving between pages. */
@@ -176,7 +177,7 @@ html.dark .nav-logo img.dark-logo { display: inline-block; }
 }
 
 @media (min-width: 981px) and (max-width: 1199px) {
-  .nav-links { gap: var(--s-2); }
+  .nav-links { gap: var(--s-3); }
   .nav-links a { font-size: 13px; }
 }
 
@@ -204,6 +205,28 @@ html.dark .nav-logo img.dark-logo { display: inline-block; }
 }
 .btn-stencil:hover { background: var(--orange-2); color: #FFFFFF; }
 .btn-lg { padding: 16px 26px; font-size: 16px; }
+.nav-buy {
+  box-sizing: border-box;
+  justify-content: center;
+  width: 138px;
+  min-height: 38px;
+  padding: 10px 16px;
+  border-radius: 0;
+  border-color: var(--line-2);
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.nav-buy:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+  opacity: 1;
+}
 
 /* ============================== HERO ============================== */
 .hero { padding: var(--s-8) 0 var(--s-9); position: relative; overflow: hidden; }
@@ -607,13 +630,17 @@ html.dark .footer-logo.dark-logo { display: inline-block; }
   .waitlist-form .row-2 { grid-template-columns: 1fr; }
 }
 
-/* Small screens: match the site nav in styles/page.css so the header keeps the
-   same height and never overflows. GitHub moves to the footer here. */
+/* Small screens: match the shared product-page navbar dimensions exactly. */
 @media (max-width: 600px) {
+  .container { padding-left: var(--s-4); padding-right: var(--s-4); }
   .nav-inner { height: 64px; gap: var(--s-3); }
   .nav-logo { min-width: 0; flex-shrink: 1; }
   .nav-logo img { height: 40px; width: auto; max-width: min(48vw, 180px); object-fit: contain; }
-  .nav-actions { flex-shrink: 0; gap: var(--s-2); }
-  .nav-actions .btn-ghost { display: none; }
-  .nav-actions .btn { padding: 8px 12px; font-size: 12px; }
+  .nav-actions { flex-shrink: 0; }
+  .nav-actions .nav-buy {
+    padding: 8px 10px;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
 }

@@ -26,7 +26,7 @@ for (const [name, page] of [
 ]) {
   assert(page.includes('MakerMods Lab'), `${name} must position MakerMods Lab as the operating software`);
   assert(!/\blerobot\b/i.test(withoutAllowedHuggingFaceUrls(page)), `${name} must not contain visible LeRobot positioning`);
-  assert(page.includes('>MakerMods App</a>'), `${name} navigation must keep the existing MakerMods App label`);
+  assert(page.includes('>MakerMods Lab</a>'), `${name} navigation must use the MakerMods Lab label`);
 }
 
 const sourceIndex = productPage.indexOf('id="open-source"');
