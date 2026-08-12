@@ -70,7 +70,7 @@ html[data-theme='dark'] .nav-logo-dark {
 .nav-links a {
   color: var(--ink, #0a0a0a);
   font-family: var(--font-display, system-ui, sans-serif);
-  font-size: 16.9px;
+  font-size: 15px;
   font-weight: 600;
   letter-spacing: 0;
   text-decoration: none;
@@ -89,7 +89,7 @@ html[data-theme='dark'] .nav-logo-dark {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  width: 179.4px;
+  width: auto;
 }
 
 .nav-buy {
@@ -97,18 +97,18 @@ html[data-theme='dark'] .nav-logo-dark {
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  width: 179.4px;
-  min-height: 49.4px;
-  padding: 13px 20.8px;
+  width: auto;
+  min-height: 40px;
+  padding: 10px 16px;
   border: 1px solid var(--line-2, #d4d4d4);
   border-radius: var(--r-md, 6px);
   background: transparent;
   color: var(--ink, #0a0a0a);
   font-family: var(--font-mono);
-  font-size: 15.6px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.08em;
-  line-height: 1;
+  line-height: 18px;
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
@@ -203,8 +203,8 @@ html[data-theme='dark'] .nav-logo-dark {
   }
 
   .nav-buy {
-    padding: 10.4px 13px;
-    font-size: 13px;
-    letter-spacing: 0.06em;
+    padding: 10px 16px;
+    font-size: 12px;
+    letter-spacing: 0.08em;
   }
 }
