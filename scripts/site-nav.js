@@ -12,9 +12,22 @@
     { key: 'community', label: 'Community', href: 'https://discord.gg/HpXj3ynhhF', external: true },
   ];
 
+  const LOCAL_STATIC_HOSTS = new Set(['localhost', '127.0.0.1', '::1']);
+
+  function resolveHref(href) {
+    if (!LOCAL_STATIC_HOSTS.has(window.location.hostname) || !href.startsWith('/')) return href;
+
+    const url = new URL(href, window.location.origin);
+    if (url.pathname === '/openbooth') url.pathname = '/openbooth/';
+    else if (url.pathname !== '/' && !url.pathname.endsWith('/') && !url.pathname.includes('.')) {
+      url.pathname += '.html';
+    }
+    return `${url.pathname}${url.search}${url.hash}`;
+  }
+
   function createLink({ label, href, external }, active) {
     const link = document.createElement('a');
-    link.href = href;
+    link.href = resolveHref(href);
     link.textContent = label;
     if (active) link.setAttribute('aria-current', 'page');
     if (external) {

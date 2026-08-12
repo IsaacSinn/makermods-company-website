@@ -91,6 +91,36 @@
     </div>
   </section>
 
+  <section class="so-lab" id="makermods-lab">
+    <div class="container">
+      <div class="so-lab__head">
+        <div class="so-lab__intro">
+          <div class="eyebrow">[ OPEN SOURCE <span class="b">·</span> 03 · MAKERMODS LAB ]</div>
+          <h2>Train your own SO-101 skills.</h2>
+          <p class="lead">MakerMods Lab gives your robot one place to collect demonstrations, train policies, and grow a reusable skill library. Install it with one command and start building your own SO-101 behaviors.</p>
+          <div class="so-lab__actions">
+            <a class="btn btn-stencil" href="https://github.com/makermods-robotics/makermodslab" target="_blank" rel="noopener">[ VIEW ON GITHUB → ]</a>
+            <span class="so-lab__license">Open source · build, inspect, and contribute</span>
+          </div>
+        </div>
+
+        <div class="so-lab__install" aria-label="MakerMods Lab install command">
+          <div class="so-lab__terminal-bar"><span>terminal</span><span>01 · install + launch</span></div>
+          <div class="so-lab__command-row">
+            <code>uv tool install "git+https://github.com/makermods-robotics/makermodslab" &amp;&amp; makermodslab</code>
+            <button class="so-lab__copy" type="button" data-copy-command aria-label="Copy MakerMods Lab install command"><span data-copy-label>Copy</span></button>
+          </div>
+          <a class="so-lab__repo" href="https://github.com/makermods-robotics/makermodslab" target="_blank" rel="noopener">github.com/makermods-robotics/makermodslab ↗</a>
+        </div>
+      </div>
+
+      <a class="so-lab__preview" href="https://github.com/makermods-robotics/makermodslab" target="_blank" rel="noopener" aria-label="View the open-source MakerMods Lab project on GitHub">
+        <img src="assets/open-booth/makermods-lab.webp" alt="MakerMods Lab interface showing a searchable library of SO-101 robot skills" loading="lazy" decoding="async">
+        <span>MakerMods Lab · SO-101 skill workspace</span>
+      </a>
+    </div>
+  </section>
+
   <section class="section bg-grid" id="openbooth">
     <div class="container so-openbooth">
       <div class="so-openbooth__media">
@@ -98,7 +128,7 @@
         <span class="so-openbooth__tag">OpenBooth · SO-101 skill lab</span>
       </div>
       <div class="so-openbooth__copy">
-        <div class="eyebrow">[ ADD OPENBOOTH <span class="b">·</span> 03 ]</div>
+        <div class="eyebrow">[ ADD OPENBOOTH <span class="b">·</span> 04 ]</div>
         <h2>Give every task the same stage.</h2>
         <p class="lead">OpenBooth adds a controlled workspace, two cameras, and a public catalog of recorded SO-101 skills. Start from community data, then record the demonstrations your next behavior still needs.</p>
         <ul class="so-openbooth__list"><li><span>01</span>Consistent camera views and background</li><li><span>02</span>Single-arm or bimanual SO-101 configurations</li><li><span>03</span>Public skills hosted on Hugging Face</li></ul>
@@ -109,7 +139,7 @@
 
   <section class="section" id="open-source">
     <div class="container">
-      <div class="section-head"><div class="eyebrow">[ READ THE SOURCE <span class="b">·</span> 04 ]</div><h2>Documented all the way down.</h2><p class="lead">Hugging Face documents the SO-101 setup, while the open hardware repository publishes the parts and build files behind the arm.</p></div>
+      <div class="section-head"><div class="eyebrow">[ READ THE SOURCE <span class="b">·</span> 05 ]</div><h2>Documented all the way down.</h2><p class="lead">Hugging Face documents the SO-101 setup, while the open hardware repository publishes the parts and build files behind the arm.</p></div>
       <div class="so-links">
         <a class="so-link-card" href="https://huggingface.co/docs/lerobot/so101" target="_blank" rel="noopener"><span class="so-link-card__eyebrow">Hugging Face</span><h3>SO-101 setup guide</h3><p>Motor setup, assembly, ports, and calibration.</p><span class="so-link-card__arrow">OPEN DOCS ↗</span></a>
         <a class="so-link-card" href="https://github.com/TheRobotStudio/SO-ARM100" target="_blank" rel="noopener"><span class="so-link-card__eyebrow">GitHub</span><h3>Hardware repository</h3><p>BOM, print files, CAD, optional hardware, and simulation.</p><span class="so-link-card__arrow">VIEW SOURCE ↗</span></a>
@@ -119,7 +149,7 @@
 
   <section class="section bg-grid" id="specs">
     <div class="container">
-      <div class="section-head"><div class="eyebrow">[ HARDWARE <span class="b">·</span> 05 ]</div><h2>The open desktop learning arm.</h2><p class="lead">A repairable structure, off-the-shelf servos, and published build files keep the system understandable from the gripper to the training workflow.</p></div>
+      <div class="section-head"><div class="eyebrow">[ HARDWARE <span class="b">·</span> 06 ]</div><h2>The open desktop learning arm.</h2><p class="lead">A repairable structure, off-the-shelf servos, and published build files keep the system understandable from the gripper to the training workflow.</p></div>
       <div class="spec-card">
         <div class="spec-card-head"><span>so-101 · standard open arm</span><span>spec_sheet.txt</span></div>
         <div class="spec-grid">
@@ -141,7 +171,7 @@
 
   <section class="section" id="faq">
     <div class="container">
-      <div class="section-head"><div class="eyebrow">[ FAQ <span class="b">·</span> 06 ]</div><h2>Before your first episode.</h2></div>
+      <div class="section-head"><div class="eyebrow">[ FAQ <span class="b">·</span> 07 ]</div><h2>Before your first episode.</h2></div>
       <div class="faq">
         <div class="faq-item" data-open="true"><button class="faq-q" type="button" aria-expanded="true">What does leader + follower mean?<span class="icon"></span></button><div class="faq-a">You guide the leader arm by hand and the powered follower mirrors it. MakerMods Lab records the follower's motion and connected camera views as demonstrations for robot-learning datasets.</div></div>
         <div class="faq-item" data-open="false"><button class="faq-q" type="button" aria-expanded="false">What can I do with SO-101?<span class="icon"></span></button><div class="faq-a">Use MakerMods Lab to connect and calibrate the arms, teleoperate the follower, record tasks such as pick-and-place, train a policy, and evaluate the learned behavior.</div></div>

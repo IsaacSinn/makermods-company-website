@@ -21,6 +21,26 @@
     observer.observe(heroCta);
   }
 
+  const copyCommand = document.querySelector('[data-copy-command]');
+  copyCommand?.addEventListener('click', async () => {
+    const command = copyCommand.closest('.so-lab__install')?.querySelector('code')?.textContent?.trim();
+    const label = copyCommand.querySelector('[data-copy-label]');
+    if (!command) return;
+
+    try {
+      await navigator.clipboard.writeText(command);
+      copyCommand.dataset.copied = 'true';
+      if (label) label.textContent = 'Copied';
+      window.setTimeout(() => {
+        copyCommand.dataset.copied = 'false';
+        if (label) label.textContent = 'Copy';
+      }, 1800);
+    } catch (error) {
+      console.error('Could not copy the MakerMods Lab install command.', error);
+      if (label) label.textContent = 'Select text';
+    }
+  });
+
   const options = document.querySelector('[data-so-buy-options]');
   if (!options) return;
 

@@ -136,6 +136,167 @@
   display: block;
 }
 
+.so-lab {
+  scroll-margin-top: 92px;
+  padding: var(--s-9) 0;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.so-lab__head {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(460px, 1.08fr);
+  gap: var(--s-8);
+  align-items: end;
+  margin-bottom: var(--s-7);
+}
+
+.so-lab__intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--s-5);
+}
+
+.so-lab .eyebrow,
+.so-lab h2 { color: var(--paper); }
+
+.so-lab h2 {
+  max-width: 11ch;
+  font-size: clamp(42px, 5vw, 72px);
+  line-height: 0.96;
+}
+
+.so-lab .lead {
+  max-width: 56ch;
+  color: rgba(245,245,245,0.72);
+}
+
+.so-lab__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-4);
+}
+
+.so-lab__license {
+  max-width: 26ch;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  color: rgba(245,245,245,0.55);
+}
+
+.so-lab__install {
+  border: 1px solid rgba(245,245,245,0.22);
+  background: rgba(245,245,245,0.05);
+  clip-path: var(--notch-md);
+}
+
+.so-lab__terminal-bar {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s-4);
+  padding: 11px var(--s-4);
+  border-bottom: 1px solid rgba(245,245,245,0.16);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(245,245,245,0.48);
+}
+
+.so-lab__command-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--s-4);
+  align-items: center;
+  padding: var(--s-5) var(--s-4) var(--s-3);
+}
+
+.so-lab__command-row code {
+  min-width: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--paper);
+  font-size: 13px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.so-lab__copy {
+  appearance: none;
+  min-width: 72px;
+  border: 1px solid rgba(245,245,245,0.28);
+  background: transparent;
+  color: var(--paper);
+  padding: 9px 12px;
+  font: 700 11px var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-base) var(--ease-std),
+    color var(--dur-base) var(--ease-std),
+    border-color var(--dur-base) var(--ease-std);
+}
+
+.so-lab__copy:hover,
+.so-lab__copy[data-copied="true"] {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: var(--orange-ink);
+}
+
+.so-lab__copy:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 3px;
+}
+
+.so-lab__repo {
+  display: block;
+  width: fit-content;
+  max-width: calc(100% - (var(--s-4) * 2));
+  margin: 0 var(--s-4) var(--s-4);
+  color: rgba(245,245,245,0.58);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+
+.so-lab__preview {
+  position: relative;
+  display: block;
+  border: 1px solid rgba(245,245,245,0.22);
+  background: #FFFFFF;
+  clip-path: var(--notch-lg);
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.so-lab__preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.so-lab__preview span {
+  position: absolute;
+  left: var(--s-4);
+  bottom: var(--s-4);
+  padding: 7px 10px;
+  border: 1px solid rgba(10,10,10,0.16);
+  background: rgba(255,255,255,0.86);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: rgba(10,10,10,0.72);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
 .so-openbooth {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
@@ -311,6 +472,7 @@
 @media (max-width: 960px) {
   .so-links { grid-template-columns: 1fr 1fr; }
   .so-teleop-media { aspect-ratio: 4 / 3; }
+  .so-lab__head { grid-template-columns: 1fr; }
   .so-openbooth { grid-template-columns: 1fr; }
   .so-openbooth__media { min-height: 380px; }
 }
@@ -326,6 +488,12 @@
   .so-flow span + span::before { margin-right: 5px; }
   .so-links { grid-template-columns: 1fr; }
   .so-teleop-media { aspect-ratio: 16 / 10; }
+  .so-lab { scroll-margin-top: 64px; padding: var(--s-7) 0; }
+  .so-lab__head { gap: var(--s-5); margin-bottom: var(--s-5); }
+  .so-lab h2 { max-width: none; font-size: clamp(38px, 13vw, 56px); letter-spacing: 0; }
+  .so-lab__command-row { grid-template-columns: 1fr; }
+  .so-lab__copy { width: 100%; }
+  .so-lab__preview span { position: static; display: block; border: 0; border-top: 1px solid var(--line); background: var(--surface); }
   .so-openbooth__media { min-height: 0; aspect-ratio: 16/11; }
   .so-openbooth__copy h2 { font-size: 34px; }
   .so-buy-summary { grid-template-columns: 1fr; }
