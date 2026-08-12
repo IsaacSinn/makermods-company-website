@@ -33,6 +33,9 @@
       control: 'single-arm',
       tag: '[ SO-101 · LEADER + FOLLOWER ]',
       cartUrl: 'https://makermods.myshopify.com/cart/51851987812669:1',
+      image: 'assets/open-booth/notused_so101-kit.png',
+      imageAlt: 'SO-101 leader and follower robot arm kit',
+      note: 'SO101 leader + follower kit.',
     },
     bimanual: {
       label: 'SO-101 bimanual kit',
@@ -42,7 +45,7 @@
       control: 'bimanual',
       tag: '[ SO-101 · BIMANUAL ]',
       cartUrl: 'https://makermods.myshopify.com/cart/51851988042045:1',
-      showProductImage: true,
+      note: 'New SO101 bimanual kit photography coming soon.',
     },
     boothPair: {
       label: 'SO-101 kit + OpenBooth',
@@ -52,6 +55,9 @@
       control: 'skill lab',
       tag: '[ SO-101 · OPENBOOTH ]',
       cartUrl: 'https://makermods.myshopify.com/cart/51852066324797:1,51851987812669:1',
+      image: 'assets/open-booth/openbooth-bimanual product.png',
+      imageAlt: 'OpenBooth with SO101 robots inside the training enclosure',
+      note: 'SO101 leader + follower kit with OpenBooth.',
     },
     boothBimanual: {
       label: 'SO-101 bimanual + OpenBooth',
@@ -61,6 +67,9 @@
       control: 'bimanual lab',
       tag: '[ SO-101 · BIMANUAL OPENBOOTH ]',
       cartUrl: 'https://makermods.myshopify.com/cart/51852066324797:1,51851988042045:1',
+      image: 'assets/open-booth/openbooth-bimanual product.png',
+      imageAlt: 'Bimanual OpenBooth with SO101 robots inside the training enclosure',
+      note: 'SO101 bimanual kit with OpenBooth.',
     },
   };
 
@@ -82,13 +91,20 @@
     write('[data-so-buy-parts]', tier.parts);
     write('[data-so-buy-control]', tier.control);
     write('[data-so-buy-tag]', tier.tag);
-    const hasProductImage = tier.showProductImage === true;
+    const hasProductImage = Boolean(tier.image);
     const productImage = document.querySelector('[data-so-buy-image]');
     const placeholder = document.querySelector('[data-so-buy-placeholder]');
     const visual = document.querySelector('[data-so-buy-visual]');
-    if (productImage) productImage.hidden = !hasProductImage;
+    if (productImage) {
+      if (hasProductImage) {
+        productImage.setAttribute('src', tier.image);
+        productImage.setAttribute('alt', tier.imageAlt);
+      }
+      productImage.hidden = !hasProductImage;
+    }
     if (placeholder) placeholder.hidden = hasProductImage;
     if (visual) visual.dataset.hasProductImage = hasProductImage ? 'true' : 'false';
+    write('[data-so-buy-note]', tier.note);
     const cta = document.querySelector('[data-so-buy-cta]');
     if (cta) {
       cta.href = tier.cartUrl;
