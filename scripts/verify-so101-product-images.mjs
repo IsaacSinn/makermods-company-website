@@ -86,8 +86,9 @@ const expectedTiers = {
     note: 'SO101 leader + follower kit.',
   },
   bimanual: {
-    image: null,
-    note: 'New SO101 bimanual kit photography coming soon.',
+    image: 'assets/so101/bimanual-so101.png',
+    alt: 'SO-101 bimanual kit with two leader arms and two follower arms',
+    note: 'SO101 bimanual kit.',
   },
   boothPair: {
     image: 'assets/open-booth/openbooth-bimanual product.png',

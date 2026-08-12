@@ -45,7 +45,9 @@
       control: 'bimanual',
       tag: '[ SO-101 · BIMANUAL ]',
       cartUrl: 'https://makermods.myshopify.com/cart/51851988042045:1',
-      note: 'New SO101 bimanual kit photography coming soon.',
+      image: 'assets/so101/bimanual-so101.png',
+      imageAlt: 'SO-101 bimanual kit with two leader arms and two follower arms',
+      note: 'SO101 bimanual kit.',
     },
     boothPair: {
       label: 'SO-101 kit + OpenBooth',
