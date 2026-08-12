@@ -47,6 +47,7 @@
       cartUrl: 'https://makermods.myshopify.com/cart/51851988042045:1',
       image: 'assets/so101/bimanual-so101.png',
       imageAlt: 'SO-101 bimanual kit with two leader arms and two follower arms',
+      imageFit: 'contain',
       note: 'SO101 bimanual kit.',
     },
     boothPair: {
@@ -59,6 +60,7 @@
       cartUrl: 'https://makermods.myshopify.com/cart/51852066324797:1,51851987812669:1',
       image: 'assets/open-booth/openbooth-bimanual product.png',
       imageAlt: 'OpenBooth with SO101 robots inside the training enclosure',
+      imageFit: 'contain',
       note: 'SO101 leader + follower kit with OpenBooth.',
     },
     boothBimanual: {
@@ -71,6 +73,7 @@
       cartUrl: 'https://makermods.myshopify.com/cart/51852066324797:1,51851988042045:1',
       image: 'assets/open-booth/openbooth-bimanual product.png',
       imageAlt: 'Bimanual OpenBooth with SO101 robots inside the training enclosure',
+      imageFit: 'contain',
       note: 'SO101 bimanual kit with OpenBooth.',
     },
   };
@@ -101,6 +104,7 @@
       if (hasProductImage) {
         productImage.setAttribute('src', tier.image);
         productImage.setAttribute('alt', tier.imageAlt);
+        productImage.style.objectFit = tier.imageFit || 'cover';
       }
       productImage.hidden = !hasProductImage;
     }

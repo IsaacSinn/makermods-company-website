@@ -8,6 +8,7 @@ class FakeElement {
     this.hidden = false;
     this.textContent = '';
     this.innerHTML = '';
+    this.style = {};
     this.attributes = new Map();
     this.listeners = new Map();
   }
@@ -83,21 +84,25 @@ const expectedTiers = {
   pair: {
     image: 'assets/open-booth/notused_so101-kit.png',
     alt: 'SO-101 leader and follower robot arm kit',
+    fit: 'cover',
     note: 'SO101 leader + follower kit.',
   },
   bimanual: {
     image: 'assets/so101/bimanual-so101.png',
     alt: 'SO-101 bimanual kit with two leader arms and two follower arms',
+    fit: 'contain',
     note: 'SO101 bimanual kit.',
   },
   boothPair: {
     image: 'assets/open-booth/openbooth-bimanual product.png',
     alt: 'OpenBooth with SO101 robots inside the training enclosure',
+    fit: 'contain',
     note: 'SO101 leader + follower kit with OpenBooth.',
   },
   boothBimanual: {
     image: 'assets/open-booth/openbooth-bimanual product.png',
     alt: 'Bimanual OpenBooth with SO101 robots inside the training enclosure',
+    fit: 'contain',
     note: 'SO101 bimanual kit with OpenBooth.',
   },
 };
@@ -112,6 +117,7 @@ for (const [id, expected] of Object.entries(expectedTiers)) {
   if (hasImage) {
     assert.equal(image.attributes.get('src'), expected.image, `${id} should use the approved photograph`);
     assert.equal(image.attributes.get('alt'), expected.alt, `${id} should describe its photograph`);
+    assert.equal(image.style.objectFit, expected.fit, `${id} should use the approved photograph framing`);
   }
 }
 
