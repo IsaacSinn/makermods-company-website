@@ -27,7 +27,11 @@ const pages = {
     href: 'https://makermods.myshopify.com/cart/51969031012669:1',
   },
   'open-booth-buy.html': { active: 'openbooth', label: '← back', href: '/openbooth' },
-  'makermods-app/index.html': { active: 'makermods-lab', label: 'Join waitlist', href: '#waitlist' },
+  'makermods-app/index.html': {
+    active: 'makermods-lab',
+    label: 'View on GitHub',
+    href: 'https://github.com/makermods-robotics/makermodslab',
+  },
 };
 
 function getAttribute(attributes, name) {
