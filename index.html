@@ -152,6 +152,16 @@
     gap: var(--s-3);
   }
 
+  .maker-home-photo { background: #dfe9f9; }
+  .maker-home-photo img { object-fit: contain; }
+  .lab-home-demo-frame { background: var(--ink); }
+  .lab-home-demo-frame video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
   .ob-home-media {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
@@ -458,13 +468,88 @@
   </div>
 </section>
 
+<!-- ============================== MAKER ARM ============================== -->
+<section class="section bg-grid maker-home" id="maker-arm" aria-labelledby="maker-home-title" data-screen-label="02 Maker Arm">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">[ PRODUCT 02 <span class="b">·</span> MAKER ARM ]</div>
+      <h2 id="maker-home-title">Maker Arm.</h2>
+      <p class="lead">Maker Arm brings quasi-direct-drive control to a price independent builders can reach. Its 3D-printed structure arrives fully assembled with 6+1 DoF and RobStride actuators.</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="ob-home-media">
+      <div class="ob-home-photo ob-home-photo--booth maker-home-photo">
+        <img src="assets/maker-arm/IMG_2911.jpg" alt="Maker Arm, a black 3D-printed quasi-direct-drive robot arm, shown in profile" width="2800" height="1866" loading="lazy" decoding="async">
+        <div class="corner tl" aria-hidden="true"></div><div class="corner tr" aria-hidden="true"></div>
+        <div class="corner bl" aria-hidden="true"></div><div class="corner br" aria-hidden="true"></div>
+        <div class="ob-home-photo-tag">[ 3D PRINTED · QDD ]</div>
+      </div>
+    </div>
+
+    <div class="ob-home-steps" role="group" aria-label="Maker Arm key specifications">
+      <div class="ob-home-step"><span class="ob-home-step-num">01</span><span class="ob-home-step-text">6+1 DoF, including the gripper.</span></div>
+      <div class="ob-home-step"><span class="ob-home-step-num">02</span><span class="ob-home-step-text">RobStride quasi-direct-drive actuators.</span></div>
+      <div class="ob-home-step"><span class="ob-home-step-num">03</span><span class="ob-home-step-text">Fast, direct control over 48 V CAN.</span></div>
+    </div>
+
+    <div class="ob-home-foot">
+      <div class="ob-home-stats" role="group" aria-label="Maker Arm availability">
+        <span>$1,199</span><span>fully assembled</span><span>ships October</span>
+      </div>
+      <div class="ob-home-actions">
+        <a class="btn btn-stencil" href="maker-arm-buy.html">[ BUY MAKER ARM · $1,199 → ]</a>
+        <a class="btn btn-secondary" href="maker-arm.html">Explore Maker Arm</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== MAKERMODS LAB ============================== -->
+<section class="section" id="makermods-lab" aria-labelledby="makermods-lab-title" data-screen-label="03 MakerMods Lab">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">[ MAKERMODS LAB <span class="b">·</span> ROBOT SKILLS ]</div>
+      <h2 id="makermods-lab-title">Train, share, and run robot skills.</h2>
+      <p class="lead">MakerMods Lab turns the SO-101 workflow into one skills workspace. Record a dataset, train locally or in the cloud, then run the policy on your robot.</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="ob-home-media">
+      <div class="ob-home-photo ob-home-photo--booth lab-home-demo-frame">
+        <video src="makermods-app/assets/makermods-lab-demo.mp4" poster="makermods-app/assets/makermods-lab-demo-poster.jpg" autoplay muted loop playsinline preload="metadata" controls aria-label="MakerMods Lab demo showing robot setup, dataset recording, training, and inference"></video>
+        <div class="corner tl" aria-hidden="true"></div><div class="corner tr" aria-hidden="true"></div>
+        <div class="corner bl" aria-hidden="true"></div><div class="corner br" aria-hidden="true"></div>
+        <div class="ob-home-photo-tag">[ MAKERMODS LAB · DEMO ]</div>
+      </div>
+    </div>
+
+    <div class="ob-home-steps" role="group" aria-label="MakerMods Lab workflow">
+      <div class="ob-home-step"><span class="ob-home-step-num">01</span><span class="ob-home-step-text">Record your own robot dataset.</span></div>
+      <div class="ob-home-step"><span class="ob-home-step-num">02</span><span class="ob-home-step-text">Train locally or in the cloud.</span></div>
+      <div class="ob-home-step"><span class="ob-home-step-num">03</span><span class="ob-home-step-text">Run and share the finished policy.</span></div>
+    </div>
+
+    <div class="ob-home-foot">
+      <div class="ob-home-stats" role="group" aria-label="MakerMods Lab details">
+        <span>SO-101 workflow</span><span>local or cloud</span><span>open source</span>
+      </div>
+      <div class="ob-home-actions">
+        <a class="btn btn-stencil" href="makermods-app/">[ EXPLORE MAKERMODS LAB → ]</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============================== OPENBOOTH ============================== -->
 <section class="section bg-grid" id="openbooth">
   <div class="container">
     <div class="section-head">
       <div class="eyebrow">[ OPENBOOTH <span class="b">·</span> SO101 ]</div>
       <h2>OpenBooth SO101.</h2>
-      <p class="lead">Our second flagship, made for classrooms and hackathon floors. The booth gives your SO101 a consistent place to learn, and the community has already recorded 152 skills your robot can start from.</p>
+      <p class="lead">Made for classrooms and hackathon floors. The booth gives your SO101 a consistent place to learn, and the community has already recorded 152 skills your robot can start from.</p>
     </div>
   </div>
 
@@ -538,7 +623,7 @@
     <div class="section-head">
       <div class="eyebrow">[ ALSO FROM MAKERMODS ]</div>
       <h2>In the lab.</h2>
-      <p class="lead">Two more robots we're shipping right now.</p>
+      <p class="lead">Two more robots we're building and shipping right now.</p>
     </div>
 
     <div class="lab-home-grid">
@@ -585,6 +670,7 @@
         <h5>Shop</h5>
         <ul>
           <li><a href="elrobot.html">ElRobot</a></li>
+          <li><a href="maker-arm.html">Maker Arm</a></li>
           <li><a href="metal-arm.html">Metal Arm</a></li>
           <li><a href="xlerobot.html">XLeRobot</a></li>
           <li><a href="openbooth">OpenBooth</a></li>

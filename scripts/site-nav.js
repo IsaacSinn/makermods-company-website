@@ -2,6 +2,7 @@
   'use strict';
 
   const NAV_LINKS = [
+    { key: 'maker-arm', label: 'Maker Arm', href: '/maker-arm' },
     { key: 'metal-arm', label: 'Metal Arm', href: '/metal-arm' },
     { key: 'openbooth', label: 'OpenBooth', href: '/openbooth' },
     { key: 'makermods-lab', label: 'MakerMods Lab', href: '/makermods-app/' },
