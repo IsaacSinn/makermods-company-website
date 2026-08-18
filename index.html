@@ -394,8 +394,8 @@
 
   @media (max-width: 600px) {
     .home-hero {
-      height: calc(100svh - 148px);
-      min-height: 480px;
+      height: auto;
+      min-height: calc(100svh - 64px);
     }
     .home-hero::after {
       background:
@@ -403,8 +403,10 @@
         linear-gradient(to top, color-mix(in srgb, var(--ink) 90%, transparent), color-mix(in srgb, var(--ink) 45%, transparent) 68%, color-mix(in srgb, var(--ink) 18%, transparent));
     }
     .home-hero-content {
-      padding-top: var(--s-10);
-      padding-bottom: var(--s-7);
+      height: auto;
+      min-height: calc(100svh - 64px);
+      padding-top: var(--s-9);
+      padding-bottom: var(--s-6);
     }
     .home-hero-title { font-size: clamp(44px, 13vw, 64px); }
     .home-hero-sub { font-size: var(--t-body); }
