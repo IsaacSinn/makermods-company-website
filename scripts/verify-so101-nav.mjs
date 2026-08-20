@@ -90,7 +90,7 @@ assert(/getAttribute\('cta-label'\)/.test(component), 'maker-nav must read its c
 assert(/getAttribute\('cta-href'\)/.test(component), 'maker-nav must read its configurable CTA destination');
 assert(/\.nav-actions\s*\{[^}]*width:\s*auto/.test(stylesheet), 'The shared navbar actions must fit their content');
 assert(/\.nav-buy\s*\{[^}]*width:\s*auto/.test(stylesheet), 'Every navbar CTA must fit its label');
-assert(/\.nav-logo img\s*\{[^}]*height:\s*70\.2px/.test(stylesheet), 'The desktop navbar logo must be 30% larger');
+assert(/\.nav-logo img\s*\{[^}]*height:\s*46px/.test(stylesheet), 'The desktop navbar logo must fit the 68px bar');
 assert(/\.nav-links a\s*\{[^}]*font-size:\s*15px/.test(stylesheet), 'The desktop navbar links must use 15px text');
 assert(/\.nav-buy\s*\{[^}]*font-size:\s*12px/.test(stylesheet), 'The navbar CTA must match the live 12px text');
 assert(/\.nav-buy\s*\{[^}]*font-family:\s*var\(--font-mono\)/.test(stylesheet), 'Every navbar CTA must use the shared font');

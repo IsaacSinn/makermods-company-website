@@ -6,8 +6,8 @@ maker-nav {
 
 maker-nav:not(:defined) {
   box-sizing: border-box;
-  min-height: 92px;
-  padding: 34px var(--s-6, 32px);
+  min-height: 68px;
+  padding: 22px var(--s-6, 32px);
   border-bottom: 1px solid var(--line, #e5e5e5);
   background: var(--paper, #fafafa);
 }
@@ -29,7 +29,7 @@ maker-nav:not(:defined) {
   box-sizing: border-box;
   width: 100%;
   max-width: 1280px;
-  height: 92px;
+  height: 68px;
   margin: 0 auto;
   padding: 0 var(--s-6, 32px);
 }
@@ -43,7 +43,7 @@ maker-nav:not(:defined) {
 .nav-logo img {
   display: block;
   width: auto;
-  height: 70.2px;
+  height: 46px;
 }
 
 .nav-logo-dark {
@@ -172,12 +172,12 @@ html[data-theme='dark'] .nav-logo-dark {
 
 @media (max-width: 600px) {
   maker-nav:not(:defined) {
-    min-height: 64px;
-    padding: 22px var(--s-4, 16px);
+    min-height: 56px;
+    padding: 18px var(--s-4, 16px);
   }
 
   .nav-inner {
-    height: 64px;
+    height: 56px;
     gap: var(--s-3, 12px);
     padding: 0 var(--s-4, 16px);
   }
@@ -190,7 +190,7 @@ html[data-theme='dark'] .nav-logo-dark {
   .nav-logo img {
     width: auto;
     max-width: min(62.4vw, 234px);
-    height: 52px;
+    height: 38px;
     object-fit: contain;
   }
 

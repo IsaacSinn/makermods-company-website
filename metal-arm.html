@@ -2,19 +2,19 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>MakerMods Metal Arm, 3 kg Payload 7-Axis Arm for LeRobot</title>
+<title>MakerMods Metal Arm, 3 kg Payload 6-Axis Arm for LeRobot</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="An all-CNC-aluminum seven-axis robotic arm with a 3 kg rated payload. Smooth leader-follower teleop, native LeRobot compatibility, and ACT, SmolVLA and pi0 running out of the box.">
+<meta name="description" content="An all-CNC-aluminum six-axis robotic arm with a 3 kg rated payload. Smooth leader-follower teleop, native LeRobot compatibility, and ACT, SmolVLA and pi0 running out of the box.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://www.makermods.ai/metal-arm">
 <meta property="og:type" content="product">
 <meta property="og:site_name" content="MakerMods">
-<meta property="og:title" content="MakerMods Metal Arm, 3 kg Payload 7-Axis Arm for LeRobot">
+<meta property="og:title" content="MakerMods Metal Arm, 3 kg Payload 6-Axis Arm for LeRobot">
 <meta property="og:description" content="3 kg payload, all-CNC-aluminum build, smooth leader-follower teleop, native LeRobot support, and ACT / SmolVLA / pi0 out of the box.">
 <meta property="og:url" content="https://www.makermods.ai/metal-arm">
 <meta property="og:image" content="https://www.makermods.ai/assets/metal-arm/hero.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="MakerMods Metal Arm, 3 kg Payload 7-Axis Arm for LeRobot">
+<meta name="twitter:title" content="MakerMods Metal Arm, 3 kg Payload 6-Axis Arm for LeRobot">
 <meta name="twitter:description" content="3 kg payload, all-metal build, smooth teleop, and native LeRobot support for ACT, SmolVLA and pi0.">
 <meta name="twitter:image" content="https://www.makermods.ai/assets/metal-arm/hero.png">
 <script type="application/ld+json">
@@ -26,7 +26,7 @@
     "@type": "Brand",
     "name": "MakerMods"
   },
-  "description": "An all-CNC-aluminum seven-axis robotic arm with a 3 kg rated payload, smooth leader-follower teleoperation, and native LeRobot support for ACT, SmolVLA and pi0.",
+  "description": "An all-CNC-aluminum six-axis robotic arm with a 3 kg rated payload, smooth leader-follower teleoperation, and native LeRobot support for ACT, SmolVLA and pi0.",
   "image": "https://www.makermods.ai/assets/metal-arm/hero.png",
   "url": "https://www.makermods.ai/metal-arm",
   "offers": {
@@ -310,6 +310,40 @@
     padding: 6%;
   }
 
+  /* ---- Photo placeholders: awaiting real product shots ---- */
+  .ma-ph {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--s-2);
+    flex-direction: column;
+    background: #ECE7DF;
+    border: 1px dashed var(--line-2);
+    color: var(--mute);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: var(--s-4);
+  }
+  .ma-ph .ph-note {
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: none;
+    color: var(--mute-2);
+  }
+  .ma-ph--thumb { padding: 4px; gap: 1px; font-size: 10px; letter-spacing: 0.08em; }
+  .ma-ph--thumb .ph-note { font-size: 9px; letter-spacing: 0.04em; }
+  .ma-ph--wide { aspect-ratio: 16 / 9; }
+  .ma-ph--banner { aspect-ratio: 21 / 9; width: 100%; }
+  .ma-ph--card { aspect-ratio: 16 / 10; }
+  .ma-ph--square { aspect-ratio: 1; }
+  @media (max-width: 600px) {
+    .ma-ph--banner { aspect-ratio: 16 / 10; }
+  }
+
   /* ---- Pillars: the four reasons, stat-led ---- */
   .ma-pillars {
     display: grid;
@@ -354,38 +388,9 @@
   .ma-pillar p { font-size: 13px; color: var(--ink-2); line-height: 1.5; }
 
   /* ---- Teleop: three lead options ---- */
-  .ma-modes--3 { grid-template-columns: repeat(3, 1fr); }
-  .ma-modes--3 .ma-mode { grid-template-columns: 1fr; }
-  .ma-modes--3 .ma-mode-img { min-height: 200px; aspect-ratio: 16 / 10; }
+  .ma-modes .ma-mode { grid-template-columns: 1fr; }
+  .ma-modes .ma-mode-img { min-height: 260px; aspect-ratio: 16 / 10; }
 
-  /* image-free variant: mono spec plate stands in for a photo */
-  .ma-mode--plate .ma-mode-plate {
-    background: var(--ink);
-    color: var(--paper);
-    min-height: 200px;
-    aspect-ratio: 16 / 10;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: var(--s-2);
-    padding: var(--s-5);
-    font-family: var(--font-mono);
-  }
-  .ma-mode--plate .ma-mode-plate .pl-name {
-    font-size: 20px;
-    font-family: var(--font-display);
-    font-weight: 700;
-    letter-spacing: -0.01em;
-  }
-  .ma-mode--plate .ma-mode-plate .pl-row {
-    display: flex;
-    justify-content: space-between;
-    font-size: 11px;
-    letter-spacing: 0.06em;
-    color: rgba(250,250,250,0.65);
-    border-top: 1px solid rgba(250,250,250,0.18);
-    padding-top: 6px;
-  }
   .ma-mode .price-tag {
     font-family: var(--font-mono);
     font-size: 12px;
@@ -457,7 +462,6 @@
 
   @media (max-width: 960px) {
     .ma-pillars { grid-template-columns: 1fr 1fr; }
-    .ma-modes--3 { grid-template-columns: 1fr; }
     .ma-roadmap { grid-template-columns: 1fr; gap: var(--s-5); padding: var(--s-5); }
   }
 
@@ -488,13 +492,13 @@
 <section class="hero" data-screen-label="01 Hero">
   <div class="container hero-inner">
     <div class="hero-photo hero-photo--photo hero-photo--clean">
-      <img class="hero-img" src="assets/metal-arm/hero-2833.jpg" alt="MakerMods Metal Arm, seven-axis robotic arm with a 3 kg rated payload" loading="eager" decoding="async">
+      <img class="hero-img" src="assets/metal-arm/hero-2833.jpg" alt="MakerMods Metal Arm, six-axis robotic arm with a 3 kg rated payload" loading="eager" decoding="async">
     </div>
 
     <div class="buy-box">
-      <div class="eyebrow">[ 3 KG PAYLOAD <span class="b">·</span> 7-AXIS <span class="b">·</span> LEROBOT-READY ]</div>
+      <div class="eyebrow">[ 3 KG PAYLOAD <span class="b">·</span> 6-AXIS <span class="b">·</span> LEROBOT-READY ]</div>
       <h1 class="hero-title">MakerMods<br>Metal Arm.</h1>
-      <p class="hero-sub">A 3 kg rated payload on a 4.2 kg all-CNC-aluminum arm, the load capacity researchers actually ask for in a seven-axis manipulator light enough to clamp to a bench. Smooth leader-follower teleop, native LeRobot compatibility, and ACT, SmolVLA and π0 running out of the box.</p>
+      <p class="hero-sub">A 3 kg rated payload on a 4.2 kg all-CNC-aluminum six-axis arm. Smooth leader-follower teleop, native LeRobot compatibility, and ACT, SmolVLA and π0 running out of the box.</p>
 
       <div class="price-row">
         <span class="price">$2,499</span>
@@ -554,24 +558,40 @@
 
     <div class="ma-pillars">
       <div class="ma-pillar">
+        <div class="ma-ph ma-ph--card">
+          <span>photo · 3 kg payload</span>
+          <span class="ph-note">e.g. arm lifting a real load</span>
+        </div>
         <div class="num">[ 01 · PAYLOAD ]</div>
         <div class="stat">3<span class="u">kg</span></div>
         <h3>Rated payload</h3>
         <p>Enough to pick real objects, not just foam cubes. Tools, bottles, small assemblies, and camera rigs all stay inside the envelope.</p>
       </div>
       <div class="ma-pillar">
+        <div class="ma-ph ma-ph--card">
+          <span>photo · CNC aluminum</span>
+          <span class="ph-note">e.g. machined joint detail</span>
+        </div>
         <div class="num">[ 02 · BUILD ]</div>
         <div class="stat">4.2<span class="u">kg</span></div>
         <h3>All-CNC aluminum</h3>
         <p>Machined aluminum-alloy housing throughout, rigid enough for contact-rich work and light enough to move between benches by hand.</p>
       </div>
       <div class="ma-pillar">
+        <div class="ma-ph ma-ph--card">
+          <span>photo · Teleop</span>
+          <span class="ph-note">e.g. operator leading the arm</span>
+        </div>
         <div class="num">[ 03 · TELEOP ]</div>
         <div class="stat">2<span class="u">leaders</span></div>
         <h3>Smooth teleoperation</h3>
         <p>Lead with a second Metal Arm for a true 1:1 joint mapping, or with the Star Arm 102 as a lighter, lower-cost leader.</p>
       </div>
       <div class="ma-pillar">
+        <div class="ma-ph ma-ph--card">
+          <span>photo · LeRobot</span>
+          <span class="ph-note">e.g. policy running on the arm</span>
+        </div>
         <div class="num">[ 04 · SOFTWARE ]</div>
         <div class="stat">LeRobot</div>
         <h3>Native compatibility</h3>
@@ -590,28 +610,9 @@
       <p class="lead">The payload number is the one people check first, and it is the one most desk-class arms quietly fail. A machined aluminum structure and sized joints let this one hold 3 kg through its working envelope instead of only at the base.</p>
     </div>
 
-    <div class="ma-photo-grid">
-      <div class="ma-photo">
-        <img src="assets/metal-arm/arm-2844.jpg" alt="MakerMods Metal Arm, seven-axis profile" loading="lazy" decoding="async" style="object-fit:contain;padding:8%">
-        <div class="corner tl"></div><div class="corner tr"></div>
-        <div class="corner bl"></div><div class="corner br"></div>
-        <div class="label">01 · ARM</div>
-        <div class="cap"><span>7 DOF</span><span>612.5 mm reach</span></div>
-      </div>
-      <div class="ma-photo">
-        <img src="assets/metal-arm/end-2in1.jpg" alt="2-in-1 end-effector, gripper plus leader" loading="lazy" decoding="async" style="object-fit:contain;padding:6%;background:#FAFAFA">
-        <div class="corner tl"></div><div class="corner tr"></div>
-        <div class="corner bl"></div><div class="corner br"></div>
-        <div class="label">02 · END-EFFECTOR</div>
-        <div class="cap"><span>swap in seconds</span><span>0–95 mm stroke</span></div>
-      </div>
-      <div class="ma-photo">
-        <img src="assets/metal-arm/gravity-comp-2856.jpg" alt="Operator guiding the arm under gravity compensation" loading="lazy" decoding="async">
-        <div class="corner tl"></div><div class="corner tr"></div>
-        <div class="corner bl"></div><div class="corner br"></div>
-        <div class="label">03 · GRAVITY COMP</div>
-        <div class="cap"><span>out of the box</span><span>guide by hand</span></div>
-      </div>
+    <div class="ma-ph ma-ph--banner">
+      <span>photo · build quality banner</span>
+      <span class="ph-note">full-width shot of the arm, machined detail visible</span>
     </div>
 
     <div class="ma-cap-row">
@@ -648,7 +649,7 @@
       <p class="lead">Teleop quality is what decides whether your demonstration data is worth training on. Lead with a second Metal Arm and the joint mapping is exactly 1:1, with no retargeting error to correct for. Lead with the Star Arm 102 when you want a lighter, cheaper handset. Either way the stream goes straight into LeRobot recording.</p>
     </div>
 
-    <div class="ma-modes ma-modes--3">
+    <div class="ma-modes">
       <div class="ma-mode">
         <div class="ma-mode-img"><img src="assets/metal-arm/leader-follower.jpg" alt="Teleoperation with a second Metal Arm as the leader" loading="lazy" decoding="async"></div>
         <div class="ma-mode-body">
@@ -659,12 +660,12 @@
         </div>
       </div>
 
-      <div class="ma-mode ma-mode--plate">
-        <div class="ma-mode-plate">
-          <div class="pl-name">Star Arm 102</div>
-          <div class="pl-row"><span>ROLE</span><span>LEADER</span></div>
-          <div class="pl-row"><span>PAIRS WITH</span><span>METAL ARM</span></div>
-          <div class="pl-row"><span>PRICE</span><span>$199</span></div>
+      <div class="ma-mode">
+        <div class="ma-mode-img">
+          <div class="ma-ph" style="height:100%">
+            <span>photo · star arm 102 teleop</span>
+            <span class="ph-note">operator leading the Metal Arm with the Star Arm 102</span>
+          </div>
         </div>
         <div class="ma-mode-body">
           <span class="badge">4.2 · STAR ARM 102</span>
@@ -674,15 +675,6 @@
         </div>
       </div>
 
-      <div class="ma-mode">
-        <div class="ma-mode-img"><img src="assets/metal-arm/single-arm.jpg" alt="Direct control, operator guides the arm by hand" loading="lazy" decoding="async"></div>
-        <div class="ma-mode-body">
-          <span class="badge">4.3 · DIRECT</span>
-          <h3>No leader at all.</h3>
-          <div class="config">Metal Arm × 1 &nbsp;+&nbsp; 2-in-1 × 1</div>
-          <p>Grip the 2-in-1 end-effector and walk the arm through the motion under gravity compensation. The fastest way to capture a handful of demos without setting up a second arm.</p>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -710,8 +702,8 @@
         <div class="ma-cap-img"><img src="assets/metal-arm/dual-arm.jpg" alt="Bimanual Metal Arm capture setup" loading="lazy" decoding="async"></div>
         <div class="ma-cap-body">
           <div class="eyebrow">[ 5.2 · PIPELINE ]</div>
-          <h3>Dataset to policy, unchanged.</h3>
-          <p>LeRobot dataset format, Hugging Face Hub upload, and standard training and evaluation flows. Anything already written against LeRobot runs here without modification.</p>
+          <h3>Dataset to policy.</h3>
+          <p>LeRobot dataset format, Hugging Face Hub upload, and the standard training and evaluation flows. Record on the bench, push to the Hub, train, and send the policy straight back to the arm.</p>
         </div>
       </div>
     </div>
@@ -741,88 +733,11 @@
   </div>
 </section>
 
-<!-- ============================== MAKERMODS LAB ============================== -->
-<section class="section" id="lab" data-screen-label="06 MakerMods Lab">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">[ MAKERMODS LAB <span class="b">·</span> 06 ]</div>
-      <h2>The no-code route, on the roadmap.</h2>
-      <p class="lead">MakerMods Lab is our browser app for the whole LeRobot workflow: calibrate, teleoperate, record, train, and run inference without touching a terminal.</p>
-    </div>
-
-    <div class="ma-roadmap">
-      <div>
-        <span class="rm-status">On the roadmap · not yet available for Metal Arm</span>
-        <h3>Metal Arm support is not shipping yet.</h3>
-        <p>Lab currently drives OpenBooth and SO-101 setups. Metal Arm support is planned but not released, so buy this arm for the open SDK and the LeRobot pipeline, both of which work today, and treat Lab as something that arrives later.</p>
-        <p>We will announce Metal Arm support in Lab when it ships rather than pre-selling it here.</p>
-        <a class="btn btn-secondary" href="makermods-app/">See what Lab does today →</a>
-      </div>
-      <div class="rm-now">
-        <span class="k">Metal Arm · what you drive it with today</span>
-        <ul>
-          <li><span>Python + C++ SDK</span><span class="s">available</span></li>
-          <li><span>LeRobot pipeline</span><span class="s">available</span></li>
-          <li><span>ROS 1 / ROS 2 drivers</span><span class="s">available</span></li>
-          <li><span>MoveIt + Gazebo</span><span class="s">available</span></li>
-          <li><span>MakerMods Lab GUI</span><span class="s">planned</span></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================== END-OF-ARM TOOLING ============================== -->
-<section class="section bg-grid" id="end-effectors" data-screen-label="07 End-of-Arm Tooling">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">[ END-OF-ARM TOOLING <span class="b">·</span> 07 ]</div>
-      <h2>Three swappable end-effectors.</h2>
-      <p class="lead">All three share the same XT30 power + CAN interface and swap in seconds. Every arm ships with the 2-in-1 by default.</p>
-    </div>
-
-    <div class="ma-end-grid">
-      <div class="ma-end-card">
-        <div class="pn">follower side</div>
-        <div class="end-img"><img src="assets/metal-arm/end-gripper.jpg?v=2" alt="Gripper" loading="lazy" decoding="async"></div>
-        <h3>Gripper</h3>
-        <p style="font-size:13px;color:var(--ink-2);line-height:1.5">Parallel-jaw gripper for the follower arm. Wide stroke for bottles, tools, and small assemblies.</p>
-        <div class="mini">
-          <span class="k">stroke</span><span class="v">0–95 mm</span>
-          <span class="k">weight</span><span class="v">670 g</span>
-        </div>
-      </div>
-
-      <div class="ma-end-card">
-        <div class="pn">leader side</div>
-        <div class="end-img"><img src="assets/metal-arm/end-teacher.jpg?v=2" alt="Leader" loading="lazy" decoding="async"></div>
-        <h3>Leader</h3>
-        <p style="font-size:13px;color:var(--ink-2);line-height:1.5">Handheld teleop unit. Mounts to the leader arm so the operator commands the follower gripper directly.</p>
-        <div class="mini">
-          <span class="k">stroke</span><span class="v">0–95 mm</span>
-          <span class="k">weight</span><span class="v">670 g</span>
-        </div>
-      </div>
-
-      <div class="ma-end-card">
-        <div class="pn">included by default</div>
-        <div class="end-img"><img src="assets/metal-arm/end-2in1.jpg?v=2" alt="2-in-1 end-effector" loading="lazy" decoding="async"></div>
-        <h3>2-in-1</h3>
-        <p style="font-size:13px;color:var(--ink-2);line-height:1.5">Gripper and leader in one unit. Grip it to guide the arm by hand, or run it as a normal gripper.</p>
-        <div class="mini">
-          <span class="k">stroke</span><span class="v">0–95 mm</span>
-          <span class="k">weight</span><span class="v">670 g</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ============================== SOFTWARE / CAPABILITIES ============================== -->
-<section class="section" id="software" data-screen-label="08 Software & Control">
+<section class="section" id="software" data-screen-label="06 Software & Control">
   <div class="container">
     <div class="section-head">
-      <div class="eyebrow">[ SOFTWARE &amp; CONTROL <span class="b">·</span> 08 ]</div>
+      <div class="eyebrow">[ SOFTWARE &amp; CONTROL <span class="b">·</span> 06 ]</div>
       <h2>The rest of the stack.</h2>
       <p class="lead">Underneath the LeRobot layer sits a conventional, well-documented control stack, so the arm also behaves like a normal industrial-style manipulator when you need it to.</p>
     </div>
@@ -831,7 +746,7 @@
       <div class="ma-cap-feature">
         <div class="ma-cap-img"><img src="assets/metal-arm/gravity-comp-2852.jpg" alt="Operator demonstrating gravity-compensated teaching" loading="lazy" decoding="async"></div>
         <div class="ma-cap-body">
-          <div class="eyebrow">[ 8.1 · GRAVITY COMPENSATION ]</div>
+          <div class="eyebrow">[ 6.1 · GRAVITY COMPENSATION ]</div>
           <h3>Teach by hand.</h3>
           <p>Gravity compensation lets an operator guide the arm directly through a motion, for hands-on data collection and quick demo capture.</p>
         </div>
@@ -840,7 +755,7 @@
       <div class="ma-cap-feature">
         <div class="ma-cap-img"><img src="assets/metal-arm/trajectory.jpg" alt="Adaptive trajectory tracking demonstration" loading="lazy" decoding="async"></div>
         <div class="ma-cap-body">
-          <div class="eyebrow">[ 8.2 · PRECISE CONTROL ]</div>
+          <div class="eyebrow">[ 6.2 · PRECISE CONTROL ]</div>
           <h3>Joint + end-pose control.</h3>
           <p>Joint-space and end-pose control with a built-in stable IK solver and adaptive trajectory tracking.</p>
         </div>
@@ -849,7 +764,7 @@
       <div class="ma-cap-feature">
         <div class="ma-cap-img"><img src="assets/metal-arm/urdf.jpg" alt="URDF visualization of the MakerMods Metal Arm" loading="lazy" decoding="async"></div>
         <div class="ma-cap-body">
-          <div class="eyebrow">[ 8.3 · OPEN SDK + URDF ]</div>
+          <div class="eyebrow">[ 6.3 · OPEN SDK + URDF ]</div>
           <h3>Drop into your stack.</h3>
           <p>MIT-licensed Python and C++ SDK, plus ready-to-use URDF for the arm and every end-effector configuration. No rebuilding kinematics.</p>
         </div>
@@ -858,7 +773,7 @@
       <div class="ma-cap-feature">
         <div class="ma-cap-img"><img src="assets/metal-arm/moveit.jpg" alt="MoveIt and Gazebo co-simulation" loading="lazy" decoding="async"></div>
         <div class="ma-cap-body">
-          <div class="eyebrow">[ 8.4 · ROS · MOVEIT · GAZEBO ]</div>
+          <div class="eyebrow">[ 6.4 · ROS · MOVEIT · GAZEBO ]</div>
           <h3>Sim today, hardware tomorrow.</h3>
           <p>ROS 1 Noetic and ROS 2 Humble drivers with pre-built MoveIt and Gazebo integration and real-hardware loopback.</p>
         </div>
@@ -868,24 +783,24 @@
 </section>
 
 <!-- ============================== IN THE BOX ============================== -->
-<section class="section bg-grid" id="in-the-box" data-screen-label="09 In The Box">
+<section class="section bg-grid" id="in-the-box" data-screen-label="07 In The Box">
   <div class="container">
     <div class="section-head">
-      <div class="eyebrow">[ WHAT'S IN THE BOX <span class="b">·</span> 09 ]</div>
+      <div class="eyebrow">[ WHAT'S IN THE BOX <span class="b">·</span> 07 ]</div>
       <h2>Inventoried, calibrated, packed.</h2>
       <p class="lead">Complete packaging, everything you need to stand up a teleop, capture, or sim experiment the day it lands on your bench.</p>
     </div>
 
     <div class="box-grid">
       <div class="box-list">
-        <div class="box-item"><div class="thumb" style="font-family:var(--font-mono);font-size:11px">01</div><div><div class="name">Robotic arm</div><div class="desc">7-DOF CNC-aluminum arm, 3 kg rated payload, factory-calibrated.</div></div><div class="qty">×1</div></div>
-        <div class="box-item"><div class="thumb" style="font-family:var(--font-mono);font-size:11px">02</div><div><div class="name">2-in-1 end-effector</div><div class="desc">Combined gripper + leader unit. Default end-effector.</div></div><div class="qty">×1</div></div>
-        <div class="box-item"><div class="thumb" style="font-family:var(--font-mono);font-size:11px">03</div><div><div class="name">Gripper</div><div class="desc">Parallel-jaw gripper. 0–95 mm stroke.</div></div><div class="qty">×1</div></div>
-        <div class="box-item"><div class="thumb" style="font-family:var(--font-mono);font-size:11px">04</div><div><div class="name">Leader (handheld)</div><div class="desc">Leader-side teleop unit with handle.</div></div><div class="qty">×1</div></div>
-        <div class="box-item"><div class="thumb" style="font-family:var(--font-mono);font-size:11px">05</div><div><div class="name">CAN-to-USB adapter</div><div class="desc">PC-side bus interface. Driverless on Ubuntu 20.04 / 22.04.</div></div><div class="qty">×1</div></div>
-        <div class="box-item"><div class="thumb" style="font-family:var(--font-mono);font-size:11px">06</div><div><div class="name">Switching power supply</div><div class="desc">24 V DC supply with regional plug adapters.</div></div><div class="qty">×1</div></div>
-        <div class="box-item"><div class="thumb" style="font-family:var(--font-mono);font-size:11px">07</div><div><div class="name">Metal stabilizer plate</div><div class="desc">Bench mounting plate, drilled for the 90×90 mm M5×4 base pattern.</div></div><div class="qty">×1</div></div>
-        <div class="box-item"><div class="thumb" style="font-family:var(--font-mono);font-size:11px">08</div><div><div class="name">G-clamp + toolkit</div><div class="desc">Clamp the stabilizer plate to any bench. Hex keys + power button included.</div></div><div class="qty">kit</div></div>
+        <div class="box-item"><div class="thumb ma-ph ma-ph--thumb"><span>01</span><span class="ph-note">photo</span></div><div><div class="name">Robotic arm</div><div class="desc">6-axis CNC-aluminum arm, 3 kg rated payload, factory-calibrated.</div></div><div class="qty">×1</div></div>
+        <div class="box-item"><div class="thumb ma-ph ma-ph--thumb"><span>02</span><span class="ph-note">photo</span></div><div><div class="name">2-in-1 end-effector</div><div class="desc">Combined gripper + leader unit. Default end-effector.</div></div><div class="qty">×1</div></div>
+        <div class="box-item"><div class="thumb ma-ph ma-ph--thumb"><span>03</span><span class="ph-note">photo</span></div><div><div class="name">Gripper</div><div class="desc">Parallel-jaw gripper. 0–95 mm stroke.</div></div><div class="qty">×1</div></div>
+        <div class="box-item"><div class="thumb ma-ph ma-ph--thumb"><span>04</span><span class="ph-note">photo</span></div><div><div class="name">Leader (handheld)</div><div class="desc">Leader-side teleop unit with handle.</div></div><div class="qty">×1</div></div>
+        <div class="box-item"><div class="thumb ma-ph ma-ph--thumb"><span>05</span><span class="ph-note">photo</span></div><div><div class="name">CAN-to-USB adapter</div><div class="desc">PC-side bus interface. Driverless on Ubuntu 20.04 / 22.04.</div></div><div class="qty">×1</div></div>
+        <div class="box-item"><div class="thumb ma-ph ma-ph--thumb"><span>06</span><span class="ph-note">photo</span></div><div><div class="name">Switching power supply</div><div class="desc">24 V DC supply with regional plug adapters.</div></div><div class="qty">×1</div></div>
+        <div class="box-item"><div class="thumb ma-ph ma-ph--thumb"><span>07</span><span class="ph-note">photo</span></div><div><div class="name">Metal stabilizer plate</div><div class="desc">Bench mounting plate, drilled for the 90×90 mm M5×4 base pattern.</div></div><div class="qty">×1</div></div>
+        <div class="box-item"><div class="thumb ma-ph ma-ph--thumb"><span>08</span><span class="ph-note">photo</span></div><div><div class="name">G-clamp + toolkit</div><div class="desc">Clamp the stabilizer plate to any bench. Hex keys + power button included.</div></div><div class="qty">kit</div></div>
       </div>
 
       <div class="callout">
@@ -905,10 +820,10 @@
 </section>
 
 <!-- ============================== SPECS ============================== -->
-<section class="section" id="specs" data-screen-label="10 Specs">
+<section class="section" id="specs" data-screen-label="08 Specs">
   <div class="container">
     <div class="section-head">
-      <div class="eyebrow">[ SPECS <span class="b">·</span> 10 ]</div>
+      <div class="eyebrow">[ SPECS <span class="b">·</span> 08 ]</div>
       <h2>The numbers. The specs.</h2>
     </div>
 
@@ -920,7 +835,7 @@
       <div class="spec-grid">
         <div class="spec-row"><span class="k">rated payload</span><span class="v"><span class="em">3 kg</span><span class="imp imp-block">6.6 lb</span></span></div>
         <div class="spec-row"><span class="k">body weight</span><span class="v">4.2 kg<span class="imp imp-block">9.3 lb</span></span></div>
-        <div class="spec-row"><span class="k">degrees of freedom</span><span class="v">7</span></div>
+        <div class="spec-row"><span class="k">degrees of freedom</span><span class="v">6 + 1 (arm + gripper)</span></div>
         <div class="spec-row"><span class="k">working radius</span><span class="v">612.5 mm<span class="imp imp-block">24.1"</span></span></div>
         <div class="spec-row"><span class="k">repeatability</span><span class="v">±0.1 mm</span></div>
         <div class="spec-row"><span class="k">base mount</span><span class="v">90 × 90 mm · M5 × 4</span></div>
@@ -937,7 +852,6 @@
         <div class="spec-row"><span class="k">ros support</span><span class="v">ROS1 Noetic · ROS2 Humble</span></div>
         <div class="spec-row"><span class="k">sdk</span><span class="v">Python + C++ · open source · continuously maintained</span></div>
         <div class="spec-row"><span class="k">simulation</span><span class="v">MoveIt · Gazebo (real-hardware loopback)</span></div>
-        <div class="spec-row"><span class="k">makermods lab gui</span><span class="v">Planned, not yet available</span></div>
         <div class="spec-row"><span class="k">license</span><span class="v">MIT (SDK + firmware)</span></div>
       </div>
     </div>
@@ -945,10 +859,10 @@
 </section>
 
 <!-- ============================== FAQ ============================== -->
-<section class="section bg-grid" id="faq" data-screen-label="11 FAQ">
+<section class="section bg-grid" id="faq" data-screen-label="09 FAQ">
   <div class="container">
     <div class="section-head">
-      <div class="eyebrow">[ FAQ <span class="b">·</span> 11 ]</div>
+      <div class="eyebrow">[ FAQ <span class="b">·</span> 09 ]</div>
       <h2>Things people ask before buying.</h2>
     </div>
 
@@ -968,10 +882,6 @@
       <div class="faq-item">
         <button class="faq-q"><span>Which VLA models can I run?</span><span class="icon"></span></button>
         <div class="faq-a">ACT, SmolVLA, and π0 / π0.5 all run out of the box, with open-source reproductions covering training and inference plus step-by-step tutorials. Any other policy targeting the LeRobot interface will drive the arm too, and further reproductions are rolling out.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q"><span>Can I use MakerMods Lab, the no-code GUI, with this arm?</span><span class="icon"></span></button>
-        <div class="faq-a">Not yet. MakerMods Lab currently supports OpenBooth and SO-101 setups. Metal Arm support is on the roadmap but has not shipped, so buy the arm for the open SDK and the LeRobot pipeline, which both work today. We will announce Lab support for Metal Arm when it is actually available.</div>
       </div>
       <div class="faq-item">
         <button class="faq-q"><span>Is the arm fully assembled?</span><span class="icon"></span></button>
