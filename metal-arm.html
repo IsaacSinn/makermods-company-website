@@ -304,10 +304,17 @@
   /* ---- Clean hero: plain product photo, no crosshair or overlay text ----
      scoped to this page; xlerobot.html and elrobot.html keep the shared treatment */
   .hero-photo--clean::after { content: none; }
+  .hero-photo--clean {
+    aspect-ratio: 3 / 4;
+    min-height: 0;
+  }
   .hero-photo--clean .hero-img {
     object-fit: contain;
     background: #ECE7DF;
-    padding: 6%;
+    padding: 2%;
+  }
+  @media (max-width: 960px) {
+    .hero-photo--clean { aspect-ratio: 4 / 3; }
   }
 
   /* ---- Photo placeholders: awaiting real product shots ---- */
@@ -503,7 +510,7 @@
       <div class="price-row">
         <span class="price">$2,499</span>
         <span class="price-was">per arm · fully assembled · + $249 shipping</span>
-        <span class="price-meta">ships September 2026</span>
+        <span class="price-meta">4 weeks lead time</span>
       </div>
 
       <div class="buy-cta-row">
@@ -694,7 +701,7 @@
         <div class="ma-cap-body">
           <div class="eyebrow">[ 5.1 · POLICIES ]</div>
           <h3>Train it, then let it drive.</h3>
-          <p>Record demonstrations by teleop, train, and hand control to the policy on the same hardware. The full data-collection codebase is open source, and the reproductions ship with step-by-step tutorials rather than a bare config file.</p>
+          <p>Record demonstrations by teleop, train, and hand control to the policy on the same hardware.</p>
         </div>
       </div>
 
@@ -734,48 +741,54 @@
 </section>
 
 <!-- ============================== SOFTWARE / CAPABILITIES ============================== -->
-<section class="section" id="software" data-screen-label="06 Software & Control">
+<section class="section" id="software" data-screen-label="06 Software &amp; Control">
   <div class="container">
     <div class="section-head">
       <div class="eyebrow">[ SOFTWARE &amp; CONTROL <span class="b">·</span> 06 ]</div>
-      <h2>The rest of the stack.</h2>
-      <p class="lead">Underneath the LeRobot layer sits a conventional, well-documented control stack, so the arm also behaves like a normal industrial-style manipulator when you need it to.</p>
+      <h2>Drive it your way.</h2>
+      <p class="lead">Beyond the LeRobot pipeline, the arm ships with its own SDK, a simulation-ready model, VR teleoperation, and policy repositories we maintain with Metal Arm support already wired in.</p>
     </div>
 
     <div class="ma-cap-section">
       <div class="ma-cap-feature">
-        <div class="ma-cap-img"><img src="assets/metal-arm/gravity-comp-2852.jpg" alt="Operator demonstrating gravity-compensated teaching" loading="lazy" decoding="async"></div>
+        <div class="ma-ph ma-ph--wide">
+          <span>photo · sdk</span>
+          <span class="ph-note">terminal or code running the arm</span>
+        </div>
         <div class="ma-cap-body">
-          <div class="eyebrow">[ 6.1 · GRAVITY COMPENSATION ]</div>
-          <h3>Teach by hand.</h3>
-          <p>Gravity compensation lets an operator guide the arm directly through a motion, for hands-on data collection and quick demo capture.</p>
+          <div class="eyebrow">[ 6.1 · SDK ]</div>
+          <h3>Python and C++.</h3>
+          <p>A C++ core with Python bindings, plus ROS 1 and ROS 2 packages. Command joints directly, or drop the arm into an existing ROS graph.</p>
         </div>
       </div>
 
       <div class="ma-cap-feature">
-        <div class="ma-cap-img"><img src="assets/metal-arm/trajectory.jpg" alt="Adaptive trajectory tracking demonstration" loading="lazy" decoding="async"></div>
+        <div class="ma-cap-img"><img src="assets/metal-arm/urdf.jpg" alt="URDF model of the MakerMods Metal Arm" loading="lazy" decoding="async"></div>
         <div class="ma-cap-body">
-          <div class="eyebrow">[ 6.2 · PRECISE CONTROL ]</div>
-          <h3>Joint + end-pose control.</h3>
-          <p>Joint-space and end-pose control with a built-in stable IK solver and adaptive trajectory tracking.</p>
+          <div class="eyebrow">[ 6.2 · URDF ]</div>
+          <h3>Simulation-ready.</h3>
+          <p>A complete URDF for the arm and its end-effector configurations, so you can visualise, plan, and simulate before anything moves on the bench.</p>
         </div>
       </div>
 
       <div class="ma-cap-feature">
-        <div class="ma-cap-img"><img src="assets/metal-arm/urdf.jpg" alt="URDF visualization of the MakerMods Metal Arm" loading="lazy" decoding="async"></div>
+        <div class="ma-ph ma-ph--wide">
+          <span>photo · vr teleoperation</span>
+          <span class="ph-note">operator in a headset driving the arm</span>
+        </div>
         <div class="ma-cap-body">
-          <div class="eyebrow">[ 6.3 · OPEN SDK + URDF ]</div>
-          <h3>Drop into your stack.</h3>
-          <p>MIT-licensed Python and C++ SDK, plus ready-to-use URDF for the arm and every end-effector configuration. No rebuilding kinematics.</p>
+          <div class="eyebrow">[ 6.3 · VR TELEOPERATION ]</div>
+          <h3>Drive it from a headset.</h3>
+          <p>Teleoperate the arm in VR when you want reach and orientation control without a physical leader on the bench.</p>
         </div>
       </div>
 
       <div class="ma-cap-feature">
-        <div class="ma-cap-img"><img src="assets/metal-arm/moveit.jpg" alt="MoveIt and Gazebo co-simulation" loading="lazy" decoding="async"></div>
+        <div class="ma-cap-img"><img src="assets/metal-arm/moveit.jpg" alt="Policy repositories with Metal Arm integration" loading="lazy" decoding="async"></div>
         <div class="ma-cap-body">
-          <div class="eyebrow">[ 6.4 · ROS · MOVEIT · GAZEBO ]</div>
-          <h3>Sim today, hardware tomorrow.</h3>
-          <p>ROS 1 Noetic and ROS 2 Humble drivers with pre-built MoveIt and Gazebo integration and real-hardware loopback.</p>
+          <div class="eyebrow">[ 6.4 · POLICY REPOS ]</div>
+          <h3>Forks that already know the arm.</h3>
+          <p>We maintain OpenPI and ACT forks with Metal Arm integration built in, so training and inference run against your hardware without a porting step.</p>
         </div>
       </div>
     </div>
@@ -793,14 +806,16 @@
 
     <div class="box-grid">
       <div class="box-list">
-        <div class="box-item"><div class="thumb ma-ph ma-ph--thumb"><span>01</span><span class="ph-note">photo</span></div><div><div class="name">Robotic arm</div><div class="desc">6-axis CNC-aluminum arm, 3 kg rated payload, factory-calibrated.</div></div><div class="qty">×1</div></div>
-        <div class="box-item"><div class="thumb ma-ph ma-ph--thumb"><span>02</span><span class="ph-note">photo</span></div><div><div class="name">2-in-1 end-effector</div><div class="desc">Combined gripper + leader unit. Default end-effector.</div></div><div class="qty">×1</div></div>
-        <div class="box-item"><div class="thumb ma-ph ma-ph--thumb"><span>03</span><span class="ph-note">photo</span></div><div><div class="name">Gripper</div><div class="desc">Parallel-jaw gripper. 0–95 mm stroke.</div></div><div class="qty">×1</div></div>
-        <div class="box-item"><div class="thumb ma-ph ma-ph--thumb"><span>04</span><span class="ph-note">photo</span></div><div><div class="name">Leader (handheld)</div><div class="desc">Leader-side teleop unit with handle.</div></div><div class="qty">×1</div></div>
-        <div class="box-item"><div class="thumb ma-ph ma-ph--thumb"><span>05</span><span class="ph-note">photo</span></div><div><div class="name">CAN-to-USB adapter</div><div class="desc">PC-side bus interface. Driverless on Ubuntu 20.04 / 22.04.</div></div><div class="qty">×1</div></div>
-        <div class="box-item"><div class="thumb ma-ph ma-ph--thumb"><span>06</span><span class="ph-note">photo</span></div><div><div class="name">Switching power supply</div><div class="desc">24 V DC supply with regional plug adapters.</div></div><div class="qty">×1</div></div>
-        <div class="box-item"><div class="thumb ma-ph ma-ph--thumb"><span>07</span><span class="ph-note">photo</span></div><div><div class="name">Metal stabilizer plate</div><div class="desc">Bench mounting plate, drilled for the 90×90 mm M5×4 base pattern.</div></div><div class="qty">×1</div></div>
-        <div class="box-item"><div class="thumb ma-ph ma-ph--thumb"><span>08</span><span class="ph-note">photo</span></div><div><div class="name">G-clamp + toolkit</div><div class="desc">Clamp the stabilizer plate to any bench. Hex keys + power button included.</div></div><div class="qty">kit</div></div>
+        <div class="box-item"><div class="thumb ma-ph ma-ph--thumb"><span>01</span><span class="ph-note">photo</span></div><div><div class="name">Metal Arm</div><div class="desc">6-axis CNC-aluminum arm, 3 kg rated payload, factory-calibrated.</div></div><div class="qty">×1</div></div>
+        <div class="box-item"><div class="thumb ma-ph ma-ph--thumb"><span>02</span><span class="ph-note">photo</span></div><div><div class="name">2-in-1 end-effector</div><div class="desc">Combined gripper and leader unit. Default end-effector.</div></div><div class="qty">×1</div></div>
+        <div class="box-item"><div class="thumb ma-ph ma-ph--thumb"><span>03</span><span class="ph-note">photo</span></div><div><div class="name">Leader arm handle</div><div class="desc">Handheld grip for leader-side teleoperation.</div></div><div class="qty">×1</div></div>
+        <div class="box-item"><div class="thumb ma-ph ma-ph--thumb"><span>04</span><span class="ph-note">photo</span></div><div><div class="name">Wrist camera + mount</div><div class="desc">Full HD wrist camera with its mounting bracket.</div></div><div class="qty">×1</div></div>
+        <div class="box-item"><div class="thumb ma-ph ma-ph--thumb"><span>05</span><span class="ph-note">photo</span></div><div><div class="name">Scene camera + stand</div><div class="desc">Full HD standalone camera. 3D-printed stand on single-arm builds, aluminium extrusion on bimanual.</div></div><div class="qty">×1</div></div>
+        <div class="box-item"><div class="thumb ma-ph ma-ph--thumb"><span>06</span><span class="ph-note">photo</span></div><div><div class="name">E-stop control box</div><div class="desc">Emergency-stop enclosure with the CAN-to-USB bus interface built in.</div></div><div class="qty">×1</div></div>
+        <div class="box-item"><div class="thumb ma-ph ma-ph--thumb"><span>07</span><span class="ph-note">photo</span></div><div><div class="name">Base plate</div><div class="desc">Single-arm or bimanual plate, matched to your configuration.</div></div><div class="qty">×1</div></div>
+        <div class="box-item"><div class="thumb ma-ph ma-ph--thumb"><span>08</span><span class="ph-note">photo</span></div><div><div class="name">Power supply</div><div class="desc">24 V · 15 A · 360 W, with regional plug adapters.</div></div><div class="qty">×1</div></div>
+        <div class="box-item"><div class="thumb ma-ph ma-ph--thumb"><span>09</span><span class="ph-note">photo</span></div><div><div class="name">G-clamps</div><div class="desc">Clamp the base plate to any bench.</div></div><div class="qty">×2</div></div>
+        <div class="box-item"><div class="thumb ma-ph ma-ph--thumb"><span>10</span><span class="ph-note">photo</span></div><div><div class="name">Spares + toolkit</div><div class="desc">Spare screws and cables, hex keys, and a USB-C cable.</div></div><div class="qty">kit</div></div>
       </div>
 
       <div class="callout">
@@ -844,14 +859,14 @@
         <div class="spec-row"><span class="k">communication</span><span class="v">CAN</span></div>
         <div class="spec-row"><span class="k">external interface</span><span class="v">Power + CAN · XT30 2+2</span></div>
         <div class="spec-row"><span class="k">control modes</span><span class="v">Trajectory tracking · Teach · API</span></div>
-        <div class="spec-row"><span class="k">teleop leaders</span><span class="v">Metal Arm (1:1) · Star Arm 102</span></div>
+        <div class="spec-row"><span class="k">teleop</span><span class="v">Metal Arm leader (1:1) · Star Arm 102 · VR</span></div>
         <div class="spec-row"><span class="k">joint range · J1 / J6</span><span class="v">−165° to 165° &nbsp;·&nbsp; −150° to 150°</span></div>
         <div class="spec-row"><span class="k">max joint speed</span><span class="v">180 °/s (J1–J3) · 220 °/s (J4–J6)</span></div>
         <div class="spec-row"><span class="k">lerobot</span><span class="v">Native · dataset, training, inference</span></div>
         <div class="spec-row"><span class="k">vla support</span><span class="v">ACT · SmolVLA · π0 / π0.5 (training + inference)</span></div>
         <div class="spec-row"><span class="k">ros support</span><span class="v">ROS1 Noetic · ROS2 Humble</span></div>
-        <div class="spec-row"><span class="k">sdk</span><span class="v">Python + C++ · open source · continuously maintained</span></div>
-        <div class="spec-row"><span class="k">simulation</span><span class="v">MoveIt · Gazebo (real-hardware loopback)</span></div>
+        <div class="spec-row"><span class="k">sdk</span><span class="v">C++ core · Python bindings · ROS 1 / ROS 2</span></div>
+        <div class="spec-row"><span class="k">simulation</span><span class="v">URDF supplied · simulation-ready</span></div>
         <div class="spec-row"><span class="k">license</span><span class="v">MIT (SDK + firmware)</span></div>
       </div>
     </div>
@@ -873,7 +888,7 @@
       </div>
       <div class="faq-item">
         <button class="faq-q"><span>Which leader arms can I teleoperate with?</span><span class="icon"></span></button>
-        <div class="faq-a">Two options. A second Metal Arm as the leader gives identical kinematics and a true 1:1 joint mapping, with no retargeting error, which produces the cleanest demonstration data. The Star Arm 102 is a lighter, lower-cost handset at $199, sold as an option. You can also skip a leader entirely and guide the arm by hand with the 2-in-1 end-effector under gravity compensation.</div>
+        <div class="faq-a">A second Metal Arm as the leader gives identical kinematics and a true 1:1 joint mapping, with no retargeting error, which produces the cleanest demonstration data. The Star Arm 102 is a lighter, lower-cost handset at $199, sold as an option. You can also teleoperate the arm in VR if you would rather not have a physical leader on the bench.</div>
       </div>
       <div class="faq-item">
         <button class="faq-q"><span>Does it work with LeRobot?</span><span class="icon"></span></button>
@@ -901,7 +916,7 @@
       </div>
       <div class="faq-item">
         <button class="faq-q"><span>Education pricing for schools and universities?</span><span class="icon"></span></button>
-        <div class="faq-a">Yes, we sell a dedicated Education Package bundled with a teaching curriculum and lab materials. Email <a href="mailto:isaac@makermods.ai">isaac@makermods.ai</a> with your program and class size.</div>
+        <div class="faq-a">Yes, we sell a dedicated Education Package bundled with a teaching curriculum and lab materials. Email <a href="mailto:ryan@makermods.ai">ryan@makermods.ai</a> with your program and class size.</div>
       </div>
     </div>
   </div>
