@@ -297,7 +297,8 @@
   };
   const STAR_ARM_PRICE = 199;
   const STAR_ARM_VARIANT_ID = 'gid://shopify/ProductVariant/52875826594109';
-  let activeBuild = 'diy';
+  const requestedBuild = new URLSearchParams(window.location.search).get('build');
+  let activeBuild = Object.prototype.hasOwnProperty.call(BUILDS, requestedBuild) ? requestedBuild : 'diy';
   let leaderAdded = false;
 
   const money = (value) => `$${value.toLocaleString('en-US')}`;
