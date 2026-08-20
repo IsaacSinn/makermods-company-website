@@ -53,16 +53,47 @@
     <div class="mk-hero-grid" aria-hidden="true"></div>
     <div class="mk-hero-copy">
       <div class="mk-kicker"><span class="mk-pulse"></span> Available now · Ships October</div>
-      <h1 id="maker-arm-title">A robotic arm<br><span>you can tinker with.</span></h1>
-      <p class="mk-hero-lead">Maker Arm brings quasi-direct-drive control to a price independent builders can reach. Build the 6+1 DoF kit yourself, or have it arrive fully assembled.</p>
+      <h1 id="maker-arm-title">A robot arm<br>that you could<br><span>build and train.</span></h1>
+      <ul class="mk-spec-row">
+        <li>6+1 DoF</li>
+        <li>1.5 kg payload</li>
+        <li>RobStride QDD <span class="b">·</span> CAN bus</li>
+      </ul>
+
+      <div class="mk-sku" role="radiogroup" aria-label="Choose a Maker Arm build" data-sku-group>
+        <button class="opt mk-sku-opt" type="button" role="radio" aria-checked="true" data-sku="diy" data-active="true">
+          <span class="opt-radio" aria-hidden="true"></span>
+          <span class="opt-body">
+            <span class="opt-title-row">
+              <span class="opt-name">DIY kit</span>
+              <span class="opt-pretag">Build it yourself</span>
+            </span>
+            <span class="opt-desc">Every part flat-packed, you assemble it.</span>
+          </span>
+          <span class="opt-price">$999</span>
+        </button>
+
+        <button class="opt mk-sku-opt" type="button" role="radio" aria-checked="false" data-sku="assembled" data-active="false">
+          <span class="opt-radio" aria-hidden="true"></span>
+          <span class="opt-body">
+            <span class="opt-title-row">
+              <span class="opt-name">Fully assembled</span>
+              <span class="opt-pretag">Works out of the box</span>
+            </span>
+            <span class="opt-desc">Built, wired, and bench-tested before it ships.</span>
+          </span>
+          <span class="opt-price">$1,199</span>
+        </button>
+      </div>
+
       <div class="mk-hero-actions">
-        <a id="hero-cta" class="btn btn-stencil" href="maker-arm-buy.html">[ DIY KIT · $999 → ]</a>
-        <a class="btn mk-btn-ghost" href="maker-arm-buy.html">[ ASSEMBLED · $1,199 → ]</a>
+        <a id="hero-cta" class="btn btn-stencil" href="maker-arm-buy.html?build=diy" data-sku-cta>[ BUY DIY KIT <span class="b">·</span> $999 → ]</a>
         <a class="mk-text-link" href="#architecture">See how it is built <span>↓</span></a>
       </div>
+
       <div class="mk-price-lockup">
-        <span class="mk-price">$999</span>
-        <span class="mk-price-note">DIY kit · assembled $1,199<br>3D-printed · ships October</span>
+        <span class="mk-price" data-sku-price>$999</span>
+        <span class="mk-price-note" data-sku-note>DIY kit <span class="b">·</span> you assemble it<br>3D-printed <span class="b">·</span> ships October</span>
       </div>
     </div>
 
@@ -77,11 +108,11 @@
     </figure>
   </section>
 
-  <section class="mk-spec-rail" aria-label="Maker Arm key specifications">
-    <div class="mk-rail-item"><span>01</span><strong>6+1 DoF</strong><small>arm + gripper</small></div>
-    <div class="mk-rail-item"><span>02</span><strong>QDD</strong><small>RobStride 00 / 02</small></div>
-    <div class="mk-rail-item"><span>03</span><strong>48 V</strong><small>power source</small></div>
-    <div class="mk-rail-item"><span>04</span><strong>Open Source</strong><small>hardware + software</small></div>
+  <section class="mk-banner" aria-label="Maker Arm under teleoperation on the bench">
+    <video class="mk-banner-vid" src="assets/maker-arm/banner.mp4" poster="assets/maker-arm/banner-poster.jpg"
+           autoplay muted loop playsinline preload="metadata"
+           aria-label="Maker Arm under teleoperation on the bench"></video>
+    <span class="mk-banner-label">TELEOP <span class="b">·</span> 1x</span>
   </section>
 
   <section class="mk-architecture section bg-grid" id="architecture" aria-labelledby="architecture-title">
@@ -117,48 +148,174 @@
     </div>
   </section>
 
-  <section class="mk-open" aria-labelledby="open-title">
+  <section class="mk-open" aria-labelledby="open-hardware-title">
     <div class="mk-open-grid" aria-hidden="true"></div>
     <div class="container mk-open-inner">
-      <div class="mk-open-mark" aria-hidden="true">{ }</div>
+      <div class="mk-open-mark" aria-hidden="true">[ ]</div>
       <div class="mk-open-copy">
-        <div class="eyebrow">[ EVERYTHING OPENS SOON · 03 ]</div>
-        <h2 id="open-title">The whole stack.<br>Coming soon.</h2>
-        <p>We plan to open every layer of Maker Arm, in the order below. We are not putting dates on the stages yet — each one lands on GitHub as it ships.</p>
+        <div class="eyebrow">[ OPEN HARDWARE <span class="b">·</span> 03 ]</div>
+        <h2 id="open-hardware-title">Every part,<br>printable at home.</h2>
+        <p>The whole structure is yours to print, revise, and reprint. Files, build guide, and kinematics are all published.</p>
         <a class="mk-dark-link" href="https://github.com/makermods-robotics" target="_blank" rel="noopener">Follow MakerMods on GitHub →</a>
       </div>
-      <ol class="mk-release-list">
-        <li><span>01</span><strong>STL + BOM + parts list</strong><small>the open hardware release</small></li>
-        <li><span>02</span><strong>URDF</strong><small>kinematics for simulation</small></li>
-        <li><span>03</span><strong>Maker Arm SDK</strong><small>macOS · Ubuntu · Windows</small></li>
-        <li><span>04</span><strong>LeRobot integration</strong><small>record, train, evaluate</small></li>
-        <li><span>05</span><strong>ROS integration</strong><small>ROS 1 · ROS 2</small></li>
+    </div>
+
+    <div class="container mk-open-split">
+      <figure class="mk-print-sheet">
+        <img src="assets/maker-arm/cad-render.png" alt="CAD render of the Maker Arm showing every printed structural part, the QDD actuators, gripper, and base" width="1548" height="878" loading="lazy" decoding="async">
+        <span class="mk-print-label">MK.A / FULL ASSEMBLY CAD</span>
+        <figcaption>Every structural part on the arm is printable at home.</figcaption>
+      </figure>
+
+      <ol class="mk-open-list">
+        <li><span>01</span><strong>Printable parts</strong><small>STL files on MakerWorld · Printables · GitHub</small></li>
+        <li><span>02</span><strong>Build guide</strong><small>Step-by-step assembly, published on tnkr.ai</small></li>
+        <li><span>03</span><strong>Video walkthrough</strong><small>The full build, start to finish, on YouTube</small></li>
+        <li><span>04</span><strong>URDF</strong><small>Kinematics for simulation</small></li>
       </ol>
     </div>
   </section>
 
-  <section class="mk-complete section bg-grid" aria-labelledby="complete-title">
+  <section class="mk-software section bg-grid" aria-labelledby="open-software-title">
     <div class="container">
-      <div class="section-head">
-        <div class="eyebrow">[ LAUNCH CONFIGURATION <span class="b">·</span> 04 ]</div>
-        <h2 id="complete-title">Fully assembled.<br>Ready for your bench.</h2>
-        <p class="lead">The printed Maker Arm arrives built and tested. Set it up on your bench and start working.</p>
+      <div class="mk-sdk-head">
+        <div class="section-head mk-sdk-intro">
+          <div class="eyebrow">[ OPEN SOFTWARE <span class="b">·</span> 04 ]</div>
+          <h2 id="open-software-title">Software roadmap.</h2>
+          <p class="lead">The SDK lands first so you can drive the arm. LeRobot follows, so you can teach it.</p>
+          <div class="mk-sdk-actions">
+            <a class="btn btn-stencil" href="https://github.com/makermods-robotics/maker-arm-sdk" target="_blank" rel="noopener">[ VIEW ON GITHUB → ]</a>
+            <span class="mk-sdk-license">Open source <span class="b">·</span> build, inspect, and contribute</span>
+          </div>
+        </div>
+
+        <div class="mk-sdk-install" aria-label="Maker Arm SDK install commands">
+          <div class="mk-sdk-terminal-bar"><span>terminal</span><span>01 <span class="b">·</span> clone + install</span></div>
+          <div class="mk-sdk-command-row">
+            <pre><code>git clone https://github.com/makermods-robotics/maker-arm-sdk &amp;&amp; cd maker-arm-sdk
+python3 -m venv .venv &amp;&amp; source .venv/bin/activate
+python -m pip install -e ".[dev]" &amp;&amp; maker-arm doctor</code></pre>
+            <button class="mk-sdk-copy" type="button" data-copy-command aria-label="Copy the Maker Arm SDK install commands"><span data-copy-label>Copy</span></button>
+          </div>
+          <a class="mk-sdk-repo" href="https://github.com/makermods-robotics/maker-arm-sdk" target="_blank" rel="noopener">github.com/makermods-robotics/maker-arm-sdk ↗</a>
+        </div>
       </div>
 
-      <div class="mk-box-grid">
-        <div class="mk-box-image">
-          <img src="assets/maker-arm/IMG_2918.jpg" alt="Complete Maker Arm launch configuration shown from the side" width="2800" height="1866" loading="lazy" decoding="async">
-          <span>[ BUILT · ASSEMBLED · TESTED ]</span>
+      <ol class="mk-road">
+        <li class="mk-road-stop">
+          <div class="mk-road-rail" aria-hidden="true"><span class="mk-road-node">01</span></div>
+          <div class="mk-road-body">
+            <p class="mk-road-when">First</p>
+            <h3>Maker Arm SDK <em class="mk-alpha">Alpha</em></h3>
+            <p class="mk-road-what">Drive the arm from Python. Read joint state, send position and torque targets across the CAN chain, work the gripper, and script a full routine in a few lines.</p>
+            <ul class="mk-road-meta">
+              <li>Python</li>
+              <li>macOS <span class="b">·</span> Ubuntu <span class="b">·</span> Windows</li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="mk-road-stop">
+          <div class="mk-road-rail" aria-hidden="true"><span class="mk-road-node">02</span></div>
+          <div class="mk-road-body">
+            <p class="mk-road-when">Then</p>
+            <h3>LeRobot integration <em class="mk-alpha">Alpha</em></h3>
+            <p class="mk-road-what">The path into Physical AI. Teleoperate the arm, record demonstration datasets, train a policy on them, and evaluate it back on the hardware.</p>
+            <ul class="mk-road-meta">
+              <li>Record</li>
+              <li>Train</li>
+              <li>Evaluate</li>
+            </ul>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="mk-config" aria-label="Maker Arm launch configurations">
+    <article class="mk-config-block" data-config="kit">
+      <header class="mk-config-head">
+        <div class="mk-config-top">
+          <span class="mk-config-index">[ 01 ]</span>
+          <span class="mk-config-kicker">You build it</span>
         </div>
-        <div class="mk-box-list" role="list">
-          <div role="listitem"><span>01</span><div><strong>Maker Arm</strong><small>6+1 DoF printed arm, assembled</small></div></div>
-          <div role="listitem"><span>02</span><div><strong>Wrist camera</strong><small>For task data and closed-loop work</small></div></div>
-          <div role="listitem"><span>03</span><div><strong>Emergency stop</strong><small>Bench-side hardware safety control</small></div></div>
-          <div role="listitem"><span>04</span><div><strong>48 V power supply</strong><small>Matched to the launch configuration</small></div></div>
-          <div role="listitem"><span>05</span><div><strong>CAN adapter</strong><small>The bridge from your computer to the arm</small></div></div>
+        <h3 class="mk-config-label">DIY<br>assembly kit</h3>
+        <p class="mk-config-price"><strong>$999</strong><span>3D-printed <span class="b">·</span> ships October</span></p>
+      </header>
+
+      <figure class="mk-config-media">
+        <img src="assets/maker-arm/kit-parts.jpg" alt="Maker Arm kit laid out on a bench: 3D-printed structural parts, boxed RobStride actuators, bearings, hardware, and cabling" width="2800" height="1866" loading="lazy" decoding="async">
+        <figcaption>[ FLAT-PACKED <span class="b">·</span> UNBUILT ]</figcaption>
+      </figure>
+
+      <div class="mk-config-stage">
+        <div class="mk-config-rest" aria-hidden="true">
+          <ul class="mk-config-strip">
+            <li>Printed structure</li>
+            <li>RobStride actuators</li>
+            <li>Bearings + hardware</li>
+            <li>Wiring + CAN harness</li>
+            <li>Gripper + wrist camera</li>
+            <li>Build guide + SDK</li>
+          </ul>
+          <p class="mk-config-cue">Hover for the full manifest <span>↓</span></p>
+        </div>
+
+        <div class="mk-config-pop">
+          <p class="mk-config-lead">Every 3D-printed part, bearing, screw, actuator and cable, packed flat. You assemble the whole arm from scratch, and you know every joint by the time it first moves.</p>
+          <ul class="mk-config-manifest">
+            <li><span>01</span><strong>3D-printed structure</strong><small>Full set of printed parts for the 6+1 DoF frame</small></li>
+            <li><span>02</span><strong>RobStride actuators</strong><small>RobStride 02 and 00 QDD units for every joint</small></li>
+            <li><span>03</span><strong>Bearings and hardware</strong><small>Bearings, fasteners, and joint hardware, sorted</small></li>
+            <li><span>04</span><strong>Wiring and CAN harness</strong><small>Cabling for the full CAN chain, plus the adapter</small></li>
+            <li><span>05</span><strong>Gripper and wrist camera</strong><small>The end effector set, ready to fit</small></li>
+            <li><span>06</span><strong>Build guide and SDK</strong><small>Step-by-step assembly, then drive it from Python</small></li>
+          </ul>
+          <a class="btn btn-stencil mk-config-cta" href="maker-arm-buy.html">[ BUILD IT <span class="b">·</span> $999 → ]</a>
         </div>
       </div>
-    </div>
+    </article>
+
+    <article class="mk-config-block" data-config="assembled">
+      <header class="mk-config-head">
+        <div class="mk-config-top">
+          <span class="mk-config-index">[ 02 ]</span>
+          <span class="mk-config-kicker">We build it</span>
+        </div>
+        <h3 class="mk-config-label">Fully<br>assembled arm</h3>
+        <p class="mk-config-price"><strong>$1,199</strong><span>bench-tested <span class="b">·</span> ships October</span></p>
+      </header>
+
+      <figure class="mk-config-media">
+        <img src="assets/maker-arm/IMG_2918.jpg" alt="Maker Arm fully assembled and bench-tested, shown from the side" width="2800" height="1866" loading="lazy" decoding="async">
+        <figcaption>[ BUILT <span class="b">·</span> WIRED <span class="b">·</span> TESTED ]</figcaption>
+      </figure>
+
+      <div class="mk-config-stage">
+        <div class="mk-config-rest" aria-hidden="true">
+          <ul class="mk-config-strip">
+            <li>Assembled arm</li>
+            <li>Wrist camera</li>
+            <li>Emergency stop</li>
+            <li>48 V power supply</li>
+            <li>CAN adapter</li>
+          </ul>
+          <p class="mk-config-cue">Hover for the full manifest <span>↓</span></p>
+        </div>
+
+        <div class="mk-config-pop">
+          <p class="mk-config-lead">The arm arrives built, wired, and bench-tested. Open the box, set it on your bench, plug in power, and start working the same afternoon.</p>
+          <ul class="mk-config-manifest">
+            <li><span>01</span><strong>Maker Arm</strong><small>6+1 DoF printed arm, assembled and tested</small></li>
+            <li><span>02</span><strong>Wrist camera</strong><small>For task data and closed-loop work</small></li>
+            <li><span>03</span><strong>Emergency stop</strong><small>Bench-side hardware safety control</small></li>
+            <li><span>04</span><strong>48 V power supply</strong><small>Matched to the launch configuration</small></li>
+            <li><span>05</span><strong>CAN adapter</strong><small>The bridge from your computer to the arm</small></li>
+          </ul>
+          <a class="btn btn-stencil mk-config-cta" href="maker-arm-buy.html">[ SKIP THE BUILD <span class="b">·</span> $1,199 → ]</a>
+        </div>
+      </div>
+    </article>
   </section>
 
   <section class="mk-faq section" id="faq" aria-labelledby="faq-title">
@@ -265,6 +422,79 @@
       setExpanded(willOpen);
     });
   });
+
+  const copyCommand = document.querySelector('[data-copy-command]');
+  copyCommand?.addEventListener('click', async () => {
+    const command = copyCommand.closest('.mk-sdk-install')?.querySelector('code')?.textContent?.trim();
+    const label = copyCommand.querySelector('[data-copy-label]');
+    if (!command) return;
+
+    try {
+      await navigator.clipboard.writeText(command);
+      copyCommand.dataset.copied = 'true';
+      if (label) label.textContent = 'Copied';
+      window.setTimeout(() => {
+        copyCommand.dataset.copied = 'false';
+        if (label) label.textContent = 'Copy';
+      }, 1800);
+    } catch (error) {
+      console.error('Could not copy the Maker Arm SDK install commands.', error);
+      if (label) label.textContent = 'Select text';
+    }
+  });
+
+  const skuGroup = document.querySelector('[data-sku-group]');
+  if (skuGroup) {
+    const SKUS = {
+      diy: {
+        price: '$999',
+        note: 'DIY kit <span class="b">·</span> you assemble it<br>3D-printed <span class="b">·</span> ships October',
+        cta: '[ BUY DIY KIT <span class="b">·</span> $999 → ]',
+        href: 'maker-arm-buy.html?build=diy',
+      },
+      assembled: {
+        price: '$1,199',
+        note: 'Fully assembled <span class="b">·</span> bench-tested<br>3D-printed <span class="b">·</span> ships October',
+        cta: '[ BUY ASSEMBLED <span class="b">·</span> $1,199 → ]',
+        href: 'maker-arm-buy.html?build=assembled',
+      },
+    };
+    const options = Array.from(skuGroup.querySelectorAll('[data-sku]'));
+    const priceEl = document.querySelector('[data-sku-price]');
+    const noteEl = document.querySelector('[data-sku-note]');
+    const ctaEl = document.querySelector('[data-sku-cta]');
+
+    const select = (key) => {
+      const sku = SKUS[key];
+      if (!sku) return;
+      options.forEach((option) => {
+        const isActive = option.dataset.sku === key;
+        option.dataset.active = String(isActive);
+        option.setAttribute('aria-checked', String(isActive));
+        option.tabIndex = isActive ? 0 : -1;
+      });
+      if (priceEl) priceEl.textContent = sku.price;
+      if (noteEl) noteEl.innerHTML = sku.note;
+      if (ctaEl) {
+        ctaEl.innerHTML = sku.cta;
+        ctaEl.href = sku.href;
+      }
+    };
+
+    options.forEach((option, index) => {
+      option.addEventListener('click', () => select(option.dataset.sku));
+      option.addEventListener('keydown', (event) => {
+        if (event.key !== 'ArrowRight' && event.key !== 'ArrowDown' && event.key !== 'ArrowLeft' && event.key !== 'ArrowUp') return;
+        event.preventDefault();
+        const step = event.key === 'ArrowRight' || event.key === 'ArrowDown' ? 1 : -1;
+        const next = options[(index + step + options.length) % options.length];
+        select(next.dataset.sku);
+        next.focus();
+      });
+    });
+
+    select(options.find((option) => option.dataset.active === 'true')?.dataset.sku || 'diy');
+  }
 
   const heroCta = document.getElementById('hero-cta');
   const navCta = document.getElementById('nav-buy');
