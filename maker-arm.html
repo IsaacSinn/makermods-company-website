@@ -93,7 +93,7 @@
 
       <div class="mk-price-lockup">
         <span class="mk-price" data-sku-price>$999</span>
-        <span class="mk-price-note" data-sku-note>DIY kit <span class="b">·</span> you assemble it<br>3D-printed <span class="b">·</span> ships October</span>
+        <span class="mk-price-note" data-sku-note>DIY kit <span class="b">·</span> you assemble it<br>ships October <span class="b">·</span> + $129 shipping</span>
       </div>
     </div>
 
@@ -240,7 +240,7 @@ python -m pip install -e ".[dev]" &amp;&amp; maker-arm doctor</code></pre>
           <span class="mk-config-kicker">You build it</span>
         </div>
         <h3 class="mk-config-label">DIY<br>assembly kit</h3>
-        <p class="mk-config-price"><strong>$999</strong><span>3D-printed <span class="b">·</span> ships October</span></p>
+        <p class="mk-config-price"><strong>$999</strong><span>3D-printed <span class="b">·</span> ships October <span class="b">·</span> + $129 shipping</span></p>
       </header>
 
       <figure class="mk-config-media">
@@ -283,7 +283,7 @@ python -m pip install -e ".[dev]" &amp;&amp; maker-arm doctor</code></pre>
           <span class="mk-config-kicker">We build it</span>
         </div>
         <h3 class="mk-config-label">Fully<br>assembled arm</h3>
-        <p class="mk-config-price"><strong>$1,199</strong><span>bench-tested <span class="b">·</span> ships October</span></p>
+        <p class="mk-config-price"><strong>$1,199</strong><span>bench-tested <span class="b">·</span> ships October <span class="b">·</span> + $129 shipping</span></p>
       </header>
 
       <figure class="mk-config-media">
@@ -328,6 +328,10 @@ python -m pip install -e ".[dev]" &amp;&amp; maker-arm doctor</code></pre>
         <div class="faq-item" data-open="true">
           <button class="faq-q" type="button"><span>Does Maker Arm come as a kit or assembled?</span><span class="icon" aria-hidden="true"></span></button>
           <div class="faq-a">Both. The $999 DIY kit ships as a complete set of printed parts, actuators, and wiring for you to build yourself. The $1,199 build arrives assembled, wired, and bench-tested, ready to develop on as soon as it is set up.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button"><span>How much is shipping?</span><span class="icon" aria-hidden="true"></span></button>
+          <div class="faq-a">Shipping is a flat $129 per arm on both the $999 DIY kit and the $1,199 assembled build, added at checkout. Mainland China, Hong Kong, and Macau ship at a lower local rate of 300 RMB / HKD / MOP per arm. Duties and import taxes are the buyer's responsibility.</div>
         </div>
         <div class="faq-item">
           <button class="faq-q" type="button"><span>What is the payload and reach?</span><span class="icon" aria-hidden="true"></span></button>
@@ -448,13 +452,13 @@ python -m pip install -e ".[dev]" &amp;&amp; maker-arm doctor</code></pre>
     const SKUS = {
       diy: {
         price: '$999',
-        note: 'DIY kit <span class="b">·</span> you assemble it<br>3D-printed <span class="b">·</span> ships October',
+        note: 'DIY kit <span class="b">·</span> you assemble it<br>ships October <span class="b">·</span> + $129 shipping',
         cta: '[ BUY DIY KIT <span class="b">·</span> $999 → ]',
         href: 'maker-arm-buy.html?build=diy',
       },
       assembled: {
         price: '$1,199',
-        note: 'Fully assembled <span class="b">·</span> bench-tested<br>3D-printed <span class="b">·</span> ships October',
+        note: 'Fully assembled <span class="b">·</span> bench-tested<br>ships October <span class="b">·</span> + $129 shipping',
         cta: '[ BUY ASSEMBLED <span class="b">·</span> $1,199 → ]',
         href: 'maker-arm-buy.html?build=assembled',
       },
