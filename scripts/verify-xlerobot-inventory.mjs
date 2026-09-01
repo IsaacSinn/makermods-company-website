@@ -4,54 +4,55 @@ import path from 'node:path';
 const root = process.cwd();
 
 function assert(condition, message) {
-  if (!condition) {
-    throw new Error(message);
-  }
+  if (!condition) throw new Error(message);
 }
 
 function read(filePath) {
   return fs.readFileSync(path.join(root, filePath), 'utf8');
 }
 
-const buyPage = read('buy.html');
+const homePage = read('index.html');
+const xlePage = read('xlerobot.html');
+const elPage = read('elrobot.html');
+const formerBuyPage = read('buy.html');
+const navScript = read('scripts/site-nav.js');
 const mainScript = read('scripts/main.js');
 
-const variants = {
-  blackRobotOnly: {
-    id: '51817674047805',
-    availabilityKey: "black:robot-only",
-    maxQuantity: 1,
-  },
-  whiteRobotOnly: {
-    id: '51036164555069',
-    availabilityKey: "white:robot-only",
-    maxQuantity: 5,
-  },
-  whiteJetson: {
-    id: '51314503123261',
-    availabilityKey: "white:jetson",
-    maxQuantity: 0,
-  },
-};
+const xleMailto = 'mailto:isaac@makermods.ai?subject=XLeRobot%20sales%20inquiry';
+const elMailto = 'mailto:isaac@makermods.ai?subject=ElRobot%20sales%20inquiry';
 
-assert(buyPage.includes(`data-variant-black="${variants.blackRobotOnly.id}"`), 'Black Robot Only variant ID must stay wired in buy.html');
-assert(buyPage.includes(`data-variant-white="${variants.whiteRobotOnly.id}"`), 'White Robot Only variant ID must stay present but gated');
-assert(buyPage.includes(`data-variant-white="${variants.whiteJetson.id}"`), 'White Jetson variant ID must stay present but gated');
-assert(buyPage.includes('5 white robot-only units in stock'), 'Buy page must show 5 buyable white robot-only units');
-assert(!buyPage.includes('White is sold out.'), 'Buy page must not label white XLeRobot as sold out');
-assert(!buyPage.includes('aria-label="White, sold out"'), 'White swatch must not be announced as sold out');
-assert(!buyPage.includes('data-color="white" data-active="false" aria-label="White" aria-disabled="true" disabled'), 'White swatch must be selectable');
-assert(buyPage.includes('Robot + Jetson Nano Pack is sold out.'), 'Buy page must label the Jetson build as sold out');
+assert(homePage.includes('href="xlerobot.html"'), 'Homepage must retain the XLeRobot discovery card');
+assert(homePage.includes('href="elrobot.html"'), 'Homepage must retain the ElRobot discovery card');
+assert(homePage.includes('<span>Contact sales</span>'), 'Homepage inquiry-only cards must say Contact sales');
 
-for (const variant of Object.values(variants)) {
-  assert(mainScript.includes(variant.id), `main.js must know variant ${variant.id}`);
-  assert(mainScript.includes(variant.availabilityKey), `main.js must define availability for ${variant.availabilityKey}`);
-  assert(mainScript.includes(`available: ${variant.maxQuantity}`), `main.js must set ${variant.availabilityKey} availability to ${variant.maxQuantity}`);
+assert(navScript.includes("label: 'XLeRobot'"), 'Top navigation must list XLeRobot');
+assert(navScript.includes("label: 'ElRobot'"), 'Top navigation must list ElRobot');
+
+assert(xlePage.includes(xleMailto), 'XLeRobot must link to the sales email');
+assert(elPage.includes(elMailto), 'ElRobot must link to the sales email');
+assert(xlePage.includes('[ CONTACT SALES → ]'), 'XLeRobot hero CTA must be Contact sales');
+assert(elPage.includes('[ CONTACT SALES → ]'), 'ElRobot hero CTA must be Contact sales');
+assert(!xlePage.includes('"offers"'), 'XLeRobot structured data must not advertise an online offer');
+assert(!elPage.includes('"offers"'), 'ElRobot structured data must not advertise an online offer');
+
+const retiredCheckoutMarkers = [
+  'makermods.myshopify.com/cart/51969031012669:1',
+  '51817674047805',
+  '51036164555069',
+  '51314503123261',
+  'X-Shopify-Storefront-Access-Token',
+  'OPENING CHECKOUT',
+];
+
+for (const marker of retiredCheckoutMarkers) {
+  assert(!xlePage.includes(marker), `XLeRobot page must not contain retired checkout marker: ${marker}`);
+  assert(!elPage.includes(marker), `ElRobot page must not contain retired checkout marker: ${marker}`);
+  assert(!formerBuyPage.includes(marker), `Retired XLeRobot buy page must not contain checkout marker: ${marker}`);
+  assert(!mainScript.includes(marker), `XLeRobot script must not contain checkout marker: ${marker}`);
 }
 
-assert(mainScript.includes('selectedVariant()'), 'Checkout flow must resolve selected variant metadata before cart creation');
-assert(mainScript.includes('isVariantBuyable'), 'Checkout flow must check selected variant availability');
-assert(mainScript.includes('Math.min(requestedQuantity, variant.available)'), 'Checkout quantity must be capped by available inventory');
-assert(mainScript.includes('variant.available < 1'), 'Sold-out variants must be blocked before Shopify cart creation');
+assert(formerBuyPage.includes('content="noindex,follow"'), 'Retired XLeRobot buy URL must be excluded from search indexing');
+assert(formerBuyPage.includes(xleMailto), 'Retired XLeRobot buy URL must direct visitors to sales');
+assert(!formerBuyPage.includes('scripts/main.js'), 'Retired XLeRobot buy URL must not load checkout code');
 
-console.log('XLeRobot inventory verification passed.');
+console.log('Inquiry-only product verification passed for XLeRobot and ElRobot.');
