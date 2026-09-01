@@ -19,12 +19,16 @@ const pages = {
   'so101-buy.html': { active: 'so101', label: '← back', href: '/so101' },
   'metal-arm.html': { active: 'metal-arm', label: 'Buy →', href: '/metal-arm-buy' },
   'metal-arm-buy.html': { active: 'metal-arm', label: '← back', href: '/metal-arm' },
-  'xlerobot.html': { active: 'xlerobot', label: 'Buy →', href: '/buy' },
-  'buy.html': { active: 'xlerobot', label: '← back', href: '/xlerobot' },
+  'xlerobot.html': {
+    active: 'xlerobot',
+    label: 'Contact sales →',
+    href: 'mailto:isaac@makermods.ai?subject=XLeRobot%20sales%20inquiry',
+  },
+  'buy.html': { label: '← XLeRobot', href: '/xlerobot' },
   'elrobot.html': {
     active: 'elrobot',
-    label: 'Buy →',
-    href: 'https://makermods.myshopify.com/cart/51969031012669:1',
+    label: 'Contact sales →',
+    href: 'mailto:isaac@makermods.ai?subject=ElRobot%20sales%20inquiry',
   },
   'open-booth-buy.html': { active: 'openbooth', label: '← back', href: '/openbooth' },
   'makermods-app/index.html': {
@@ -67,6 +71,7 @@ for (const [filePath, expected] of Object.entries(pages)) {
 const component = fs.readFileSync(componentPath, 'utf8');
 const stylesheet = fs.readFileSync(stylesheetPath, 'utf8');
 const expectedLinks = [
+  ['Maker Arm', '/maker-arm'],
   ['Metal Arm', '/metal-arm'],
   ['OpenBooth', '/openbooth'],
   ['MakerMods Lab', '/makermods-app/'],

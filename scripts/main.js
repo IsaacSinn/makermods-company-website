@@ -1,4 +1,4 @@
-/* XLeRobot Buy Page — interactivity */
+/* XLeRobot product page — interactivity */
 (() => {
   'use strict';
 
@@ -24,65 +24,6 @@
   const PRICES = { 'robot-only': 999, jetson: 1699 };
   const NAMES = { 'robot-only': 'Robot Only', jetson: 'Robot + Jetson Nano Pack' };
   const COLORS = { black: 'Black', white: 'White' };
-  const XLEROBOT_VARIANTS = {
-    'black:robot-only': {
-      id: '51817674047805',
-      available: 1,
-      label: 'Black Robot Only'
-    },
-    'white:robot-only': {
-      id: '51036164555069',
-      available: 5,
-      label: 'White Robot Only'
-    },
-    'white:jetson': {
-      id: '51314503123261',
-      available: 0,
-      label: 'White Robot + Jetson Nano Pack'
-    }
-  };
-
-  function selectedOption() {
-    return document.querySelector(`[data-opt-list] .opt[data-compute="${state.compute}"]`);
-  }
-
-  function selectedVariant() {
-    const opt = selectedOption();
-    if (!opt) return null;
-    const key = 'variant' + state.color.charAt(0).toUpperCase() + state.color.slice(1);
-    const configuredId = opt.dataset[key] || '';
-    if (!configuredId) return null;
-
-    const variantKey = state.color + ':' + state.compute;
-    const variant = XLEROBOT_VARIANTS[variantKey];
-    if (variant && variant.id === configuredId) return variant;
-
-    return {
-      id: configuredId,
-      available: 0,
-      label: COLORS[state.color] + ' ' + NAMES[state.compute]
-    };
-  }
-
-  function selectedVariantId() {
-    return selectedVariant()?.id || '';
-  }
-
-  function isVariantBuyable(variant) {
-    if (!variant || variant.available < 1) return false;
-    return true;
-  }
-
-  function updateBuyCta() {
-    const buyCta = document.getElementById('config-buy-cta');
-    if (!buyCta) return;
-    const nameEl = buyCta.querySelector('[data-config-buy-name]');
-    const colorEl = buyCta.querySelector('[data-config-buy-color]');
-    const priceEl = buyCta.querySelector('[data-config-buy-price]');
-    if (nameEl) nameEl.textContent = NAMES[state.compute].toUpperCase();
-    if (colorEl) colorEl.textContent = COLORS[state.color].toUpperCase();
-    if (priceEl) priceEl.textContent = '$' + PRICES[state.compute].toLocaleString();
-  }
 
   /* ----------- Box list ----------- */
   const BOX_BASE = [
@@ -174,8 +115,6 @@
     const tag = document.querySelector('[data-cg-tag]');
     if (tag) tag.textContent = '[ xlerobot · ' + state.color + ' · ' + NAMES[id].toLowerCase() + ' ]';
 
-    updateBuyCta();
-
     renderBox();
     renderSpecs();
   }
@@ -198,72 +137,6 @@
     const tag = document.querySelector('[data-cg-tag]');
     if (tag) tag.textContent = '[ xlerobot · ' + id + ' · ' + NAMES[state.compute].toLowerCase() + ' ]';
 
-    updateBuyCta();
-  }
-
-  /* ----------- Shopify Storefront API: cart → checkout ----------- */
-  const SHOPIFY_DOMAIN = 'makermods.myshopify.com';
-  const STOREFRONT_TOKEN = 'e2d29379e81ae0f09b8bbd67b6b74515';
-
-  async function createCheckoutUrl(variant, quantity) {
-    if (!isVariantBuyable(variant)) {
-      throw new Error((variant?.label || 'This build') + ' is sold out.');
-    }
-
-    const requestedQuantity = Math.max(1, Math.floor(Number(quantity) || 1));
-    const checkoutQuantity = Math.min(requestedQuantity, variant.available);
-    const merchandiseId = 'gid://shopify/ProductVariant/' + variant.id;
-    const res = await fetch(`https://${SHOPIFY_DOMAIN}/api/2024-04/graphql.json`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Shopify-Storefront-Access-Token': STOREFRONT_TOKEN
-      },
-      body: JSON.stringify({
-        query: `mutation CartCreate($input: CartInput!) {
-          cartCreate(input: $input) {
-            cart { checkoutUrl }
-            userErrors { field message }
-          }
-        }`,
-        variables: { input: { lines: [{ merchandiseId, quantity: checkoutQuantity }] } }
-      })
-    });
-    const data = await res.json();
-    const errs = data?.data?.cartCreate?.userErrors;
-    if (errs && errs.length) throw new Error(errs.map(e => e.message).join('; '));
-    const url = data?.data?.cartCreate?.cart?.checkoutUrl;
-    if (!url) throw new Error('No checkout URL returned');
-    return url;
-  }
-
-  const buyCtaEl = document.getElementById('config-buy-cta');
-  if (buyCtaEl) {
-    buyCtaEl.addEventListener('click', async (e) => {
-      e.preventDefault();
-      const variant = selectedVariant();
-      if (!isVariantBuyable(variant)) {
-        alert((variant?.label || COLORS[state.color] + ' ' + NAMES[state.compute]) + ' is sold out. Please pick an available option.');
-        return;
-      }
-      // Open a blank tab synchronously so we don't trip popup blockers; navigate to checkout once we have the URL.
-      const win = window.open('about:blank', '_blank');
-      const originalText = buyCtaEl.innerHTML;
-      buyCtaEl.style.pointerEvents = 'none';
-      buyCtaEl.innerHTML = '[ OPENING CHECKOUT… ]';
-      try {
-        const url = await createCheckoutUrl(variant, 1);
-        if (win && !win.closed) win.location.href = url;
-        else window.location.href = url;
-      } catch (err) {
-        if (win && !win.closed) win.close();
-        console.error('Checkout error:', err);
-        alert('Could not open checkout: ' + err.message);
-      } finally {
-        buyCtaEl.style.pointerEvents = '';
-        buyCtaEl.innerHTML = originalText;
-      }
-    });
   }
 
   /* ----------- Wire up: compute options ----------- */
