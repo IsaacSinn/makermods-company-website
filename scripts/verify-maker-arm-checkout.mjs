@@ -7,7 +7,7 @@ const source = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].at(-1)[1];
 
 function createPage(search = '') {
   const elements = new Map([...html.matchAll(/id="([^"]+)"/g)].map(([, id]) => [id, {
-    dataset: {}, style: {}, listeners: {}, value: id === 'maker-arm-quantity' ? '1' : '',
+    dataset: {}, style: {}, listeners: {}, value: id === 'maker-arm-quantity' ? '1' : id === 'leader-arm-quantity' ? '0' : '',
     addEventListener(type, callback) { this.listeners[type] = callback; },
     setAttribute(name, value) { this[name] = value; },
     setCustomValidity(message) { this.validationMessage = message; },
@@ -39,9 +39,9 @@ function createPage(search = '') {
       } }) };
     },
   });
-  page.quantity = (value) => {
-    elements.get('maker-arm-quantity').value = value;
-    elements.get('maker-arm-quantity').listeners.input();
+  page.quantity = (value, kind = 'maker-arm') => {
+    elements.get(`${kind}-quantity`).value = value;
+    elements.get(`${kind}-quantity`).listeners.input();
   };
   page.checkout = () => elements.get('config-buy-cta').listeners.click({ preventDefault() {} });
   page.text = (id) => elements.get(id).textContent;
@@ -53,17 +53,20 @@ for (const [build, variant, price] of [
   ['assembled', '52875818238269', 1199],
 ]) {
   for (const quantity of [1, 2, 5]) {
-    for (const leader of [false, true]) {
+    for (const leader of [0, 1, 2, 4]) {
       const page = createPage(`?build=${build}`);
       page.quantity(String(quantity));
-      if (leader) page.elements.get('leader-toggle').listeners.click();
-      const total = `$${(quantity * price + (leader ? 199 : 0)).toLocaleString('en-US')}`;
+      page.quantity(String(leader), 'leader-arm');
+      const total = `$${(quantity * price + leader * 199).toLocaleString('en-US')}`;
       for (const id of ['cart-total', 'cta-price', 'summary-price']) assert.equal(page.text(id), total);
       assert.equal(page.text('cart-build-price'), `$${(quantity * price).toLocaleString('en-US')}`);
       assert.equal(page.text('cart-arm-count'), `${quantity} Maker Arm${quantity === 1 ? '' : 's'}`);
+      assert.equal(page.elements.get('cart-leader-line').hidden, leader === 0);
+      assert.equal(page.text('cart-leader-price'), `$${(leader * 199).toLocaleString('en-US')}`);
+      assert.equal(page.text('cart-leader-name'), `Star Arm 102-HD (Leader) × ${leader}`);
       await page.checkout();
       const lines = [{ merchandiseId: `gid://shopify/ProductVariant/${variant}`, quantity }];
-      if (leader) lines.push({ merchandiseId: 'gid://shopify/ProductVariant/52875826594109', quantity: 1 });
+      if (leader) lines.push({ merchandiseId: 'gid://shopify/ProductVariant/52875826594109', quantity: leader });
       assert.deepEqual(page.requests[0].variables.input.lines, lines);
       assert.equal(page.popups[0].location.href, 'https://checkout.example/test');
     }
@@ -74,20 +77,37 @@ const page = createPage();
 page.quantity('2');
 page.tiers[1].click();
 assert.equal(page.text('cart-total'), '$2,398', 'Changing builds must preserve quantity');
-page.elements.get('leader-toggle').listeners.click();
+page.elements.get('leader-arm-increase').listeners.click();
 assert.equal(page.text('cart-total'), '$2,597');
-page.elements.get('leader-toggle').listeners.click();
+page.elements.get('leader-arm-increase').listeners.click();
+assert.equal(page.text('cart-total'), '$2,796');
+page.elements.get('leader-arm-decrease').listeners.click();
+page.elements.get('leader-arm-decrease').listeners.click();
+assert.equal(page.elements.get('leader-arm-decrease').disabled, true);
 assert.equal(page.text('cart-total'), '$2,398');
-for (const invalid of ['', '0', '-1', '1.5', 'abc', 'Infinity', '9007199254740992']) {
-  page.quantity(invalid);
-  await page.checkout();
-  assert.ok(page.elements.get('maker-arm-quantity').validationMessage);
-  assert.equal(page.requests.length, 0, `Invalid quantity ${invalid} must not reach Shopify`);
-  assert.equal(page.popups.length, 0);
+for (const kind of ['maker-arm', 'leader-arm']) {
+  const invalidValues = ['', '-1', '1.5', 'abc', 'Infinity', '9007199254740992'];
+  if (kind === 'maker-arm') invalidValues.push('0');
+  for (const invalid of invalidValues) {
+    page.quantity(invalid, kind);
+    await page.checkout();
+    assert.ok(page.elements.get(`${kind}-quantity`).validationMessage);
+    assert.equal(page.requests.length, 0, `Invalid ${kind} quantity ${invalid} must not reach Shopify`);
+    assert.equal(page.popups.length, 0);
+  }
+  page.quantity('1', kind);
 }
+page.quantity('2', 'leader-arm');
+page.tiers[0].click();
+assert.equal(page.text('cart-total'), '$1,397', 'Changing builds preserves independent quantities');
+page.elements.get('maker-arm-increase').listeners.click();
+assert.equal(page.text('cart-total'), '$2,396');
+page.elements.get('maker-arm-decrease').listeners.click();
+assert.equal(page.elements.get('maker-arm-decrease').disabled, true);
 page.quantity('3');
 assert.equal(page.elements.get('maker-arm-quantity').validationMessage, '');
 await page.checkout();
 assert.equal(page.requests[0].variables.input.lines[0].quantity, 3);
+assert.equal(page.requests[0].variables.input.lines[1].quantity, 2);
 assert.equal(createPage('?build=unknown').text('cart-total'), '$999');
-console.log('Maker Arm checkout verification passed: quantities, both builds, leader add-on, totals, and invalid input.');
+console.log('Maker Arm checkout verification passed: independent quantities, both builds, stepper buttons, leader removal, totals, and invalid input.');
