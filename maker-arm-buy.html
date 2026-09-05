@@ -72,6 +72,8 @@
     cursor: pointer;
   }
   .addon-button[data-added="true"] { color: var(--paper); background: var(--ink); }
+  .quantity-control { display: flex; align-items: center; gap: var(--s-4); margin-top: var(--s-4); font-size: 14px; }
+  .quantity-control input { width: 96px; padding: 12px; border: 1px solid var(--ink); background: var(--surface); color: var(--ink); font: inherit; }
   .cart-summary { margin-top: var(--s-5); border-top: 1px solid var(--line-2); }
   .cart-line {
     display: flex;
@@ -201,7 +203,11 @@
 
           <div class="config-label" style="margin-top:var(--s-5)">
             <span>03 / Cart</span>
-            <span class="val">1 Maker Arm</span>
+            <span class="val" id="cart-arm-count">1 Maker Arm</span>
+          </div>
+          <div class="quantity-control">
+            <label for="maker-arm-quantity">Maker Arm quantity</label>
+            <input id="maker-arm-quantity" type="number" min="1" step="1" value="1" required inputmode="numeric">
           </div>
           <div class="cart-summary" aria-live="polite">
             <div class="cart-line"><span id="cart-build-name">Maker Arm DIY kit</span><strong id="cart-build-price">$999</strong></div>
@@ -218,7 +224,7 @@
 
           <div class="ship-note">
             <div class="num">[ HOW IT WORKS ]</div>
-            <p>Checkout opens with your Maker Arm build and the FashionStar Star Arm when it is added. The flat $129 shipping charge is added in Shopify checkout.</p>
+            <p>Checkout opens with your selected quantity of the Maker Arm build and one FashionStar Star Arm when it is added. Shipping is added per Maker Arm in Shopify checkout.</p>
           </div>
 
           <div class="ship-note">
@@ -299,22 +305,34 @@
   const requestedBuild = new URLSearchParams(window.location.search).get('build');
   let activeBuild = Object.prototype.hasOwnProperty.call(BUILDS, requestedBuild) ? requestedBuild : 'diy';
   let leaderAdded = false;
+  let armQuantity = 1;
+  const quantityInput = document.getElementById('maker-arm-quantity');
+
+  const readQuantity = () => {
+    const quantity = Number(quantityInput.value);
+    const valid = Number.isSafeInteger(quantity) && quantity >= 1;
+    quantityInput.setCustomValidity(valid ? '' : 'Enter a whole number of Maker Arms, at least 1.');
+    if (valid) armQuantity = quantity;
+    return valid;
+  };
 
   const money = (value) => `$${value.toLocaleString('en-US')}`;
   const render = () => {
     const build = BUILDS[activeBuild];
-    const total = build.price + (leaderAdded ? STAR_ARM_PRICE : 0);
+    const total = build.price * armQuantity + (leaderAdded ? STAR_ARM_PRICE : 0);
 
     document.querySelectorAll('#tier-list .opt:not(:disabled)').forEach((element) => {
       element.dataset.active = element.dataset.tier === activeBuild ? 'true' : 'false';
     });
     document.getElementById('config-build-val').textContent = build.label;
     document.getElementById('cg-tag').textContent = build.tag;
-    document.getElementById('cart-build-name').textContent = build.cartLabel;
-    document.getElementById('cart-build-price').textContent = money(build.price);
+    document.getElementById('cart-arm-count').textContent = `${armQuantity} Maker Arm${armQuantity === 1 ? '' : 's'}`;
+    document.getElementById('cart-build-name').textContent = `${build.cartLabel} × ${armQuantity}`;
+    document.getElementById('cart-build-price').textContent = money(build.price * armQuantity);
     document.getElementById('cart-leader-line').hidden = !leaderAdded;
     document.getElementById('cart-total').textContent = money(total);
-    document.getElementById('cta-price').textContent = money(total);
+    const ctaPrice = document.getElementById('cta-price');
+    if (ctaPrice) ctaPrice.textContent = money(total);
     document.getElementById('summary-price').textContent = money(total);
     document.getElementById('addon-state').textContent = leaderAdded ? 'Star Arm 102-HD added' : 'cart empty';
 
@@ -335,6 +353,10 @@
   document.getElementById('leader-toggle').addEventListener('click', () => {
     leaderAdded = !leaderAdded;
     render();
+  });
+
+  quantityInput.addEventListener('input', () => {
+    if (readQuantity()) render();
   });
 
   async function createCheckoutUrl(lines) {
@@ -365,8 +387,12 @@
   const cta = document.getElementById('config-buy-cta');
   cta.addEventListener('click', async (event) => {
     event.preventDefault();
+    if (!readQuantity()) {
+      quantityInput.reportValidity();
+      return;
+    }
     const build = BUILDS[activeBuild];
-    const lines = [{ merchandiseId: build.variantId, quantity: 1 }];
+    const lines = [{ merchandiseId: build.variantId, quantity: armQuantity }];
     if (leaderAdded) lines.push({ merchandiseId: STAR_ARM_VARIANT_ID, quantity: 1 });
 
     const checkoutWindow = window.open('about:blank', '_blank');
@@ -384,6 +410,7 @@
     } finally {
       cta.style.pointerEvents = '';
       cta.innerHTML = originalText;
+      render();
     }
   });
 
